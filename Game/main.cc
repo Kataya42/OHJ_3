@@ -31,12 +31,13 @@ int main(int argc, char *argv[])
     Manse map;
     QApplication a(argc, argv);
     CourseSide::SimpleMainWindow w;
-    w.show();
 
-
+    QImage kartta;
     Q_INIT_RESOURCE(offlinedata);
+    kartta.load(":/offlinedata/offlinedata/kartta_pieni_500x500.png");
 
-
+    w.setPicture(kartta);
+    w.show();
 
     return a.exec();
 }
