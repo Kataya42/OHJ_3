@@ -3,6 +3,7 @@
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include <actors/nysse.hh>
+#include <manse.h>
 #include <actors/passenger.hh>
 #include <actors/stop.hh>
 #include <core/location.hh>
@@ -23,22 +24,14 @@
 
 
 
-class Manse: public virtual Interface::ICity {
-    public:
-    int a = 10;
-};
 
 
 int main(int argc, char *argv[])
 {
-    Manse man;
-
-
-
+    Manse map;
     QApplication a(argc, argv);
     CourseSide::SimpleMainWindow w;
     w.show();
-
 
 
     Q_INIT_RESOURCE(offlinedata);
