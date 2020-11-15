@@ -23,11 +23,24 @@
 
 
 
+class Manse: public virtual Interface::ICity {
+    public:
+    int a = 10;
+};
+
+
+
 int main(int argc, char *argv[])
 {
+    Manse man;
+
+
+
     QApplication a(argc, argv);
     CourseSide::SimpleMainWindow w;
     w.show();
+
+
 
     Q_INIT_RESOURCE(offlinedata);
 
