@@ -1,4 +1,6 @@
 #include <QApplication>
+#include <CourseLib.h>
+
 
 int main(int argc, char *argv[])
 {
