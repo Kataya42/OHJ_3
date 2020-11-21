@@ -34,6 +34,10 @@ public:
     bool findActor(std::shared_ptr<Interface::IActor> actor) const;
     void actorMoved(std::shared_ptr<Interface::IActor> actor);
     std::vector<std::shared_ptr<Interface::IActor>> getNearbyActors(Interface::Location loc) const;
+
+private:
+    QTime time_;
+    bool gamestarted_;
 };
 
 #endif // MANSE_H

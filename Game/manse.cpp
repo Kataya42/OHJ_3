@@ -2,22 +2,22 @@
 
 Manse::Manse()
 {
-
+    gamestarted_ = false;
 }
 
 void Manse::setBackground(QImage &basicbackground, QImage &bigbackground)
 {
-
+    //Currently test implementation in main, implementation here probably later
 }
 
 void Manse::setClock(QTime clock)
 {
-
+    time_ = clock;
 }
 
 void Manse::startGame()
 {
-
+    gamestarted_ = true;
 }
 
 bool Manse::isGameOver() const
