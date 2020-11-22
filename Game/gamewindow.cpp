@@ -4,3 +4,7 @@ GameWindow::GameWindow(QWidget *parent) : CourseSide::SimpleMainWindow(parent)
 {
 
 }
+
+
+
+
