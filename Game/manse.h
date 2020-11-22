@@ -39,13 +39,16 @@ public:
     void actorMoved(std::shared_ptr<Interface::IActor> actor) override;
     std::vector<std::shared_ptr<Interface::IActor>> getNearbyActors(Interface::Location loc) const override;
     void draw();
-    void addWindow(std::shared_ptr<GameWindow> window);
+    std::vector<std::shared_ptr<Interface::IActor>> getBuses();
 
+    void addWindow(std::shared_ptr<GameWindow> window);
+private slots:
+    void updateDraw();
 private:
     QTime time_;
     bool gamestarted_;
     std::vector<std::shared_ptr<Interface::IStop>> stops_;
-    std::vector<std::shared_ptr<Interface::IActor>> actors_;
+    std::vector<std::shared_ptr<Interface::IActor>> buses_;
     std::shared_ptr<GameWindow> city_;
 };
 

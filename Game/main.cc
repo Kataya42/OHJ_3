@@ -22,6 +22,7 @@
 #include <doxygeninfo.hh>
 #include <offlinereader.hh>
 #include <gamewindow.hh>
+#include <gamemaster.h>
 
 
 int main(int argc, char *argv[])
@@ -42,12 +43,16 @@ int main(int argc, char *argv[])
 
     map->addWindow(w);
 
-
     CourseSide::Logic gamelogic;
     gamelogic.fileConfig();
     gamelogic.setTime(12,10);
     gamelogic.takeCity(map);
+    // Gamemaster testing class for game functions
+    GameMaster mestari;
+    mestari.getcity(map);
+    mestari.getWindow(w);
     gamelogic.finalizeGameStart();
+    mestari.runbusses();
 
     w->show();
 

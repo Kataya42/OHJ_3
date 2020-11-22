@@ -10,8 +10,6 @@ class GameWindow : public CourseSide::SimpleMainWindow
     Q_OBJECT
 public:
     explicit GameWindow(QWidget *parent = nullptr);
-
-
 signals:
 
 };
