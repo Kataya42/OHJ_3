@@ -28,11 +28,12 @@ bool Manse::isGameOver() const
 void Manse::addStop(std::shared_ptr<Interface::IStop> stop)
 {
 
+    stops_.push_back(stop);
 }
 
 void Manse::addActor(std::shared_ptr<Interface::IActor> newactor)
 {
-
+    actors_.push_back(newactor);
 }
 
 void Manse::removeActor(std::shared_ptr<Interface::IActor> actor)

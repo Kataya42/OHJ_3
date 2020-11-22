@@ -21,9 +21,7 @@
 #include <creategame.hh>
 #include <doxygeninfo.hh>
 #include <offlinereader.hh>
-
-
-
+#include <gamewindow.hh>
 
 
 int main(int argc, char *argv[])
@@ -31,14 +29,17 @@ int main(int argc, char *argv[])
     std::shared_ptr<Manse> map = nullptr;
     map = std::make_shared<Manse>();
     QApplication a(argc, argv);
-    CourseSide::SimpleMainWindow w;
+
+    GameWindow w;
 
     QImage kartta;
     Q_INIT_RESOURCE(offlinedata);
     kartta.load(":/offlinedata/offlinedata/kartta_pieni_500x500.png");
 
     w.setPicture(kartta);
-    w.addActor(50, 15);
+    w.addActor(50, 15,300);
+
+
     CourseSide::Logic gamelogic;
     gamelogic.fileConfig();
     gamelogic.setTime(12,10);
@@ -46,6 +47,8 @@ int main(int argc, char *argv[])
     gamelogic.finalizeGameStart();
 
     w.show();
+
+
 
     return a.exec();
 }
