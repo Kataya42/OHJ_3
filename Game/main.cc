@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
 
     w->show();
 
-        map->draw();
+    map->draw();
 
 
 
