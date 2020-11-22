@@ -22,22 +22,24 @@ public:
     Manse();
 
     //ICity
-    void setBackground(QImage& basicbackground, QImage& bigbackground);
-    void setClock(QTime clock);
-    void startGame();
-    bool isGameOver() const;
+    void setBackground(QImage& basicbackground, QImage& bigbackground) override;
+    void setClock(QTime clock) override;
+    void startGame() override;
+    bool isGameOver() const override;
 
-    void addStop(std::shared_ptr<Interface::IStop> stop);
-    void addActor(std::shared_ptr<Interface::IActor> newactor);
-    void removeActor(std::shared_ptr<Interface::IActor> actor);
-    void actorRemoved(std::shared_ptr<Interface::IActor> actor);
-    bool findActor(std::shared_ptr<Interface::IActor> actor) const;
-    void actorMoved(std::shared_ptr<Interface::IActor> actor);
-    std::vector<std::shared_ptr<Interface::IActor>> getNearbyActors(Interface::Location loc) const;
+    void addStop(std::shared_ptr<Interface::IStop> stop) override;
+    void addActor(std::shared_ptr<Interface::IActor> newactor) override;
+    void removeActor(std::shared_ptr<Interface::IActor> actor) override;
+    void actorRemoved(std::shared_ptr<Interface::IActor> actor) override;
+    bool findActor(std::shared_ptr<Interface::IActor> actor) const override;
+    void actorMoved(std::shared_ptr<Interface::IActor> actor) override;
+    std::vector<std::shared_ptr<Interface::IActor>> getNearbyActors(Interface::Location loc) const override;
 
 private:
     QTime time_;
     bool gamestarted_;
+    std::vector<std::shared_ptr<Interface::IStop>> stops_;
+    std::vector<std::shared_ptr<Interface::IActor>> actors_;
 };
 
 #endif // MANSE_H

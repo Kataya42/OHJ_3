@@ -7,6 +7,7 @@ CONFIG += c++14
 
 SOURCES += \
     creategame.cpp \
+    gamewindow.cpp \
     main.cc \
     manse.cpp
 
@@ -35,6 +36,7 @@ else:unix: PRE_TARGETDEPS += \
     $$OUT_PWD/../Course/CourseLib/libCourseLib.a
 
 HEADERS += \
+    gamewindow.hh \
     manse.h
 
 
