@@ -30,14 +30,17 @@ int main(int argc, char *argv[])
     map = std::make_shared<Manse>();
     QApplication a(argc, argv);
 
-    GameWindow w;
+    std::shared_ptr<GameWindow> w = nullptr;
+    w = std::make_shared<GameWindow>();
 
     QImage kartta;
     Q_INIT_RESOURCE(offlinedata);
     kartta.load(":/offlinedata/offlinedata/kartta_pieni_500x500.png");
 
-    w.setPicture(kartta);
-    w.addActor(50, 15,300);
+    w->setPicture(kartta);
+    w->addActor(50, 15,300);
+
+    map->addWindow(w);
 
 
     CourseSide::Logic gamelogic;
@@ -46,7 +49,10 @@ int main(int argc, char *argv[])
     gamelogic.takeCity(map);
     gamelogic.finalizeGameStart();
 
-    w.show();
+    w->show();
+
+        map->draw();
+
 
 
 
