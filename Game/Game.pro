@@ -39,4 +39,7 @@ HEADERS += \
     gamewindow.hh \
     manse.h
 
+FORMS += \
+    simplegamewindow.ui
+
 
