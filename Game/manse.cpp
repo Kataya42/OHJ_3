@@ -88,15 +88,18 @@ void Manse::draw()
         int y = 500 - i->getLocation().giveY()+ 50;
 
         std::cout <<"x:" << x << " y:" << y << std::endl;
-        city_->addActor(x,y,1000);
+        city_->addActor(x,y,0);
     }
        //
     // }
 
-//    for ( auto i : actors_){
-//        Interface::Location a = i->giveLocation();
-//        city_->addActor(a.giveX()*0.2,a.giveY()*0.2,0);
-    //    }
+    for ( auto i : buses_){
+
+        int x2 = i->giveLocation().giveX() +1350 ;
+        int y2 = 500 - i->giveLocation().giveY()+ 50;
+        city_->addActor(x2,y2,1000);
+    }
+
 }
 
 void Manse::updateDraw()

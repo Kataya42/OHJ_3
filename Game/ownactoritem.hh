@@ -1,12 +1,15 @@
 #ifndef OWNACTORITEM_HH
 #define OWNACTORITEM_HH
-#include <graphics/simpleactoritem.hh>
+
+#include <QGraphicsItem>
+#include <QGraphicsScene>
+#include <QPainter>
 
 
-const int WIDTH1 = 5;
-const int HEIGHT2 = 5;
+const int WIDTH1 = 10;
+const int HEIGHT2 = 10;
 
-class OwnActorItem : public CourseSide::SimpleActorItem
+class OwnActorItem : public QGraphicsItem
 {
 public:
     OwnActorItem(int x, int y, int type);
