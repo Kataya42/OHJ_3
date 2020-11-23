@@ -2,7 +2,7 @@
 #define GAMEWINDOW_HH
 
 #include "interfaces/iactor.hh"
-#include "graphics/simpleactoritem.hh"
+#include "ownactoritem.hh"
 
 #include <QMainWindow>
 #include <QGraphicsScene>
@@ -44,10 +44,10 @@ private:
     QGraphicsScene *map;
     QTimer *timer;
     QVector<QGraphicsItem*> actors_;
-    CourseSide::SimpleActorItem* last_;
+    OwnActorItem* last_;
 
-    int width_ = 500; //pxls
-    int height_ = 500;
+    int width_ = 1095; //pxls
+    int height_ = 592;
     int tick_ = 500; //ms
 };
 

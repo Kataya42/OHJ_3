@@ -23,7 +23,7 @@
 #include <offlinereader.hh>
 #include <gamewindow.hh>
 #include <gamemaster.h>
-
+#include <ownlogic.hh>
 
 int main(int argc, char *argv[])
 {
@@ -36,17 +36,19 @@ int main(int argc, char *argv[])
 
     QImage kartta;
     Q_INIT_RESOURCE(offlinedata);
-    kartta.load(":/offlinedata/offlinedata/kartta_pieni_500x500.png");
+    kartta.load(":/offlinedata/offlinedata/kartta_iso_1095x592.png");
 
     w->setPicture(kartta);
     w->addActor(50, 15,300);
 
     map->addWindow(w);
 
-    CourseSide::Logic gamelogic;
+    OwnLogic gamelogic;
     gamelogic.fileConfig();
     gamelogic.setTime(12,10);
     gamelogic.takeCity(map);
+
+
     // Gamemaster testing class for game functions
     GameMaster mestari;
     mestari.getcity(map);

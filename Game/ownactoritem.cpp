@@ -1,8 +1,8 @@
 #include "ownactoritem.hh"
 
-OwnActorItem::OwnActorItem() : CourseSide::SimpleActorItem(int x, int y, int type)
+OwnActorItem::OwnActorItem(int x, int y, int type) : CourseSide::SimpleActorItem(x,y,type)
 {
-    setPos(mapToParent(x_ % 100, y_ % 100));
+    setPos(mapToParent(x_ , y_ ));
 }
 
 
@@ -13,4 +13,10 @@ void OwnActorItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
     QBrush brush(color);
     painter->setBrush(brush);
     painter->drawEllipse(bounds);
+}
+
+
+QRectF OwnActorItem::boundingRect() const
+{
+    return QRectF(0, 0, WIDTH1, HEIGHT2);
 }

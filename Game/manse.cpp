@@ -41,10 +41,10 @@ void Manse::addActor(std::shared_ptr<Interface::IActor> newactor)
     if (stops_.size() == 0)
     {
         Interface::Location a = newactor->giveLocation();
-        int c = a.giveY();
-        int b = a.giveX();
+        //int c = a.giveY();
+        //int b = a.giveX();
 
-        std::cout << typeid(*newactor).name() << c << " " << b << std::endl;
+        //std::cout << typeid(*newactor).name() << c << " " << b << std::endl;
         buses_.push_back(newactor);
     }
 }
@@ -77,8 +77,12 @@ std::vector<std::shared_ptr<Interface::IActor> > Manse::getNearbyActors(Interfac
 void Manse::draw()
 {
     for ( auto i : buses_){
-        Interface::Location a = i->giveLocation();
-        city_->addActor(a.giveX(),a.giveY(),1000);
+
+        int x = i->giveLocation().giveX() +350 ;
+        int y = 500 - i->giveLocation().giveY()+ 50;
+
+        city_->addActor(x,y,1000);
+        std::cout <<"x:" << x << " y:" << y << std::endl;
     }
 
 //    for ( auto i : actors_){
@@ -91,6 +95,7 @@ std::vector<std::shared_ptr<Interface::IActor>> Manse::getBuses()
 {
     return buses_;
 }
+
 
 void Manse::updateDraw()
 {
