@@ -40,7 +40,7 @@ void Manse::addActor(std::shared_ptr<Interface::IActor> newactor)
 
     if (stops_.size() == 0)
     {
-        Interface::Location a = newactor->giveLocation();
+        //Interface::Location a = newactor->giveLocation();
         //int c = a.giveY();
         //int b = a.giveX();
 
@@ -69,33 +69,35 @@ void Manse::actorMoved(std::shared_ptr<Interface::IActor> actor)
 
 }
 
-std::vector<std::shared_ptr<Interface::IActor> > Manse::getNearbyActors(Interface::Location loc) const
+std::vector<std::shared_ptr<Interface::IActor>> Manse::getNearbyActors(Interface::Location loc) const
 {
 
 }
 
-void Manse::draw()
-{
-    for ( auto i : buses_){
-
-        int x = i->giveLocation().giveX() +350 ;
-        int y = 500 - i->giveLocation().giveY()+ 50;
-
-        city_->addActor(x,y,1000);
-        std::cout <<"x:" << x << " y:" << y << std::endl;
-    }
-
-//    for ( auto i : actors_){
-//        Interface::Location a = i->giveLocation();
-//        city_->addActor(a.giveX()*0.2,a.giveY()*0.2,0);
-    //    }
-}
 
 std::vector<std::shared_ptr<Interface::IActor>> Manse::getBuses()
 {
     return buses_;
 }
 
+void Manse::draw()
+{
+    for ( auto i : stops_){
+
+        int x = i->getLocation().giveX() +1350 ;
+        int y = 500 - i->getLocation().giveY()+ 50;
+
+        std::cout <<"x:" << x << " y:" << y << std::endl;
+        city_->addActor(x,y,1000);
+    }
+       //
+    // }
+
+//    for ( auto i : actors_){
+//        Interface::Location a = i->giveLocation();
+//        city_->addActor(a.giveX()*0.2,a.giveY()*0.2,0);
+    //    }
+}
 
 void Manse::updateDraw()
 {

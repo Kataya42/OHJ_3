@@ -65,6 +65,12 @@
      <height>25</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuHyvin_menee">
+    <property name="title">
+     <string>Hyvin menee</string>
+    </property>
+   </widget>
+   <addaction name="menuHyvin_menee"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

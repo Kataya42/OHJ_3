@@ -2,9 +2,8 @@
 
 OwnActorItem::OwnActorItem(int x, int y, int type) : CourseSide::SimpleActorItem(x,y,type)
 {
-    setPos(mapToParent(x_ , y_ ));
+    setPos(mapToParent(x_ % 100 , y_ % 100));
 }
-
 
 void OwnActorItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
@@ -20,3 +19,11 @@ QRectF OwnActorItem::boundingRect() const
 {
     return QRectF(0, 0, WIDTH1, HEIGHT2);
 }
+
+
+void OwnActorItem::setCoord(int x, int y)
+{
+    setX( x % 100 );
+    setY( y % 100 );
+}
+

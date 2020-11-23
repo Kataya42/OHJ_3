@@ -11,9 +11,8 @@ class OwnActorItem : public CourseSide::SimpleActorItem
 public:
     OwnActorItem(int x, int y, int type);
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-
-
     QRectF boundingRect() const;
+    void setCoord(int x, int y);
 
 private:
     int x_;
