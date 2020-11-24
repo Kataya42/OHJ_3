@@ -36,6 +36,7 @@ public:
     void setPicture(QImage &img);
     bool takeCity(std::shared_ptr<Manse> city);
     void drawBuses();
+    void drawPlayer();
 
 signals:
     void gameStarted();
@@ -48,7 +49,6 @@ private slots:
 
 protected:
     virtual void keyPressEvent(QKeyEvent *event);
-    virtual void keyReleaseEvent(QKeyEvent *event);
 
 private:
     Ui::SimpleGameWindow *ui;
@@ -56,8 +56,10 @@ private:
     QTimer *timer;
     QVector<OwnActorItem*> actors_;
     OwnActorItem* last_;
+    OwnActorItem* playerActor_;
     std::shared_ptr<Manse> city_;
-
+    int playerDirHorizontal_;
+    int playerDirVertical_;
     int width_ = 1095; //pxls
     int height_ = 592;
     int tick_ = 100; //ms

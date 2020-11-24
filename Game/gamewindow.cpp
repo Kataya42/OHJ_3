@@ -26,6 +26,8 @@ GameWindow::GameWindow(QWidget *parent) :
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, map, &QGraphicsScene::advance);
     timer->start(tick_);
+    playerDirVertical_ = 0;
+    playerDirHorizontal_ = 0;
 }
 
 GameWindow::~GameWindow()
@@ -59,23 +61,32 @@ void GameWindow::updateCoords()
     for ( auto i : buses){
         if (counter < actors_.size()){
             int nx = i->giveLocation().giveX() + 350;
-            int ny = 450 - i->giveLocation().giveY();
+            int ny = 500 - i->giveLocation().giveY() + 50;
             actors_.at(counter)->setCoord(nx, ny);
             counter++;
         }
     }
+    city_->getPlayer()->updateLocation(playerDirHorizontal_,playerDirVertical_);
+    int px = city_->getPlayer()->giveLocation().giveX();
+    int py = city_->getPlayer()->giveLocation().giveY();
+    playerActor_->setCoord(px, py);
+
 }
 
 void GameWindow::keyPressEvent(QKeyEvent *event)
 {
     if (event->key() == 16777235) {
-        emit moveUp;
+        playerDirVertical_ = 1;
+        playerDirHorizontal_ = 0;
     } else if (event->key() == 16777237) {
-        emit moveDown;
+        playerDirVertical_ = -1;
+        playerDirHorizontal_ = 0;
     } else if (event->key() == 16777234) {
-        emit moveLeft
+        playerDirHorizontal_ = 1;
+        playerDirVertical_ = 0;
     } else if (event->key() == 16777236) {
-        emit moveRight
+        playerDirHorizontal_ = -1;
+        playerDirVertical_ = 0;
     }
 }
 
@@ -101,6 +112,13 @@ void GameWindow::drawBuses()
     }
 }
 
+void GameWindow::drawPlayer()
+{
+    OwnActorItem* nact = new OwnActorItem(city_->getPlayer()->giveLocation().giveX(), city_->getPlayer()->giveLocation().giveY(), 100);
+    playerActor_ = nact;
+    map->addItem(playerActor_);
+}
+
 
 void GameWindow::on_startButton_clicked()
 {
@@ -108,5 +126,7 @@ void GameWindow::on_startButton_clicked()
     connect(timer, SIGNAL(timeout()), this, SLOT(updateCoords()));
     emit gameStarted();
     grabKeyboard();
-
+    drawPlayer();
+    playerDirVertical_ = 1;
+    playerDirHorizontal_ = 1;
 }

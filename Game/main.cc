@@ -47,6 +47,12 @@ int main(int argc, char *argv[])
     gamelogic.setTime(12,10);
     gamelogic.takeCity(map);
     // Gamemaster testing class for game functions
+    std::shared_ptr<Player> pelaaja = nullptr;
+    pelaaja = std::make_shared<Player>();
+    Interface::Location start;
+    start.setXY(480, 316);
+    pelaaja->move(start);
+    map->addPlayer(pelaaja);
     w->show();
     gamelogic.finalizeGameStart();
     w->drawBuses();

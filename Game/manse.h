@@ -9,7 +9,7 @@
 #include "core/location.hh"
 #include "actors/stop.hh"
 #include "ownactoritem.hh"
-
+#include "player.h"
 
 #include <iostream>
 #include <QTime>
@@ -38,11 +38,15 @@ public:
     void actorMoved(std::shared_ptr<Interface::IActor> actor) override;
     std::vector<std::shared_ptr<Interface::IActor>> getNearbyActors(Interface::Location loc) const override;
     std::vector<std::shared_ptr<Interface::IActor>> getBuses();
+    void addPlayer(std::shared_ptr<Player> p);
+    std::shared_ptr<Player> getPlayer();
+
 private slots:
 
 private:
     QTime time_;
     bool gamestarted_;
+    std::shared_ptr<Player> player_;
     std::vector<std::shared_ptr<Interface::IStop>> stops_;
     std::vector<std::shared_ptr<Interface::IActor>> buses_;
 };

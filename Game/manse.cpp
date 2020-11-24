@@ -79,3 +79,13 @@ std::vector<std::shared_ptr<Interface::IActor>> Manse::getBuses()
 {
     return buses_;
 }
+
+void Manse::addPlayer(std::shared_ptr<Player> p)
+{
+    player_ = p;
+}
+
+std::shared_ptr<Player> Manse::getPlayer()
+{
+    return player_;
+}
