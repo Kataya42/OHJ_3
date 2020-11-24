@@ -10,7 +10,8 @@ SOURCES += \
     gamewindow.cpp \
     main.cc \
     manse.cpp \
-    ownactoritem.cpp
+    ownactoritem.cpp \
+    player.cpp
 
 win32:CONFIG(release, debug|release): LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/release/ -lCourseLib
@@ -39,7 +40,8 @@ else:unix: PRE_TARGETDEPS += \
 HEADERS += \
     gamewindow.hh \
     manse.h \
-    ownactoritem.hh
+    ownactoritem.hh \
+    player.h
 
 FORMS += \
     simplegamewindow.ui
