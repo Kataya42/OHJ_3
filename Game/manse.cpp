@@ -74,30 +74,8 @@ std::vector<std::shared_ptr<Interface::IActor>> Manse::getNearbyActors(Interface
 
 }
 
-void Manse::draw()
-{
-    for ( auto i : buses_){
-        int x = i->giveLocation().giveX() + 1350;
-        int y = 500 - i->giveLocation().giveY() + 50;
-
-        city_->addActor(x,y,1000);
-        std::cout << "x:" << x << " y:" << y << std::endl;
-    }
-}
 
 std::vector<std::shared_ptr<Interface::IActor>> Manse::getBuses()
 {
     return buses_;
-}
-
-void Manse::updateDraw()
-{
-    std::shared_ptr<Interface::IActor> i = buses_.at(buses_.size()-1);
-    Interface::Location a = i->giveLocation();
-    city_->updateCoords(a.giveX(),a.giveY());
-}
-
-void Manse::addWindow(std::shared_ptr<GameWindow> window)
-{
-    city_ = window;
 }

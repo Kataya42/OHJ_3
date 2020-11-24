@@ -2,8 +2,9 @@
 #define GAMEWINDOW_HH
 
 #include "interfaces/iactor.hh"
+#include "interfaces/icity.hh"
 #include "ownactoritem.hh"
-
+#include "manse.h"
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include <QTimer>
@@ -30,21 +31,24 @@ public:
     void setTick(int t);
 
     virtual void addActor(int locX, int locY, int type = 0);
-    void updateCoords(int nX, int nY);
-    void setPicture(QImage &img);
 
+    void setPicture(QImage &img);
+    bool takeCity(std::shared_ptr<Manse> city);
+    void drawBuses();
 signals:
     void gameStarted();
 
 private slots:
     void on_startButton_clicked();
+    void updateCoords();
 
 private:
     Ui::SimpleGameWindow *ui;
     QGraphicsScene *map;
     QTimer *timer;
-    QVector<QGraphicsItem*> actors_;
+    QVector<OwnActorItem*> actors_;
     OwnActorItem* last_;
+    std::shared_ptr<Manse> city_;
 
     int width_ = 1095; //pxls
     int height_ = 592;

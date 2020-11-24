@@ -40,21 +40,16 @@ int main(int argc, char *argv[])
 
     w->setPicture(kartta);
 
-    map->addWindow(w);
+    w->takeCity(map);
 
     CourseSide::Logic gamelogic;
     gamelogic.fileConfig();
     gamelogic.setTime(12,10);
     gamelogic.takeCity(map);
     // Gamemaster testing class for game functions
-    GameMaster mestari;
-    mestari.getcity(map);
-    mestari.getWindow(w);
     w->show();
     gamelogic.finalizeGameStart();
-    mestari.runbusses();
-
-    map->draw();
+    w->drawBuses();
 
 
 

@@ -26,5 +26,5 @@ void GameMaster::updateDraw()
 {
     std::shared_ptr<Interface::IActor> i = city_->getBuses().at(city_->getBuses().size()-1);
     Interface::Location a = i->giveLocation();
-    window_->updateCoords(a.giveX(),a.giveY());
+    window_->updateCoords();
 }

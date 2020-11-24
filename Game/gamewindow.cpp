@@ -51,9 +51,19 @@ void GameWindow::addActor(int locX, int locY, int type)
     last_ = nActor;
 }
 
-void GameWindow::updateCoords(int nX, int nY)
+void GameWindow::updateCoords()
 {
-    last_->setCoord(nX, nY);
+    std::vector<std::shared_ptr<Interface::IActor>> buses = city_->getBuses();
+    int counter = 0;
+    for ( auto i : buses){
+        if (counter < actors_.size()){
+            int nx = i->giveLocation().giveX() + 1350;
+            int ny = 500 - i->giveLocation().giveY() + 50;
+            actors_.at(counter)->setCoord(nx, ny);
+            counter++;
+        }
+    }
+    std::cout << "updated bus positions";
 }
 
 void GameWindow::setPicture(QImage &img)
@@ -61,10 +71,28 @@ void GameWindow::setPicture(QImage &img)
     map->setBackgroundBrush(img);
 }
 
+bool GameWindow::takeCity(std::shared_ptr<Manse> city)
+{
+    city_ = city;
+}
+
+void GameWindow::drawBuses()
+{
+    std::vector<std::shared_ptr<Interface::IActor>> buses = city_->getBuses();
+    for ( auto i : buses){
+        int x = i->giveLocation().giveX() + 1350;
+        int y = 500 - i->giveLocation().giveY() + 50;
+
+        addActor(x,y,1000);
+        std::cout << "x:" << x << " y:" << y << std::endl;
+    }
+}
+
 
 void GameWindow::on_startButton_clicked()
 {
     qDebug() << "Start clicked";
+    connect(timer, SIGNAL(timeout()), this, SLOT(updateCoords()));
     emit gameStarted();
 
 }
