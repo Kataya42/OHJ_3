@@ -67,20 +67,17 @@ void GameWindow::updateCoords()
 
             //std::cout << nx << " "  << ny << std::endl;
 
-
-
-
-            std::vector<std::shared_ptr<Interface::IActor>> close;
-            close = (city_->getNearbyActors(loca_));
-
-
         }
     }
 
     city_->getPlayer()->updateLocation(playerDirHorizontal_,playerDirVertical_);
-    int px = city_->getPlayer()->giveLocation().giveX();
-    int py = city_->getPlayer()->giveLocation().giveY();
+    Interface::Location playerLoc = city_->getPlayer()->giveLocation();
+    int px = playerLoc.giveX();
+    int py = playerLoc.giveY();
     playerActor_->setCoord(px, py);
+
+    std::vector<std::shared_ptr<Interface::IActor>> close;
+    close = (city_->getNearbyActors(playerLoc));
 
 }
 
@@ -132,11 +129,6 @@ void GameWindow::drawBuses()
         std::cout << "x:" << x << " y:" << y << std::endl;
     }
 
-    //LocationTestBus
-
-    loca_ = Interface::Location();
-    loca_.setXY(480,316);
-    addActor(480,316,100);
 
 }
 
@@ -158,7 +150,9 @@ void GameWindow::drawStops()
 
       // addActor(x,y);
        std::cout << "x:" << x << " y:" << y << std::endl;
+
    }
+
 }
 
 
@@ -169,11 +163,7 @@ void GameWindow::on_startButton_clicked()
     emit gameStarted();
     grabKeyboard();
     drawPlayer();
-    playerDirVertical_ = 1;
+    playerDirVertical_ = 0;
     playerDirHorizontal_ = 1;
-}
 
-void GameWindow::setTestLocation(Interface::Location loc)
-{
-    loca_ = loc;
 }

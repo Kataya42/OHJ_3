@@ -39,8 +39,6 @@ public:
     void drawPlayer();
     void drawStops();
 
-    void setTestLocation(Interface::Location loc);
-
 signals:
     void gameStarted();
     void keyCaught(QKeyEvent *e);
@@ -64,7 +62,6 @@ private:
 
     int playerDirHorizontal_;
     int playerDirVertical_;
-    Interface::Location loca_;
     std::vector<std::shared_ptr<Interface::IActor>> nearbyStuff_;
 
     int width_ = 1095; //pxls

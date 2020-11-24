@@ -73,13 +73,20 @@ std::vector<std::shared_ptr<Interface::IActor>>Manse::getNearbyActors(Interface:
 {
 
     std::vector<std::shared_ptr<Interface::IActor>> close;
-    //does not work for some reason
+
     for (auto a : buses_){
-        if (a->giveLocation().isClose(loc,10)){
+
+        int nx = a->giveLocation().giveX();
+        int ny = a->giveLocation().giveY();
+        Interface::Location b;
+        b.setXY(nx+350, 500-ny+50);
+
+        if (b.isClose(loc,10)){
+
             std::cout << "close yo" << std::endl;
         }
     }
-
+   std::cout << "x: "<<loc.giveX() << " y: " << loc.giveY() << std::endl;
 
     return close;
 }
