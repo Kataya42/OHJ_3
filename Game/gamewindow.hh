@@ -8,6 +8,7 @@
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include <QTimer>
+#include <QWidget>
 #include <iostream>
 #include <memory>
 #include <QVector>
@@ -35,12 +36,19 @@ public:
     void setPicture(QImage &img);
     bool takeCity(std::shared_ptr<Manse> city);
     void drawBuses();
+
 signals:
     void gameStarted();
+    void keyCaught(QKeyEvent *e);
+    void move(int dir);
 
 private slots:
     void on_startButton_clicked();
     void updateCoords();
+
+protected:
+    virtual void keyPressEvent(QKeyEvent *event);
+    virtual void keyReleaseEvent(QKeyEvent *event);
 
 private:
     Ui::SimpleGameWindow *ui;
@@ -52,7 +60,7 @@ private:
 
     int width_ = 1095; //pxls
     int height_ = 592;
-    int tick_ = 500; //ms
+    int tick_ = 100; //ms
 };
 
  //namespace

@@ -1,6 +1,7 @@
 #include "gamewindow.hh"
 #include "ui_simplegamewindow.h"
 #include <QDebug>
+#include <QKeyEvent>
 
 const int PADDING = 10;
 
@@ -57,13 +58,25 @@ void GameWindow::updateCoords()
     int counter = 0;
     for ( auto i : buses){
         if (counter < actors_.size()){
-            int nx = i->giveLocation().giveX() + 1350;
-            int ny = 500 - i->giveLocation().giveY() + 50;
+            int nx = i->giveLocation().giveX() + 350;
+            int ny = 450 - i->giveLocation().giveY();
             actors_.at(counter)->setCoord(nx, ny);
             counter++;
         }
     }
-    std::cout << "updated bus positions";
+}
+
+void GameWindow::keyPressEvent(QKeyEvent *event)
+{
+    if (event->key() == 16777235) {
+        emit moveUp;
+    } else if (event->key() == 16777237) {
+        emit moveDown;
+    } else if (event->key() == 16777234) {
+        emit moveLeft
+    } else if (event->key() == 16777236) {
+        emit moveRight
+    }
 }
 
 void GameWindow::setPicture(QImage &img)
@@ -80,8 +93,8 @@ void GameWindow::drawBuses()
 {
     std::vector<std::shared_ptr<Interface::IActor>> buses = city_->getBuses();
     for ( auto i : buses){
-        int x = i->giveLocation().giveX() + 1350;
-        int y = 500 - i->giveLocation().giveY() + 50;
+        int x = i->giveLocation().giveX() + 350;
+        int y = 450 - i->giveLocation().giveY();
 
         addActor(x,y,1000);
         std::cout << "x:" << x << " y:" << y << std::endl;
@@ -94,5 +107,6 @@ void GameWindow::on_startButton_clicked()
     qDebug() << "Start clicked";
     connect(timer, SIGNAL(timeout()), this, SLOT(updateCoords()));
     emit gameStarted();
+    grabKeyboard();
 
 }
