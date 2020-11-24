@@ -8,7 +8,7 @@
 #include "interfaces/ivehicle.hh"
 #include "core/location.hh"
 #include "actors/stop.hh"
-#include "graphics/simpleactoritem.hh"
+#include "ownactoritem.hh"
 #include "gamewindow.hh"
 
 

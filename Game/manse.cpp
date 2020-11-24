@@ -77,8 +77,11 @@ std::vector<std::shared_ptr<Interface::IActor> > Manse::getNearbyActors(Interfac
 void Manse::draw()
 {
     for ( auto i : buses_){
-        Interface::Location a = i->giveLocation();
-        city_->addActor(a.giveX(),a.giveY(),1000);
+        int x = i->giveLocation().giveX() + 350;
+        int y = 500 - i->giveLocation().giveY() + 50;
+
+        city_->addActor(x,y,100);
+        std::cout << "x:" << x << " y:" << y << std::endl;
     }
 
 //    for ( auto i : actors_){
