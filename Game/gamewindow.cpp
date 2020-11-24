@@ -61,9 +61,21 @@ void GameWindow::updateCoords()
             int ny = 500 - i->giveLocation().giveY() + 50;
             actors_.at(counter)->setCoord(nx, ny);
             counter++;
+
+            //std::cout << nx << " "  << ny << std::endl;
+
+
+
+
+            std::vector<std::shared_ptr<Interface::IActor>> close;
+            close = (city_->getNearbyActors(loca_));
+
+
         }
     }
-    std::cout << "updated bus positions";
+
+
+    //std::cout << "updated bus positions";
 }
 
 void GameWindow::setPicture(QImage &img)
@@ -74,6 +86,7 @@ void GameWindow::setPicture(QImage &img)
 bool GameWindow::takeCity(std::shared_ptr<Manse> city)
 {
     city_ = city;
+    return true;
 }
 
 void GameWindow::drawBuses()
@@ -83,9 +96,16 @@ void GameWindow::drawBuses()
         int x = i->giveLocation().giveX() + 350;
         int y = 500 - i->giveLocation().giveY() + 50;
 
-        addActor(x,y,1000);
+        addActor(x,y);
         std::cout << "x:" << x << " y:" << y << std::endl;
     }
+
+    //LocationTestBus
+
+    loca_ = Interface::Location();
+    loca_.setXY(480,316);
+    addActor(480,316,100);
+
 }
 
 void GameWindow::drawStops()
@@ -95,7 +115,7 @@ void GameWindow::drawStops()
        int x = i->getLocation().giveX() + 350 ;
        int y = 500 - i->getLocation().giveY() + 50 ;
 
-       addActor(x,y);
+      // addActor(x,y);
        std::cout << "x:" << x << " y:" << y << std::endl;
    }
 }
@@ -106,4 +126,9 @@ void GameWindow::on_startButton_clicked()
     connect(timer, SIGNAL(timeout()), this, SLOT(updateCoords()));
     emit gameStarted();
 
+}
+
+void GameWindow::setTestLocation(Interface::Location loc)
+{
+    loca_ = loc;
 }

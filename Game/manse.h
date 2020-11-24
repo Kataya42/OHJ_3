@@ -9,6 +9,7 @@
 #include "core/location.hh"
 #include "actors/stop.hh"
 #include "ownactoritem.hh"
+#include "core/location.hh"
 
 
 #include <iostream>
@@ -39,6 +40,8 @@ public:
     std::vector<std::shared_ptr<Interface::IActor>> getNearbyActors(Interface::Location loc) const override;
     std::vector<std::shared_ptr<Interface::IActor>> getBuses();
     std::vector<std::shared_ptr<Interface::IStop>> getStops();
+
+
 private slots:
 
 private:
@@ -46,6 +49,8 @@ private:
     bool gamestarted_;
     std::vector<std::shared_ptr<Interface::IStop>> stops_;
     std::vector<std::shared_ptr<Interface::IActor>> buses_;
+    std::vector<std::shared_ptr<Interface::IActor>> close_;
+
 };
 
 #endif // MANSE_H

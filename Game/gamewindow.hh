@@ -37,6 +37,7 @@ public:
     void drawBuses();
     void drawStops();
 
+    void setTestLocation(Interface::Location loc);
 signals:
     void gameStarted();
 
@@ -51,6 +52,9 @@ private:
     QVector<OwnActorItem*> actors_;
     OwnActorItem* last_;
     std::shared_ptr<Manse> city_;
+    Interface::Location loca_;
+
+    std::vector<std::shared_ptr<Interface::IActor>> nearbyStuff_;
 
     int width_ = 1095; //pxls
     int height_ = 592;
