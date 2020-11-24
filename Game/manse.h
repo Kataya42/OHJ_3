@@ -38,6 +38,7 @@ public:
     void actorMoved(std::shared_ptr<Interface::IActor> actor) override;
     std::vector<std::shared_ptr<Interface::IActor>> getNearbyActors(Interface::Location loc) const override;
     std::vector<std::shared_ptr<Interface::IActor>> getBuses();
+    std::vector<std::shared_ptr<Interface::IStop>> getStops();
 private slots:
 
 private:

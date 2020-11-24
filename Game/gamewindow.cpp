@@ -57,7 +57,7 @@ void GameWindow::updateCoords()
     int counter = 0;
     for ( auto i : buses){
         if (counter < actors_.size()){
-            int nx = i->giveLocation().giveX() + 1350;
+            int nx = i->giveLocation().giveX() + 350;
             int ny = 500 - i->giveLocation().giveY() + 50;
             actors_.at(counter)->setCoord(nx, ny);
             counter++;
@@ -80,7 +80,7 @@ void GameWindow::drawBuses()
 {
     std::vector<std::shared_ptr<Interface::IActor>> buses = city_->getBuses();
     for ( auto i : buses){
-        int x = i->giveLocation().giveX() + 1350;
+        int x = i->giveLocation().giveX() + 350;
         int y = 500 - i->giveLocation().giveY() + 50;
 
         addActor(x,y,1000);
@@ -88,6 +88,17 @@ void GameWindow::drawBuses()
     }
 }
 
+void GameWindow::drawStops()
+{
+   std::vector<std::shared_ptr<Interface::IStop>> stops = city_->getStops();
+   for ( auto i : stops){
+       int x = i->getLocation().giveX() + 350 ;
+       int y = 500 - i->getLocation().giveY() + 50 ;
+
+       addActor(x,y);
+       std::cout << "x:" << x << " y:" << y << std::endl;
+   }
+}
 
 void GameWindow::on_startButton_clicked()
 {

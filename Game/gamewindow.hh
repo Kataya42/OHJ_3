@@ -35,6 +35,8 @@ public:
     void setPicture(QImage &img);
     bool takeCity(std::shared_ptr<Manse> city);
     void drawBuses();
+    void drawStops();
+
 signals:
     void gameStarted();
 
@@ -52,7 +54,7 @@ private:
 
     int width_ = 1095; //pxls
     int height_ = 592;
-    int tick_ = 500; //ms
+    int tick_ = 100; //ms
 };
 
  //namespace

@@ -49,6 +49,7 @@ int main(int argc, char *argv[])
     // Gamemaster testing class for game functions
     w->show();
     gamelogic.finalizeGameStart();
+    w->drawStops();
     w->drawBuses();
 
 

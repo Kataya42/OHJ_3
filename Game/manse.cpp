@@ -79,3 +79,8 @@ std::vector<std::shared_ptr<Interface::IActor>> Manse::getBuses()
 {
     return buses_;
 }
+
+std::vector<std::shared_ptr<Interface::IStop> > Manse::getStops()
+{
+    return stops_;
+}
