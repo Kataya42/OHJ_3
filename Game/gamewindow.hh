@@ -37,6 +37,9 @@ public:
     bool takeCity(std::shared_ptr<Manse> city);
     void drawBuses();
     void drawPlayer();
+    void drawStops();
+
+    void setTestLocation(Interface::Location loc);
 
 signals:
     void gameStarted();
@@ -58,8 +61,12 @@ private:
     OwnActorItem* last_;
     OwnActorItem* playerActor_;
     std::shared_ptr<Manse> city_;
+
     int playerDirHorizontal_;
     int playerDirVertical_;
+    Interface::Location loca_;
+    std::vector<std::shared_ptr<Interface::IActor>> nearbyStuff_;
+
     int width_ = 1095; //pxls
     int height_ = 592;
     int tick_ = 100; //ms

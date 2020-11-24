@@ -6,8 +6,8 @@
 #include <QPainter>
 
 
-const int WIDTH1 = 10;
-const int HEIGHT2 = 10;
+const int WIDTH1 = 5;
+const int HEIGHT2 = 5;
 
 class OwnActorItem : public QGraphicsItem
 {

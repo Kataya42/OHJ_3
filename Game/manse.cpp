@@ -69,16 +69,26 @@ void Manse::actorMoved(std::shared_ptr<Interface::IActor> actor)
 
 }
 
-std::vector<std::shared_ptr<Interface::IActor>> Manse::getNearbyActors(Interface::Location loc) const
+std::vector<std::shared_ptr<Interface::IActor>>Manse::getNearbyActors(Interface::Location loc) const
 {
 
-}
+    std::vector<std::shared_ptr<Interface::IActor>> close;
+    //does not work for some reason
+    for (auto a : buses_){
+        if (a->giveLocation().isClose(loc,10)){
+            std::cout << "close yo" << std::endl;
+        }
+    }
 
+
+    return close;
+}
 
 std::vector<std::shared_ptr<Interface::IActor>> Manse::getBuses()
 {
     return buses_;
 }
+
 
 void Manse::addPlayer(std::shared_ptr<Player> p)
 {
@@ -89,3 +99,11 @@ std::shared_ptr<Player> Manse::getPlayer()
 {
     return player_;
 }
+
+std::vector<std::shared_ptr<Interface::IStop> > Manse::getStops()
+{
+     return stops_;
+}
+
+
+

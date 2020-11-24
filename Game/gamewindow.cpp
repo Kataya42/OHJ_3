@@ -64,8 +64,19 @@ void GameWindow::updateCoords()
             int ny = 500 - i->giveLocation().giveY() + 50;
             actors_.at(counter)->setCoord(nx, ny);
             counter++;
+
+            //std::cout << nx << " "  << ny << std::endl;
+
+
+
+
+            std::vector<std::shared_ptr<Interface::IActor>> close;
+            close = (city_->getNearbyActors(loca_));
+
+
         }
     }
+
     city_->getPlayer()->updateLocation(playerDirHorizontal_,playerDirVertical_);
     int px = city_->getPlayer()->giveLocation().giveX();
     int py = city_->getPlayer()->giveLocation().giveY();
@@ -76,18 +87,26 @@ void GameWindow::updateCoords()
 void GameWindow::keyPressEvent(QKeyEvent *event)
 {
     if (event->key() == 16777235) {
-        playerDirVertical_ = 1;
-        playerDirHorizontal_ = 0;
-    } else if (event->key() == 16777237) {
         playerDirVertical_ = -1;
         playerDirHorizontal_ = 0;
+
+    } else if (event->key() == 16777237) {
+        playerDirVertical_ = 1;
+        playerDirHorizontal_ = 0;
+
     } else if (event->key() == 16777234) {
-        playerDirHorizontal_ = 1;
-        playerDirVertical_ = 0;
-    } else if (event->key() == 16777236) {
         playerDirHorizontal_ = -1;
         playerDirVertical_ = 0;
+
+    } else if (event->key() == 16777236) {
+        playerDirHorizontal_ = 1;
+        playerDirVertical_ = 0;
     }
+
+
+
+    //std::cout << "updated bus positions";
+
 }
 
 void GameWindow::setPicture(QImage &img)
@@ -98,6 +117,7 @@ void GameWindow::setPicture(QImage &img)
 bool GameWindow::takeCity(std::shared_ptr<Manse> city)
 {
     city_ = city;
+    return true;
 }
 
 void GameWindow::drawBuses()
@@ -105,18 +125,40 @@ void GameWindow::drawBuses()
     std::vector<std::shared_ptr<Interface::IActor>> buses = city_->getBuses();
     for ( auto i : buses){
         int x = i->giveLocation().giveX() + 350;
-        int y = 450 - i->giveLocation().giveY();
 
-        addActor(x,y,1000);
+        int y = 500 - i->giveLocation().giveY() + 50;
+
+        addActor(x,y);
         std::cout << "x:" << x << " y:" << y << std::endl;
     }
+
+    //LocationTestBus
+
+    loca_ = Interface::Location();
+    loca_.setXY(480,316);
+    addActor(480,316,100);
+
 }
+
 
 void GameWindow::drawPlayer()
 {
     OwnActorItem* nact = new OwnActorItem(city_->getPlayer()->giveLocation().giveX(), city_->getPlayer()->giveLocation().giveY(), 100);
     playerActor_ = nact;
     map->addItem(playerActor_);
+}
+
+
+void GameWindow::drawStops()
+{
+   std::vector<std::shared_ptr<Interface::IStop>> stops = city_->getStops();
+   for ( auto i : stops){
+       int x = i->getLocation().giveX() + 350 ;
+       int y = 500 - i->getLocation().giveY() + 50 ;
+
+      // addActor(x,y);
+       std::cout << "x:" << x << " y:" << y << std::endl;
+   }
 }
 
 
@@ -129,4 +171,9 @@ void GameWindow::on_startButton_clicked()
     drawPlayer();
     playerDirVertical_ = 1;
     playerDirHorizontal_ = 1;
+}
+
+void GameWindow::setTestLocation(Interface::Location loc)
+{
+    loca_ = loc;
 }
