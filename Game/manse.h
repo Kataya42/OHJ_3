@@ -9,8 +9,8 @@
 #include "core/location.hh"
 #include "actors/stop.hh"
 #include "ownactoritem.hh"
-#include "gamewindow.hh"
-
+#include "player.h"
+#include "core/location.hh"
 
 #include <iostream>
 #include <QTime>
@@ -38,18 +38,23 @@ public:
     bool findActor(std::shared_ptr<Interface::IActor> actor) const override;
     void actorMoved(std::shared_ptr<Interface::IActor> actor) override;
     std::vector<std::shared_ptr<Interface::IActor>> getNearbyActors(Interface::Location loc) const override;
-    void draw();
     std::vector<std::shared_ptr<Interface::IActor>> getBuses();
 
-    void addWindow(std::shared_ptr<GameWindow> window);
+    void addPlayer(std::shared_ptr<Player> p);
+    std::shared_ptr<Player> getPlayer();
+    std::vector<std::shared_ptr<Interface::IStop>> getStops();
+
+
 private slots:
-    void updateDraw();
+
 private:
     QTime time_;
     bool gamestarted_;
+    std::shared_ptr<Player> player_;
     std::vector<std::shared_ptr<Interface::IStop>> stops_;
     std::vector<std::shared_ptr<Interface::IActor>> buses_;
-    std::shared_ptr<GameWindow> city_;
+    std::vector<std::shared_ptr<Interface::IActor>> close_;
+
 };
 
 #endif // MANSE_H

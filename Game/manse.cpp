@@ -36,15 +36,15 @@ void Manse::addStop(std::shared_ptr<Interface::IStop> stop)
 }
 
 void Manse::addActor(std::shared_ptr<Interface::IActor> newactor)
-{ 
+{
 
     if (stops_.size() == 0)
     {
-        //Interface::Location a = newactor->giveLocation();
-        //int c = a.giveY();
-        //int b = a.giveX();
+        Interface::Location a = newactor->giveLocation();
+        int c = a.giveY();
+        int b = a.giveX();
 
-        //std::cout << typeid(*newactor).name() << c << " " << b << std::endl;
+        std::cout << typeid(*newactor).name() << c << " " << b << std::endl;
         buses_.push_back(newactor);
     }
 }
@@ -69,47 +69,41 @@ void Manse::actorMoved(std::shared_ptr<Interface::IActor> actor)
 
 }
 
-std::vector<std::shared_ptr<Interface::IActor>> Manse::getNearbyActors(Interface::Location loc) const
+std::vector<std::shared_ptr<Interface::IActor>>Manse::getNearbyActors(Interface::Location loc) const
 {
 
-}
+    std::vector<std::shared_ptr<Interface::IActor>> close;
+    //does not work for some reason
+    for (auto a : buses_){
+        if (a->giveLocation().isClose(loc,10)){
+            std::cout << "close yo" << std::endl;
+        }
+    }
 
+
+    return close;
+}
 
 std::vector<std::shared_ptr<Interface::IActor>> Manse::getBuses()
 {
     return buses_;
 }
 
-void Manse::draw()
+
+void Manse::addPlayer(std::shared_ptr<Player> p)
 {
-    for ( auto i : stops_){
-
-        int x = i->getLocation().giveX() +1350 ;
-        int y = 500 - i->getLocation().giveY()+ 50;
-
-        std::cout <<"x:" << x << " y:" << y << std::endl;
-        city_->addActor(x,y,0);
-    }
-       //
-    // }
-
-    for ( auto i : buses_){
-
-        int x2 = i->giveLocation().giveX() +1350 ;
-        int y2 = 500 - i->giveLocation().giveY()+ 50;
-        city_->addActor(x2,y2,1000);
-    }
-
+    player_ = p;
 }
 
-void Manse::updateDraw()
+std::shared_ptr<Player> Manse::getPlayer()
 {
-    std::shared_ptr<Interface::IActor> i = buses_.at(buses_.size()-1);
-    Interface::Location a = i->giveLocation();
-    city_->updateCoords(a.giveX(),a.giveY());
+    return player_;
 }
 
-void Manse::addWindow(std::shared_ptr<GameWindow> window)
+std::vector<std::shared_ptr<Interface::IStop> > Manse::getStops()
 {
-    city_ = window;
+     return stops_;
 }
+
+
+

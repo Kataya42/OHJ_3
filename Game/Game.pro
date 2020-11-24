@@ -7,12 +7,11 @@ CONFIG += c++14
 
 SOURCES += \
     creategame.cpp \
-    gamemaster.cpp \
     gamewindow.cpp \
     main.cc \
     manse.cpp \
     ownactoritem.cpp \
-    ownlogic.cpp
+    player.cpp
 
 win32:CONFIG(release, debug|release): LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/release/ -lCourseLib
@@ -39,11 +38,10 @@ else:unix: PRE_TARGETDEPS += \
     $$OUT_PWD/../Course/CourseLib/libCourseLib.a
 
 HEADERS += \
-    gamemaster.h \
     gamewindow.hh \
     manse.h \
     ownactoritem.hh \
-    ownlogic.hh
+    player.h
 
 FORMS += \
     simplegamewindow.ui

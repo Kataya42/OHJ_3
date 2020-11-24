@@ -2,11 +2,13 @@
 #define GAMEWINDOW_HH
 
 #include "interfaces/iactor.hh"
+#include "interfaces/icity.hh"
 #include "ownactoritem.hh"
-
+#include "manse.h"
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include <QTimer>
+#include <QWidget>
 #include <iostream>
 #include <memory>
 #include <QVector>
@@ -30,25 +32,44 @@ public:
     void setTick(int t);
 
     virtual void addActor(int locX, int locY, int type = 0);
-    void updateCoords(int nX, int nY);
+
     void setPicture(QImage &img);
+    bool takeCity(std::shared_ptr<Manse> city);
+    void drawBuses();
+    void drawPlayer();
+    void drawStops();
+
+    void setTestLocation(Interface::Location loc);
 
 signals:
     void gameStarted();
+    void keyCaught(QKeyEvent *e);
+    void move(int dir);
 
 private slots:
     void on_startButton_clicked();
+    void updateCoords();
+
+protected:
+    virtual void keyPressEvent(QKeyEvent *event);
 
 private:
     Ui::SimpleGameWindow *ui;
     QGraphicsScene *map;
     QTimer *timer;
-    QVector<QGraphicsItem*> actors_;
+    QVector<OwnActorItem*> actors_;
     OwnActorItem* last_;
+    OwnActorItem* playerActor_;
+    std::shared_ptr<Manse> city_;
+
+    int playerDirHorizontal_;
+    int playerDirVertical_;
+    Interface::Location loca_;
+    std::vector<std::shared_ptr<Interface::IActor>> nearbyStuff_;
 
     int width_ = 1095; //pxls
     int height_ = 592;
-    int tick_ = 500; //ms
+    int tick_ = 100; //ms
 };
 
  //namespace

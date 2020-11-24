@@ -23,7 +23,7 @@
 #include <offlinereader.hh>
 #include <gamewindow.hh>
 #include <gamemaster.h>
-#include <ownlogic.hh>
+
 
 int main(int argc, char *argv[])
 {
@@ -39,26 +39,24 @@ int main(int argc, char *argv[])
     kartta.load(":/offlinedata/offlinedata/kartta_iso_1095x592.png");
 
     w->setPicture(kartta);
-    w->show();
 
-    map->addWindow(w);
+    w->takeCity(map);
 
-    OwnLogic gamelogic;
+    CourseSide::Logic gamelogic;
     gamelogic.fileConfig();
     gamelogic.setTime(12,10);
     gamelogic.takeCity(map);
-
-
-    //Gamemaster testing class for game functions
-//    GameMaster mestari;
-//    mestari.getcity(map);
-//    mestari.getWindow(w);
-
-      gamelogic.finalizeGameStart();
-//    mestari.runbusses();
-
-
-      map->draw();
+    // Gamemaster testing class for game functions
+    std::shared_ptr<Player> pelaaja = nullptr;
+    pelaaja = std::make_shared<Player>();
+    Interface::Location start;
+    start.setXY(480, 316);
+    pelaaja->move(start);
+    map->addPlayer(pelaaja);
+    w->show();
+    gamelogic.finalizeGameStart();
+    w->drawStops();
+    w->drawBuses();
 
     return a.exec();
 }

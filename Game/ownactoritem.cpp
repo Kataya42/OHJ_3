@@ -5,6 +5,7 @@ OwnActorItem::OwnActorItem(int x, int y, int type): x_(x), y_(y), type_(type)
     setPos(mapToParent(x_ , y_));
 }
 
+
 void OwnActorItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     QRectF bounds = boundingRect();
@@ -20,10 +21,8 @@ QRectF OwnActorItem::boundingRect() const
     return QRectF(0, 0, WIDTH1, HEIGHT2);
 }
 
-
 void OwnActorItem::setCoord(int x, int y)
 {
     setX( x );
     setY( y );
 }
-
