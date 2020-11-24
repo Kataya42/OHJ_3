@@ -39,7 +39,6 @@ int main(int argc, char *argv[])
     kartta.load(":/offlinedata/offlinedata/kartta_iso_1095x592.png");
 
     w->setPicture(kartta);
-    w->addActor(50, 15,300);
 
     map->addWindow(w);
 
@@ -51,10 +50,9 @@ int main(int argc, char *argv[])
     GameMaster mestari;
     mestari.getcity(map);
     mestari.getWindow(w);
+    w->show();
     gamelogic.finalizeGameStart();
     mestari.runbusses();
-
-    w->show();
 
     map->draw();
 

@@ -69,7 +69,7 @@ void Manse::actorMoved(std::shared_ptr<Interface::IActor> actor)
 
 }
 
-std::vector<std::shared_ptr<Interface::IActor> > Manse::getNearbyActors(Interface::Location loc) const
+std::vector<std::shared_ptr<Interface::IActor>> Manse::getNearbyActors(Interface::Location loc) const
 {
 
 }
@@ -77,17 +77,12 @@ std::vector<std::shared_ptr<Interface::IActor> > Manse::getNearbyActors(Interfac
 void Manse::draw()
 {
     for ( auto i : buses_){
-        int x = i->giveLocation().giveX() + 350;
+        int x = i->giveLocation().giveX() + 1350;
         int y = 500 - i->giveLocation().giveY() + 50;
 
-        city_->addActor(x,y,100);
+        city_->addActor(x,y,1000);
         std::cout << "x:" << x << " y:" << y << std::endl;
     }
-
-//    for ( auto i : actors_){
-//        Interface::Location a = i->giveLocation();
-//        city_->addActor(a.giveX()*0.2,a.giveY()*0.2,0);
-    //    }
 }
 
 std::vector<std::shared_ptr<Interface::IActor>> Manse::getBuses()
