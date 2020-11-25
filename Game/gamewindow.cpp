@@ -15,6 +15,10 @@ GameWindow::GameWindow(QWidget *parent) :
     ui->centralwidget->setFixedSize(width_ + ui->startButton->width() + PADDING, height_ + PADDING);
 
     ui->startButton->move(width_ + PADDING , PADDING);
+    ui->hungerLabel->move(width_+ PADDING, PADDING * 5);
+    ui->progressBar->move(width_ + PADDING, PADDING *  7);
+    ui->scoreLabel->move(width_+ PADDING, PADDING * 11);
+    ui->scoreCount->move(width_ + PADDING, PADDING * 13);
 
     map = new QGraphicsScene(this);
     ui->gameView->setScene(map);
@@ -28,6 +32,9 @@ GameWindow::GameWindow(QWidget *parent) :
     timer->start(tick_);
     playerDirVertical_ = 0;
     playerDirHorizontal_ = 0;
+
+    ui->progressBar->setValue(0);
+    ui->scoreCount->setPalette(Qt::red);
 }
 
 GameWindow::~GameWindow()
@@ -79,6 +86,26 @@ void GameWindow::updateCoords()
     std::vector<std::shared_ptr<Interface::IActor>> close;
     close = (city_->getNearbyActors(playerLoc));
 
+    if (!(close.empty())){
+        if (life_ > 10){
+            life_ = life_ - 10;
+        }
+    }
+
+}
+
+void GameWindow::advance()
+{
+    life_ ++;
+    score_ ++;
+    ui->scoreCount->display(score_);
+    ui->progressBar->setValue(life_);
+    city_->getProg(life_);
+
+    if (city_->isGameOver()){
+        timer->stop();
+        gameEnd();
+    }
 }
 
 void GameWindow::keyPressEvent(QKeyEvent *event)
@@ -106,6 +133,17 @@ void GameWindow::keyPressEvent(QKeyEvent *event)
 
 }
 
+void GameWindow::gameEnd()
+{
+    QString str;
+    str= QString("You got %1 points!")
+            .arg(score_);
+
+    QMessageBox::information(this,
+                             tr("Game Over!"),
+                             (str));
+
+}
 void GameWindow::setPicture(QImage &img)
 {
     map->setBackgroundBrush(img);
@@ -156,10 +194,12 @@ void GameWindow::drawStops()
 }
 
 
+
 void GameWindow::on_startButton_clicked()
 {
     qDebug() << "Start clicked";
     connect(timer, SIGNAL(timeout()), this, SLOT(updateCoords()));
+    connect(timer, SIGNAL(timeout()), this, SLOT(advance()));
     emit gameStarted();
     grabKeyboard();
     drawPlayer();

@@ -43,7 +43,7 @@ public:
     void addPlayer(std::shared_ptr<Player> p);
     std::shared_ptr<Player> getPlayer();
     std::vector<std::shared_ptr<Interface::IStop>> getStops();
-
+    void getProg(int progress);
 
 private slots:
 
@@ -54,6 +54,7 @@ private:
     std::vector<std::shared_ptr<Interface::IStop>> stops_;
     std::vector<std::shared_ptr<Interface::IActor>> buses_;
     std::vector<std::shared_ptr<Interface::IActor>> close_;
+    int prog_ = 0;
 
 };
 

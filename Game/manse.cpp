@@ -22,7 +22,11 @@ void Manse::startGame()
 
 bool Manse::isGameOver() const
 {
-
+    if (prog_ < 100){
+        return false;
+    } else {
+        return true;
+    }
 }
 
 void Manse::addStop(std::shared_ptr<Interface::IStop> stop)
@@ -44,7 +48,7 @@ void Manse::addActor(std::shared_ptr<Interface::IActor> newactor)
         int c = a.giveY();
         int b = a.giveX();
 
-        std::cout << typeid(*newactor).name() << c << " " << b << std::endl;
+        //std::cout << typeid(*newactor).name() << c << " " << b << std::endl;
         buses_.push_back(newactor);
     }
 }
@@ -82,11 +86,12 @@ std::vector<std::shared_ptr<Interface::IActor>>Manse::getNearbyActors(Interface:
         b.setXY(nx+350, 500-ny+50);
 
         if (b.isClose(loc,10)){
-
-            std::cout << "close yo" << std::endl;
+            close.push_back(a);
+            }
+            //std::cout << "close yo" << std::endl;
         }
-    }
-   std::cout << "x: "<<loc.giveX() << " y: " << loc.giveY() << std::endl;
+
+   //std::cout << "x: "<<loc.giveX() << " y: " << loc.giveY() << std::endl;
 
     return close;
 }
@@ -109,8 +114,14 @@ std::shared_ptr<Player> Manse::getPlayer()
 
 std::vector<std::shared_ptr<Interface::IStop> > Manse::getStops()
 {
-     return stops_;
+    return stops_;
 }
+
+void Manse::getProg(int progress)
+{
+    prog_ = progress;
+}
+
 
 
 
