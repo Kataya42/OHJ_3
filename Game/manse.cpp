@@ -25,8 +25,7 @@ bool Manse::isGameOver() const
     if (prog_ < 100){
         return false;
     } else {
-        //return true;
-        return false;
+        return true;
     }
 }
 
@@ -78,20 +77,20 @@ std::vector<std::shared_ptr<Interface::IActor>>Manse::getNearbyActors(Interface:
 
     std::vector<std::shared_ptr<Interface::IActor>> close;
 
-//    for (auto a : buses_){
+    for (auto a : buses_){
 
-//        int nx = a->giveLocation().giveX();
-//        int ny = a->giveLocation().giveY();
-//        Interface::Location b;
-//        b.setXY(nx+350, 500-ny+50);
+        int nx = a->giveLocation().giveX();
+        int ny = a->giveLocation().giveY();
+        Interface::Location b;
+        b.setXY(nx+350, 500-ny+50);
 
-//        if (b.isClose(loc,10)){
-//            close.push_back(a);
-//            }
-//            //std::cout << "close yo" << std::endl;
-//        }
+        if (b.isClose(loc,10)){
+            close.push_back(a);
+            }
+            //std::cout << "close yo" << std::endl;
+        }
 
-   //std::cout << "x: "<<loc.giveX() << " y: " << loc.giveY() << std::endl;
+   std::cout << "x: "<<loc.giveX() << " y: " << loc.giveY() << std::endl;
 
     return close;
 }
@@ -110,6 +109,16 @@ void Manse::addPlayer(std::shared_ptr<Player> p)
 std::shared_ptr<Player> Manse::getPlayer()
 {
     return player_;
+}
+
+void Manse::addEnemy(std::shared_ptr<Chaser> e)
+{
+    enemy_ = e;
+}
+
+std::shared_ptr<Chaser> Manse::getEnemy()
+{
+    return enemy_;
 }
 
 std::vector<std::shared_ptr<Interface::IStop> > Manse::getStops()

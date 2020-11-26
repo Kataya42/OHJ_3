@@ -77,12 +77,34 @@ void GameWindow::updateCoords()
         }
     }
 
+    if (city_->isGameOver()){
+        timer->stop();
+        scoreTimer->stop();
+        gameEnd();
+    }
+
     city_->getPlayer()->updateLocation(playerDirHorizontal_,playerDirVertical_);
     Interface::Location playerLoc = city_->getPlayer()->giveLocation();
     int px = playerLoc.giveX();
     int py = playerLoc.giveY();
     playerActor_->setCoord(px, py);
 
+    city_->getEnemy()->chase(city_->getPlayer());
+    Interface::Location enemyLoc = city_->getEnemy()->giveLocation();
+    enemyActor_->setCoord(enemyLoc.giveX(), enemyLoc.giveY());
+
+
+
+}
+
+void GameWindow::advance()
+{
+    Interface::Location playerLoc = city_->getPlayer()->giveLocation();
+    life_ ++;
+    score_ ++;
+    ui->scoreCount->display(score_);
+    ui->progressBar->setValue(life_);
+    city_->getProg(life_);
     std::vector<std::shared_ptr<Interface::IActor>> close;
     close = (city_->getNearbyActors(playerLoc));
 
@@ -92,20 +114,7 @@ void GameWindow::updateCoords()
         }
     }
 
-}
 
-void GameWindow::advance()
-{
-    life_ ++;
-    score_ ++;
-    ui->scoreCount->display(score_);
-    ui->progressBar->setValue(life_);
-    city_->getProg(life_);
-
-    if (city_->isGameOver()){
-        timer->stop();
-        gameEnd();
-    }
 }
 
 void GameWindow::keyPressEvent(QKeyEvent *event)
@@ -178,6 +187,13 @@ void GameWindow::drawPlayer()
     map->addItem(playerActor_);
 }
 
+void GameWindow::drawEnemy()
+{
+    OwnActorItem* nact = new OwnActorItem(city_->getEnemy()->giveLocation().giveX(), city_->getEnemy()->giveLocation().giveY(), 0);
+    enemyActor_ = nact;
+    map->addItem(enemyActor_);
+}
+
 
 void GameWindow::drawStops()
 {
@@ -200,11 +216,13 @@ void GameWindow::on_startButton_clicked()
 {
     qDebug() << "Start clicked";
     connect(timer, SIGNAL(timeout()), this, SLOT(updateCoords()));
-    connect(timer, SIGNAL(timeout()), this, SLOT(advance()));
     emit gameStarted();
     grabKeyboard();
     drawPlayer();
+    drawEnemy();
     playerDirVertical_ = 0;
     playerDirHorizontal_ = 1;
-
+    scoreTimer = new QTimer(this);
+    scoreTimer->start(scoreTick_);
+    connect(scoreTimer, SIGNAL(timeout()), this, SLOT(advance()));
 }

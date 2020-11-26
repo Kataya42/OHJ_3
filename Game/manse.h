@@ -10,6 +10,7 @@
 #include "actors/stop.hh"
 #include "ownactoritem.hh"
 #include "player.h"
+#include "chaser.h"
 #include "core/location.hh"
 
 #include <iostream>
@@ -42,6 +43,8 @@ public:
 
     void addPlayer(std::shared_ptr<Player> p);
     std::shared_ptr<Player> getPlayer();
+    void addEnemy(std::shared_ptr<Chaser> e);
+    std::shared_ptr<Chaser> getEnemy();
     std::vector<std::shared_ptr<Interface::IStop>> getStops();
     void getProg(int progress);
 
@@ -51,6 +54,7 @@ private:
     QTime time_;
     bool gamestarted_;
     std::shared_ptr<Player> player_;
+    std::shared_ptr<Chaser> enemy_;
     std::vector<std::shared_ptr<Interface::IStop>> stops_;
     std::vector<std::shared_ptr<Interface::IActor>> buses_;
     std::vector<std::shared_ptr<Interface::IActor>> close_;
