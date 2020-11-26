@@ -112,7 +112,7 @@ private:
     int scoreTick_ = 300;
     int score_ = 0;
     int life_ = 0;
-    bool enemyPlayerControlled = true;
+    bool enemyPlayerControlled = false;
 };
 
  //namespace

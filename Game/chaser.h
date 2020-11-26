@@ -68,8 +68,6 @@ public:
      */
     bool getPLayerControlled();
 
-    int getSID() const;
-    void setSID(int sid);
 private:
     int xSpeed_;
     int ySpeed_;

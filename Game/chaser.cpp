@@ -78,7 +78,7 @@ void Chaser::chase(std::shared_ptr<Interface::IActor> target)
 
 bool Chaser::isClose(std::shared_ptr<Interface::IActor> target)
 {
-    if (location_.isClose(target->giveLocation(), 10)) {
+    if (location_.isClose(target->giveLocation(), 15)) {
         return true;
     } else {
         return false;
@@ -95,12 +95,3 @@ bool Chaser::getPLayerControlled()
     return playercontrolled_;
 }
 
-int Chaser::getSID() const
-{
-    return SID_;
-}
-
-void Chaser::setSID(int sid)
-{
-    SID_ = sid;
-}

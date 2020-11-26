@@ -99,7 +99,10 @@ void GameWindow::updateCoords()
         Interface::Location enemyLoc = city_->getEnemy()->giveLocation();
         enemyActor_->setCoord(enemyLoc.giveX(), enemyLoc.giveY());
     }
-
+    if (city_->getEnemy()->isClose(city_->getPlayer())) {
+        life_ = 500;
+        city_->getProg(life_);
+    }
 
 }
 
