@@ -6,8 +6,22 @@
 #include <QPainter>
 
 
-const int WIDTH1 = 15;
-const int HEIGHT2 = 15;
+const int WIDTHPLAYER = 15;
+const int HEIGHTPLAYER = 15;
+
+const int WIDTHBUS = 10;
+const int HEIGHTBUS = 10;
+
+const int WIDTHSTOP = 5;
+const int HEIGHTSTOP = 5;
+
+enum Type
+{
+    player = 0,
+    bus = 1,
+    stop = 2
+};
+
 
 class OwnActorItem : public QGraphicsItem
 {

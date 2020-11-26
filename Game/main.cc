@@ -55,8 +55,8 @@ int main(int argc, char *argv[])
     map->addPlayer(pelaaja);
     w->show();
     gamelogic.finalizeGameStart();
-    w->drawStops();
     w->drawBuses();
+    w->drawStops();
 
     return a.exec();
 }

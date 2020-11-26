@@ -163,8 +163,8 @@ void GameWindow::drawBuses()
 
         int y = 500 - i->giveLocation().giveY() + 50;
 
-        addActor(x,y);
-        std::cout << "x:" << x << " y:" << y << std::endl;
+        addActor(x,y,1);
+        //std::cout << "x:" << x << " y:" << y << std::endl;
     }
 
 
@@ -173,7 +173,7 @@ void GameWindow::drawBuses()
 
 void GameWindow::drawPlayer()
 {
-    OwnActorItem* nact = new OwnActorItem(city_->getPlayer()->giveLocation().giveX(), city_->getPlayer()->giveLocation().giveY(), 100);
+    OwnActorItem* nact = new OwnActorItem(city_->getPlayer()->giveLocation().giveX(), city_->getPlayer()->giveLocation().giveY(), 0);
     playerActor_ = nact;
     map->addItem(playerActor_);
 }
@@ -186,8 +186,9 @@ void GameWindow::drawStops()
        int x = i->getLocation().giveX() + 350 ;
        int y = 500 - i->getLocation().giveY() + 50 ;
 
-      // addActor(x,y);
-       std::cout << "x:" << x << " y:" << y << std::endl;
+       addActor(x,y,2);
+
+       //std::cout << "x:" << x << " y:" << y << std::endl;
 
    }
 

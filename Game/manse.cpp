@@ -44,10 +44,9 @@ void Manse::addActor(std::shared_ptr<Interface::IActor> newactor)
 
     if (stops_.size() == 0)
     {
-        Interface::Location a = newactor->giveLocation();
-        int c = a.giveY();
-        int b = a.giveX();
-
+        //Interface::Location a = newactor->giveLocation();
+        //int c = a.giveY();
+        //int b = a.giveX();
         //std::cout << typeid(*newactor).name() << c << " " << b << std::endl;
         buses_.push_back(newactor);
     }
@@ -78,18 +77,18 @@ std::vector<std::shared_ptr<Interface::IActor>>Manse::getNearbyActors(Interface:
 
     std::vector<std::shared_ptr<Interface::IActor>> close;
 
-    for (auto a : buses_){
+//    for (auto a : buses_){
 
-        int nx = a->giveLocation().giveX();
-        int ny = a->giveLocation().giveY();
-        Interface::Location b;
-        b.setXY(nx+350, 500-ny+50);
+//        int nx = a->giveLocation().giveX();
+//        int ny = a->giveLocation().giveY();
+//        Interface::Location b;
+//        b.setXY(nx+350, 500-ny+50);
 
-        if (b.isClose(loc,10)){
-            close.push_back(a);
-            }
-            //std::cout << "close yo" << std::endl;
-        }
+//        if (b.isClose(loc,10)){
+//            close.push_back(a);
+//            }
+//            //std::cout << "close yo" << std::endl;
+//        }
 
    //std::cout << "x: "<<loc.giveX() << " y: " << loc.giveY() << std::endl;
 

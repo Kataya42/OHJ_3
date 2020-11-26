@@ -34,7 +34,7 @@ public:
     void setSize(int w, int h);
     void setTick(int t);
 
-    virtual void addActor(int locX, int locY, int type = 0);
+    virtual void addActor(int locX, int locY, int type);
 
     void setPicture(QImage &img);
     bool takeCity(std::shared_ptr<Manse> city);
