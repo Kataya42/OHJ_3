@@ -7,6 +7,7 @@
 #include "core/location.hh"
 #include "actors/stop.hh"
 
+#include <iostream>
 #include <QTime>
 #include <memory>
 #include <set>
@@ -28,8 +29,8 @@ public:
 
     //Chaser functionality
     void updateLocation(int hor, int ver);
-    void chase(std::shared_ptr<Interface::IActor>);
-    void isClose(std::shared_ptr<Interface::IActor>);
+    void chase(std::shared_ptr<Interface::IActor> target);
+    void isClose(std::shared_ptr<Interface::IActor> target);
     void setPlayerControlled(bool player2);
     bool getPLayerControlled();
 
@@ -38,6 +39,8 @@ public:
 private:
     int xSpeed_;
     int ySpeed_;
+    int acceleration_;
+    int maxspeed_;
     bool playercontrolled_;
     std::string name_;
     std::shared_ptr<Interface::ICity> city_;

@@ -2,7 +2,11 @@
 
 Chaser::Chaser()
 {
-
+    xSpeed_ = 0;
+    ySpeed_ = 0;
+    playercontrolled_ = false;
+    maxspeed_ = 10;
+    acceleration_ = 1;
 }
 
 std::string Chaser::getName() const
@@ -40,12 +44,31 @@ void Chaser::updateLocation(int hor, int ver)
     location_.setXY(location_.giveX() + 3 * hor, location_.giveY() + 3 * ver);
 }
 
-void Chaser::chase(std::shared_ptr<Interface::IActor>)
+void Chaser::chase(std::shared_ptr<Interface::IActor> target)
 {
-
+    Interface::Location targetloc = target->giveLocation();
+    if (targetloc.giveX() > location_.giveX()) {
+        if (xSpeed_ <= maxspeed_) {
+            xSpeed_ += acceleration_;
+        }
+    } else {
+        if (xSpeed_ >= -maxspeed_) {
+            xSpeed_ += -acceleration_;
+        }
+    }
+    if (targetloc.giveY() > location_.giveY()) {
+        if (ySpeed_ <= maxspeed_) {
+            ySpeed_ += acceleration_;
+        }
+    } else {
+        if (ySpeed_ >= -maxspeed_) {
+            ySpeed_ += -acceleration_;
+        }
+    }
+    location_.setXY(location_.giveX() + xSpeed_, location_.giveY() + ySpeed_);
 }
 
-void Chaser::isClose(std::shared_ptr<Interface::IActor>)
+void Chaser::isClose(std::shared_ptr<Interface::IActor> target)
 {
 
 }

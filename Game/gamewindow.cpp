@@ -77,11 +77,21 @@ void GameWindow::updateCoords()
         }
     }
 
+    if (city_->isGameOver()){
+        timer->stop();
+        scoreTimer->stop();
+        gameEnd();
+    }
+
     city_->getPlayer()->updateLocation(playerDirHorizontal_,playerDirVertical_);
     Interface::Location playerLoc = city_->getPlayer()->giveLocation();
     int px = playerLoc.giveX();
     int py = playerLoc.giveY();
     playerActor_->setCoord(px, py);
+
+    city_->getEnemy()->chase(city_->getPlayer());
+    Interface::Location enemyLoc = city_->getEnemy()->giveLocation();
+    enemyActor_->setCoord(enemyLoc.giveX(), enemyLoc.giveY());
 
 
 
@@ -104,10 +114,7 @@ void GameWindow::advance()
         }
     }
 
-    if (city_->isGameOver()){
-        timer->stop();
-        gameEnd();
-    }
+
 }
 
 void GameWindow::keyPressEvent(QKeyEvent *event)
@@ -180,6 +187,13 @@ void GameWindow::drawPlayer()
     map->addItem(playerActor_);
 }
 
+void GameWindow::drawEnemy()
+{
+    OwnActorItem* nact = new OwnActorItem(city_->getEnemy()->giveLocation().giveX(), city_->getEnemy()->giveLocation().giveY(), 100);
+    enemyActor_ = nact;
+    map->addItem(enemyActor_);
+}
+
 
 void GameWindow::drawStops()
 {
@@ -204,6 +218,7 @@ void GameWindow::on_startButton_clicked()
     emit gameStarted();
     grabKeyboard();
     drawPlayer();
+    drawEnemy();
     playerDirVertical_ = 0;
     playerDirHorizontal_ = 1;
     scoreTimer = new QTimer(this);

@@ -22,7 +22,7 @@
 #include <doxygeninfo.hh>
 #include <offlinereader.hh>
 #include <gamewindow.hh>
-#include <gamemaster.h>
+#include <chaser.h>
 
 
 int main(int argc, char *argv[])
@@ -47,12 +47,21 @@ int main(int argc, char *argv[])
     gamelogic.setTime(12,10);
     gamelogic.takeCity(map);
     // Gamemaster testing class for game functions
+
     std::shared_ptr<Player> pelaaja = nullptr;
     pelaaja = std::make_shared<Player>();
     Interface::Location start;
     start.setXY(480, 316);
     pelaaja->move(start);
     map->addPlayer(pelaaja);
+
+    std::shared_ptr<Chaser> enemy = nullptr;
+    enemy = std::make_shared<Chaser>();
+    Interface::Location enemyStart;
+    enemyStart.setXY(480, 600);
+    enemy->move(enemyStart);
+    map->addEnemy(enemy);
+
     w->show();
     gamelogic.finalizeGameStart();
     w->drawStops();

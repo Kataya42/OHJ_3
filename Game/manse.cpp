@@ -112,6 +112,16 @@ std::shared_ptr<Player> Manse::getPlayer()
     return player_;
 }
 
+void Manse::addEnemy(std::shared_ptr<Chaser> e)
+{
+    enemy_ = e;
+}
+
+std::shared_ptr<Chaser> Manse::getEnemy()
+{
+    return enemy_;
+}
+
 std::vector<std::shared_ptr<Interface::IStop> > Manse::getStops()
 {
     return stops_;

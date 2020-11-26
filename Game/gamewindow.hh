@@ -40,6 +40,7 @@ public:
     bool takeCity(std::shared_ptr<Manse> city);
     void drawBuses();
     void drawPlayer();
+    void drawEnemy();
     void drawStops();
 
 signals:
@@ -63,6 +64,7 @@ private:
     QVector<OwnActorItem*> actors_;
     OwnActorItem* last_;
     OwnActorItem* playerActor_;
+    OwnActorItem* enemyActor_;
     std::shared_ptr<Manse> city_;
 
     void gameEnd();
