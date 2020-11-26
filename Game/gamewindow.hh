@@ -30,17 +30,48 @@ public:
 
     explicit GameWindow(QWidget *parent = 0);
     virtual ~GameWindow();
-
+    /**
+     * @brief setSize sets size of game window
+     * @param w width
+     * @param h height
+     */
     void setSize(int w, int h);
+    /**
+     * @brief setTick sets game tickrate
+     * @param t tickrate in milliseconds
+     */
     void setTick(int t);
 
     virtual void addActor(int locX, int locY, int type = 0);
-
+    /**
+     * @brief setPicture sets background image for game
+     * @param img to set as game backgorund
+     */
     void setPicture(QImage &img);
     bool takeCity(std::shared_ptr<Manse> city);
+    /**
+     * @brief drawBuses adds buses to scene
+     * @pre map contains buses
+     * @post buses are added to scene
+     */
     void drawBuses();
+    /**
+     * @brief drawPlayer adds player to scene
+     * @pre map contains player
+     * @post player added to scene
+     */
     void drawPlayer();
+    /**
+     * @brief drawEnemy adds enemy to scene
+     * @pre map contains enemy
+     * @post enemy added to scene
+     */
     void drawEnemy();
+    /**
+     * @brief drawStops adds stops to scene
+     * @pre map contains stops
+     * @post stops are added to scene
+     */
     void drawStops();
 
 signals:
