@@ -166,9 +166,6 @@ void GameWindow::keyPressEvent(QKeyEvent *event)
             enemyDirHorizontal_ = 1;
             enemyDirVertical_ = 0;
         }
-
-
-
     }
 }
 
@@ -181,6 +178,7 @@ void GameWindow::gameEnd()
     QMessageBox::information(this,
                              tr("Game Over!"),
                              (str));
+    this->close();
 
 }
 void GameWindow::setPicture(QImage &img)
@@ -208,7 +206,6 @@ void GameWindow::drawBuses()
 
 
 }
-
 
 void GameWindow::drawPlayer()
 {
@@ -255,4 +252,6 @@ void GameWindow::on_startButton_clicked()
     scoreTimer = new QTimer(this);
     scoreTimer->start(scoreTick_);
     connect(scoreTimer, SIGNAL(timeout()), this, SLOT(advance()));
+    ui->startButton->setEnabled(false);
+
 }

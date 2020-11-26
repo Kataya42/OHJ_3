@@ -16,6 +16,7 @@
 #include <map>
 #include <string>
 #include <QString>
+#include <core/logic.hh>
 
 namespace Ui {
 class SimpleGameWindow;
@@ -99,6 +100,7 @@ private:
     OwnActorItem* enemyActor_;
     std::shared_ptr<Manse> city_;
 
+
     void gameEnd();
     int playerDirHorizontal_;
     int playerDirVertical_;
@@ -112,7 +114,7 @@ private:
     int scoreTick_ = 300;
     int score_ = 0;
     int life_ = 0;
-    bool enemyPlayerControlled = false;
+    bool enemyPlayerControlled = true;
 };
 
  //namespace

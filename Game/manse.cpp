@@ -57,6 +57,7 @@ void Manse::removeActor(std::shared_ptr<Interface::IActor> actor)
 
 void Manse::actorRemoved(std::shared_ptr<Interface::IActor> actor)
 {
+    //kekw
     std::cout << "yes actorRemoved is used" << std::endl;
 }
 

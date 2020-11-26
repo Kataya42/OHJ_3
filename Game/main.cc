@@ -39,17 +39,15 @@ int main(int argc, char *argv[])
     Q_INIT_RESOURCE(offlinedata);
     Q_INIT_RESOURCE(ownGraphics);
     kartta.load(":/images/images/omaKartta.png");
-    //kartta.load(":/offlinedata/offlinedata/kartta_iso_1095x592.png");
 
     w->setPicture(kartta);
-
     w->takeCity(map);
 
     CourseSide::Logic gamelogic;
     gamelogic.fileConfig();
     gamelogic.setTime(12,10);
     gamelogic.takeCity(map);
-    // Gamemaster testing class for game functions
+    gamelogic.finalizeGameStart();
 
     std::shared_ptr<Player> pelaaja = nullptr;
     pelaaja = std::make_shared<Player>();
@@ -66,7 +64,6 @@ int main(int argc, char *argv[])
     map->addEnemy(enemy);
 
     w->show();
-    gamelogic.finalizeGameStart();
     w->drawBuses();
     w->drawStops();
 

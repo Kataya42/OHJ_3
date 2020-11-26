@@ -4,7 +4,7 @@ Chaser::Chaser()
 {
     xSpeed_ = 0;
     ySpeed_ = 0;
-    playercontrolled_ = false;
+    playercontrolled_ = true;
     maxspeed_ = 10;
     acceleration_ = 1;
 }
