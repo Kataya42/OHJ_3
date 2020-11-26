@@ -14,12 +14,18 @@
 #include <map>
 #include <vector>
 
+/**
+  * @file
+  * @brief Describes a chaser class that can accelerate towards another actor
+  */
+
 class Chaser : public Interface::IActor
 {
 public:
     Chaser();
 
     // ActorIF interface
+    /*! @copydoc Interface::IActor::getName() const; */
     std::string getName() const;
     Interface::Location giveLocation() const;
     void move(Interface::Location loc);
@@ -28,10 +34,38 @@ public:
     void setCity(std::shared_ptr<Interface::ICity> city);
 
     //Chaser functionality
+    /*!
+     * \brief updateLocation accelerates chaser towards a direction
+     * \param hor horizontal direction for acceleration
+     * \param ver
+     */
     void updateLocation(int hor, int ver);
+    /**
+     * @brief Accelerates Chaser towards target IActor
+     * @param target, IActor towards which to accelerate
+     * @pre Chaser and target have locations
+     * @post Chaser has accelerated towards IActor
+     */
     void chase(std::shared_ptr<Interface::IActor> target);
-    void isClose(std::shared_ptr<Interface::IActor> target);
+    /**
+     * @brief Tells whether Chaser is close to target IActor
+     * @param target, IActor which to check
+     * @pre Chaser and target have locations
+     * @return true if close, false if not
+     */
+    bool isClose(std::shared_ptr<Interface::IActor> target);
+    /**
+     * @brief Sets Chaser playercontrolled state
+     * @param true if playercontrolled, false if not
+     * @post playercontrolled_ set as parameter
+     */
     void setPlayerControlled(bool player2);
+    /**
+     * @brief Tells whether Chaser is close to target IActor
+     * @param target, IActor which to check
+     * @pre Chaser and target have locations
+     * @return true if playercontrolled, false if not.
+     */
     bool getPLayerControlled();
 
     int getSID() const;
