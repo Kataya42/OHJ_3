@@ -1,5 +1,12 @@
 <RCC>
-    <qresource prefix="/">
-        <file>omaKartta.png</file>
+    <qresource prefix="/images">
+        <file>images/ufo.png</file>
+        <file>images/stop.png</file>
+        <file>images/oofo.png</file>
+        <file>images/omaKartta.png</file>
+        <file>images/evilUfo.png</file>
+        <file>images/drone.png</file>
+        <file>images/bus.png</file>
+        <file>images/a.png</file>
     </qresource>
 </RCC>

@@ -2,18 +2,21 @@
 #define OWNACTORITEM_HH
 #include <graphics/simpleactoritem.hh>
 #include <QGraphicsPixmapItem>
+#include <QPixmap>
+#include <QImage>
+#include <QGraphicsItem>
 #include <QGraphicsScene>
 #include <QPainter>
 
 
-const int WIDTHPLAYER = 15;
-const int HEIGHTPLAYER = 15;
+const int WIDTHPLAYER = 30;
+const int HEIGHTPLAYER = 30;
 
-const int WIDTHBUS = 10;
-const int HEIGHTBUS = 10;
+const int WIDTHBUS = 15;
+const int HEIGHTBUS = 15;
 
-const int WIDTHSTOP = 5;
-const int HEIGHTSTOP = 5;
+const int WIDTHSTOP = 7;
+const int HEIGHTSTOP = 7;
 
 enum Type
 {
