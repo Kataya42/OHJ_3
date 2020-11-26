@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
     QImage kartta;
     Q_INIT_RESOURCE(offlinedata);
     Q_INIT_RESOURCE(ownGraphics);
-    kartta.load(":/omaKartta.png");
+    kartta.load(":/images/images/omaKartta.png");
     //kartta.load(":/offlinedata/offlinedata/kartta_iso_1095x592.png");
 
     w->setPicture(kartta);

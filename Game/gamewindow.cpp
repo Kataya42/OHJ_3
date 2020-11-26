@@ -35,6 +35,7 @@ GameWindow::GameWindow(QWidget *parent) :
 
     ui->progressBar->setValue(0);
     ui->scoreCount->setPalette(Qt::red);
+    ui->progressBar->setPalette(Qt::green);
 }
 
 GameWindow::~GameWindow()

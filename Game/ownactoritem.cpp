@@ -5,29 +5,32 @@ OwnActorItem::OwnActorItem(int x, int y, int type): x_(x), y_(y), type_(type)
     setPos(mapToParent(x_ , y_));
 }
 
-
 void OwnActorItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
 
     QRectF bounds = boundingRect();
 
 
-    int r;
-    int b;
-    int g;
+//    int r;
+//    int b;
+//    int g;
 
     if (type_ == player){
-        r = 255, g = 0, b = 0;
+        painter->drawPixmap(bounds,QPixmap(":/images/images/oofo.png"),bounds);
     } else if (type_ == bus){
-        r = 0, g = 255, b = 0;
+        painter->drawPixmap(bounds,QPixmap(":/images/images/bus.png"),bounds);
     } else {
-         r = 0, g = 0, b = 255;
+        painter->drawPixmap(bounds,QPixmap(":/images/images/stop.png"),bounds);
     }
 
-    QColor color(r%256, g%256, b%256);
-    QBrush brush(color);
-    painter->setBrush(brush);
-    painter->drawEllipse(bounds);
+     //  painter->drawPixmap(bounds,QPixmap(":/images/ufo.png"),bounds);
+      Q_UNUSED(option);
+      Q_UNUSED(widget);
+
+//    QColor color(r%256, g%256, b%256);
+//    QBrush brush(color);
+//    painter->setBrush(brush);
+//    painter->drawEllipse(bounds);
 
 }
 
