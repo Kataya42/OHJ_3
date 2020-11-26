@@ -86,6 +86,7 @@ private slots:
 
 protected:
     virtual void keyPressEvent(QKeyEvent *event);
+    virtual void mousePressEvent(QMouseEvent *event);
 
 private:
     Ui::SimpleGameWindow *ui;

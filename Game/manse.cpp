@@ -41,7 +41,6 @@ void Manse::addStop(std::shared_ptr<Interface::IStop> stop)
 
 void Manse::addActor(std::shared_ptr<Interface::IActor> newactor)
 {
-
     if (stops_.size() == 0)
     {
         //Interface::Location a = newactor->giveLocation();
@@ -54,22 +53,19 @@ void Manse::addActor(std::shared_ptr<Interface::IActor> newactor)
 
 void Manse::removeActor(std::shared_ptr<Interface::IActor> actor)
 {
-
 }
 
 void Manse::actorRemoved(std::shared_ptr<Interface::IActor> actor)
 {
-
+    std::cout << "yes actorRemoved is used" << std::endl;
 }
 
 bool Manse::findActor(std::shared_ptr<Interface::IActor> actor) const
 {
-
 }
 
 void Manse::actorMoved(std::shared_ptr<Interface::IActor> actor)
 {
-
 }
 
 std::vector<std::shared_ptr<Interface::IActor>>Manse::getNearbyActors(Interface::Location loc) const
@@ -89,9 +85,6 @@ std::vector<std::shared_ptr<Interface::IActor>>Manse::getNearbyActors(Interface:
             }
             //std::cout << "close yo" << std::endl;
         }
-
-   std::cout << "x: "<<loc.giveX() << " y: " << loc.giveY() << std::endl;
-
     return close;
 }
 

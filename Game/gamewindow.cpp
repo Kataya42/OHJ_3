@@ -116,7 +116,10 @@ void GameWindow::advance()
 
 
 }
-
+void GameWindow::mousePressEvent(QMouseEvent *event)
+{
+   setFocus();
+}
 void GameWindow::keyPressEvent(QKeyEvent *event)
 {
     if (event->key() == 16777235) {
@@ -135,11 +138,6 @@ void GameWindow::keyPressEvent(QKeyEvent *event)
         playerDirHorizontal_ = 1;
         playerDirVertical_ = 0;
     }
-
-
-
-    //std::cout << "updated bus positions";
-
 }
 
 void GameWindow::gameEnd()
@@ -217,7 +215,7 @@ void GameWindow::on_startButton_clicked()
     qDebug() << "Start clicked";
     connect(timer, SIGNAL(timeout()), this, SLOT(updateCoords()));
     emit gameStarted();
-    grabKeyboard();
+    setFocus();
     drawPlayer();
     drawEnemy();
     playerDirVertical_ = 0;
