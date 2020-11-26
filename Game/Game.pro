@@ -46,4 +46,10 @@ HEADERS += \
 FORMS += \
     simplegamewindow.ui
 
+RESOURCES += \
+    ownGraphics.qrc
+
+DISTFILES += \
+    omaKartta.png
+
 

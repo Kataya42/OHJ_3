@@ -25,6 +25,7 @@
 #include <gamemaster.h>
 
 
+
 int main(int argc, char *argv[])
 {
     std::shared_ptr<Manse> map = nullptr;
@@ -36,7 +37,9 @@ int main(int argc, char *argv[])
 
     QImage kartta;
     Q_INIT_RESOURCE(offlinedata);
-    kartta.load(":/offlinedata/offlinedata/kartta_iso_1095x592.png");
+    Q_INIT_RESOURCE(ownGraphics);
+    kartta.load(":/omaKartta.png");
+    //kartta.load(":/offlinedata/offlinedata/kartta_iso_1095x592.png");
 
     w->setPicture(kartta);
 

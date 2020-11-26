@@ -71,7 +71,7 @@ private:
 
     int width_ = 1095; //pxls
     int height_ = 592;
-    int tick_ = 100; //ms
+    int tick_ = 250; //ms
     int score_ = 0;
     int life_ = 0;
 };

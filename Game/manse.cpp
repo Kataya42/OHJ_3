@@ -25,7 +25,8 @@ bool Manse::isGameOver() const
     if (prog_ < 100){
         return false;
     } else {
-        return true;
+        //return true;
+        return false;
     }
 }
 
