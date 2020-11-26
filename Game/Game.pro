@@ -49,7 +49,6 @@ FORMS += \
 RESOURCES += \
     ownGraphics.qrc
 
-DISTFILES += \
-    omaKartta.png
+DISTFILES +=
 
 

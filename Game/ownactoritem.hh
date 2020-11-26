@@ -1,7 +1,7 @@
 #ifndef OWNACTORITEM_HH
 #define OWNACTORITEM_HH
 #include <graphics/simpleactoritem.hh>
-#include <QGraphicsItem>
+#include <QGraphicsPixmapItem>
 #include <QGraphicsScene>
 #include <QPainter>
 
@@ -23,9 +23,10 @@ enum Type
 };
 
 
-class OwnActorItem : public QGraphicsItem
+class OwnActorItem : public QGraphicsPixmapItem
 {
 public:
+
     OwnActorItem(int x, int y, int type);
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     QRectF boundingRect() const;
