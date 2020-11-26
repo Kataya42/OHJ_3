@@ -89,10 +89,16 @@ void GameWindow::updateCoords()
     int py = playerLoc.giveY();
     playerActor_->setCoord(px, py);
 
-    city_->getEnemy()->chase(city_->getPlayer());
-    Interface::Location enemyLoc = city_->getEnemy()->giveLocation();
-    enemyActor_->setCoord(enemyLoc.giveX(), enemyLoc.giveY());
-
+    if (enemyPlayerControlled)
+    {
+        city_->getEnemy()->updateLocation(enemyDirHorizontal_,enemyDirVertical_);
+        Interface::Location enemyLoc = city_->getEnemy()->giveLocation();
+        enemyActor_->setCoord(enemyLoc.giveX(), enemyLoc.giveY());
+    } else {
+        city_->getEnemy()->chase(city_->getPlayer());
+        Interface::Location enemyLoc = city_->getEnemy()->giveLocation();
+        enemyActor_->setCoord(enemyLoc.giveX(), enemyLoc.giveY());
+    }
 
 
 }
@@ -137,6 +143,28 @@ void GameWindow::keyPressEvent(QKeyEvent *event)
     } else if (event->key() == 16777236) {
         playerDirHorizontal_ = 1;
         playerDirVertical_ = 0;
+    }
+    if (enemyPlayerControlled)
+    {
+        if (event->key() == Qt::Key_W) {
+            enemyDirVertical_ = -1;
+            enemyDirHorizontal_ = 0;
+
+        } else if (event->key() == Qt::Key_S) {
+            enemyDirVertical_ = 1;
+            enemyDirHorizontal_ = 0;
+
+        } else if (event->key() == Qt::Key_A) {
+            enemyDirHorizontal_ = -1;
+            enemyDirVertical_ = 0;
+
+        } else if (event->key() == Qt::Key_D) {
+            enemyDirHorizontal_ = 1;
+            enemyDirVertical_ = 0;
+        }
+
+
+
     }
 }
 

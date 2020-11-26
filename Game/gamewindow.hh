@@ -102,6 +102,8 @@ private:
     void gameEnd();
     int playerDirHorizontal_;
     int playerDirVertical_;
+    int enemyDirHorizontal_;
+    int enemyDirVertical_;
     std::vector<std::shared_ptr<Interface::IActor>> nearbyStuff_;
 
     int width_ = 1095; //pxls
@@ -110,6 +112,7 @@ private:
     int scoreTick_ = 300;
     int score_ = 0;
     int life_ = 0;
+    bool enemyPlayerControlled = true;
 };
 
  //namespace

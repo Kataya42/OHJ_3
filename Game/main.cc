@@ -61,7 +61,7 @@ int main(int argc, char *argv[])
     std::shared_ptr<Chaser> enemy = nullptr;
     enemy = std::make_shared<Chaser>();
     Interface::Location enemyStart;
-    enemyStart.setXY(480, 600);
+    enemyStart.setXY(500, 500);
     enemy->move(enemyStart);
     map->addEnemy(enemy);
 

@@ -41,7 +41,15 @@ void Chaser::setCity(std::shared_ptr<Interface::ICity> city)
 
 void Chaser::updateLocation(int hor, int ver)
 {
-    location_.setXY(location_.giveX() + 3 * hor, location_.giveY() + 3 * ver);
+    xSpeed_ += hor * acceleration_;
+    if (xSpeed_ >= maxspeed_ or xSpeed_ <= -maxspeed_) {
+        xSpeed_ -= hor * acceleration_;
+    }
+    ySpeed_ += ver * acceleration_;
+    if (ySpeed_ >= maxspeed_ or ySpeed_ <= -maxspeed_) {
+        ySpeed_ -= ver * acceleration_;
+    }
+    location_.setXY(location_.giveX() + xSpeed_, location_.giveY() + ySpeed_);
 }
 
 void Chaser::chase(std::shared_ptr<Interface::IActor> target)
