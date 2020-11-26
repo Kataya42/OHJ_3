@@ -6,6 +6,7 @@ QT += core gui widgets network multimedia
 CONFIG += c++14
 
 SOURCES += \
+    chaser.cpp \
     creategame.cpp \
     gamewindow.cpp \
     main.cc \
@@ -38,6 +39,7 @@ else:unix: PRE_TARGETDEPS += \
     $$OUT_PWD/../Course/CourseLib/libCourseLib.a
 
 HEADERS += \
+    chaser.h \
     gamewindow.hh \
     manse.h \
     ownactoritem.hh \

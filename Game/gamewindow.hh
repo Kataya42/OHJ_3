@@ -59,6 +59,7 @@ private:
     Ui::SimpleGameWindow *ui;
     QGraphicsScene *map;
     QTimer *timer;
+    QTimer *scoreTimer;
     QVector<OwnActorItem*> actors_;
     OwnActorItem* last_;
     OwnActorItem* playerActor_;
@@ -72,6 +73,7 @@ private:
     int width_ = 1095; //pxls
     int height_ = 592;
     int tick_ = 100; //ms
+    int scoreTick_ = 300;
     int score_ = 0;
     int life_ = 0;
 };

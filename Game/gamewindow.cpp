@@ -83,6 +83,18 @@ void GameWindow::updateCoords()
     int py = playerLoc.giveY();
     playerActor_->setCoord(px, py);
 
+
+
+}
+
+void GameWindow::advance()
+{
+    Interface::Location playerLoc = city_->getPlayer()->giveLocation();
+    life_ ++;
+    score_ ++;
+    ui->scoreCount->display(score_);
+    ui->progressBar->setValue(life_);
+    city_->getProg(life_);
     std::vector<std::shared_ptr<Interface::IActor>> close;
     close = (city_->getNearbyActors(playerLoc));
 
@@ -91,16 +103,6 @@ void GameWindow::updateCoords()
             life_ = life_ - 10;
         }
     }
-
-}
-
-void GameWindow::advance()
-{
-    life_ ++;
-    score_ ++;
-    ui->scoreCount->display(score_);
-    ui->progressBar->setValue(life_);
-    city_->getProg(life_);
 
     if (city_->isGameOver()){
         timer->stop();
@@ -199,11 +201,12 @@ void GameWindow::on_startButton_clicked()
 {
     qDebug() << "Start clicked";
     connect(timer, SIGNAL(timeout()), this, SLOT(updateCoords()));
-    connect(timer, SIGNAL(timeout()), this, SLOT(advance()));
     emit gameStarted();
     grabKeyboard();
     drawPlayer();
     playerDirVertical_ = 0;
     playerDirHorizontal_ = 1;
-
+    scoreTimer = new QTimer(this);
+    scoreTimer->start(scoreTick_);
+    connect(scoreTimer, SIGNAL(timeout()), this, SLOT(advance()));
 }
