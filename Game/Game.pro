@@ -13,6 +13,7 @@ SOURCES += \
     manse.cpp \
     ownactoritem.cpp \
     player.cpp \
+    startdialog.cpp \
     statistics.cpp
 
 win32:CONFIG(release, debug|release): LIBS += \
@@ -45,10 +46,12 @@ HEADERS += \
     manse.h \
     ownactoritem.hh \
     player.h \
+    startdialog.hh \
     statistics.hh
 
 FORMS += \
-    simplegamewindow.ui
+    simplegamewindow.ui \
+    startdialog.ui
 
 RESOURCES += \
     ownGraphics.qrc
