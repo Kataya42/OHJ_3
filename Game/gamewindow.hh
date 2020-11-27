@@ -21,6 +21,8 @@
 #include <QKeyEvent>
 #include <statistics.hh>
 #include <QPainter>
+#include <startdialog.hh>
+
 
 namespace Ui {
 class SimpleGameWindow;
@@ -80,7 +82,7 @@ public:
     void drawStops();
     void takeStats(Statistics gameStats);
     void increaseScore();
-
+    void getDialog(StartDialog *dia);
 
 signals:
     void gameStarted();
@@ -91,6 +93,7 @@ private slots:
     void on_startButton_clicked();
     void updateCoords();
     void advance();
+    void setPlayertwo(bool x);
 
 protected:
     virtual void keyPressEvent(QKeyEvent *event);
@@ -108,6 +111,7 @@ private:
     OwnActorItem* enemyActor_;
     std::shared_ptr<Manse> city_;
     Statistics gameStats_;
+    StartDialog *dialog_;
 
 
     void gameEnd();

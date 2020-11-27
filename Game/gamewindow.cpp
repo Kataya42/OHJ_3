@@ -28,6 +28,9 @@ GameWindow::GameWindow(QWidget *parent) :
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, map, &QGraphicsScene::advance);
 
+    //QObject::connect()
+
+
 
     timer->start(tick_);
     playerDirVertical_ = 0;
@@ -127,6 +130,8 @@ void GameWindow::advance()
        gameStats_.addPlayerEnergy();
     }
 }
+
+
 void GameWindow::mousePressEvent(QMouseEvent *event)
 {
    setFocus();
@@ -254,6 +259,20 @@ void GameWindow::takeStats(Statistics gameStats)
 void GameWindow::increaseScore()
 {
     gameStats_.increaseModifier();
+}
+
+
+void GameWindow::setPlayertwo(bool x)
+{
+    enemyPlayerControlled = x;
+    this->show();
+
+}
+
+void GameWindow::getDialog(StartDialog *dia)
+{
+    dialog_ = dia;
+    connect(dialog_, SIGNAL(sendCheckBox(bool)), this, SLOT(setPlayertwo(bool)));
 }
 
 void GameWindow::on_startButton_clicked()
