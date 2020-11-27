@@ -36,6 +36,7 @@ GameWindow::GameWindow(QWidget *parent) :
     ui->progressBar->setValue(0);
     ui->scoreCount->setPalette(Qt::red);
     ui->progressBar->setPalette(Qt::green);
+    //ui->startButton->setEnabled(false);
 }
 
 GameWindow::~GameWindow()
@@ -253,5 +254,10 @@ void GameWindow::on_startButton_clicked()
     scoreTimer->start(scoreTick_);
     connect(scoreTimer, SIGNAL(timeout()), this, SLOT(advance()));
     ui->startButton->setEnabled(false);
+
+}
+
+void GameWindow::on_checkBox_stateChanged(int arg1)
+{
 
 }

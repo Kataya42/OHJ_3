@@ -85,6 +85,8 @@ private slots:
     void updateCoords();
     void advance();
 
+    void on_checkBox_stateChanged(int arg1);
+
 protected:
     virtual void keyPressEvent(QKeyEvent *event);
     virtual void mousePressEvent(QMouseEvent *event);

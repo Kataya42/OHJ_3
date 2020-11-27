@@ -35,6 +35,8 @@ int main(int argc, char *argv[])
     std::shared_ptr<GameWindow> w = nullptr;
     w = std::make_shared<GameWindow>();
 
+
+
     QImage kartta;
     Q_INIT_RESOURCE(offlinedata);
     Q_INIT_RESOURCE(ownGraphics);
@@ -42,6 +44,8 @@ int main(int argc, char *argv[])
 
     w->setPicture(kartta);
     w->takeCity(map);
+
+    w->show();
 
     CourseSide::Logic gamelogic;
     gamelogic.fileConfig();
@@ -63,9 +67,11 @@ int main(int argc, char *argv[])
     enemy->move(enemyStart);
     map->addEnemy(enemy);
 
-    w->show();
     w->drawBuses();
     w->drawStops();
 
+
     return a.exec();
+    
+
 }
