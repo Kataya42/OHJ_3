@@ -95,3 +95,13 @@ bool Chaser::getPLayerControlled()
     return playercontrolled_;
 }
 
+void Chaser::setMaxSpeed(int maxspeed)
+{
+    maxspeed_ = maxspeed;
+}
+
+void Chaser::setAcceleration(int acceleration)
+{
+    acceleration_ = acceleration;
+}
+

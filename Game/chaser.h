@@ -37,7 +37,7 @@ public:
     /*!
      * \brief updateLocation accelerates chaser towards a direction
      * \param hor horizontal direction for acceleration
-     * \param ver
+     * \param ver vertical direction for acceleration
      */
     void updateLocation(int hor, int ver);
     /**
@@ -67,6 +67,10 @@ public:
      * @return true if playercontrolled, false if not.
      */
     bool getPLayerControlled();
+
+    void setMaxSpeed(int maxspeed);
+
+    void setAcceleration(int acceleration);
 
 private:
     int xSpeed_;
