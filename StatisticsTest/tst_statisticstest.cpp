@@ -12,8 +12,18 @@ public:
     ~StatisticsTest();
 
 private slots:
+    /**
+     * @brief scoreAdditionTest a simple test to see whether score addition works correctly
+     */
     void scoreAdditionTest();
+    /**
+     * @brief modifierIncreaseTest tests whether increasing the score modifier works
+     */
     void modifierIncreaseTest();
+    /**
+     * @brief energyTest tests whether energy can be increased to over 100
+     */
+    void energyTest();
 
 };
 
@@ -48,6 +58,17 @@ void StatisticsTest::modifierIncreaseTest()
     }
     QVERIFY(scoretracker.getScore() == 20);
 
+}
+
+void StatisticsTest::energyTest()
+{
+    Statistics scoretracker;
+    for (int i = 0; i < 9; i++)
+    {
+        scoretracker.drainPlayerEnergy();
+        scoretracker.addPlayerEnergy();
+    }
+    QVERIFY(scoretracker.getPlayerEnergy() == 91);
 }
 
 QTEST_APPLESS_MAIN(StatisticsTest)
