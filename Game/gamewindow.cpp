@@ -130,6 +130,7 @@ void GameWindow::mousePressEvent(QMouseEvent *event)
 {
    setFocus();
 }
+
 void GameWindow::keyPressEvent(QKeyEvent *event)
 {
     if (event->key() == 16777235) {

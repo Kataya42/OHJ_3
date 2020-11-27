@@ -39,13 +39,3 @@ void Player::updateLocation(int hor, int ver)
 {
     location_.setXY(location_.giveX() + 3 * hor, location_.giveY() + 3 * ver);
 }
-
-int Player::getSID() const
-{
-    return SID_;
-}
-
-void Player::setSID(int sid)
-{
-    SID_ = sid;
-}

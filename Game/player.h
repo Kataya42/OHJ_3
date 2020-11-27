@@ -31,8 +31,6 @@ public:
     //Player functionality
     void updateLocation(int hor, int ver);
 
-    int getSID() const;
-    void setSID(int sid);
 private:
     int movementDirection_;
     std::string name_;
