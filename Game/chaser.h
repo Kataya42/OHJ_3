@@ -3,9 +3,14 @@
 
 #include "core/location.hh"
 #include "actors/stop.hh"
+#include "cstdlib"
+#include "ownactoritem.hh"
 
 const int MAXSPEED = 10;
 const int ACCELERATION = 1;
+
+
+
 /**
  * @file
  * @brief Describes a chaser class that can accelerate towards another actor
@@ -58,12 +63,16 @@ public:
 
     void setAcceleration(int acceleration);
 
+    int getDirection(std::shared_ptr<Interface::IActor> target);
+
 private:
     int xSpeed_;
     int ySpeed_;
     int acceleration_;
     int maxspeed_;
+    int direction_ = 0;
     bool playercontrolled_;
+    bool positiveMovement_ = true;
 
     std::string name_;
     std::shared_ptr<Interface::ICity> city_;

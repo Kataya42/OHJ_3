@@ -22,6 +22,7 @@ const int Y_OFFSET2 = 50;
 const int DANGER_RADIUS  = 15; // how close enemy needs to be to player
 
 
+
 namespace Ui {
 class SimpleGameWindow;
 }
