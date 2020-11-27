@@ -8,5 +8,9 @@
         <file>images/drone.png</file>
         <file>images/bus.png</file>
         <file>images/a.png</file>
+        <file>images/fightUp.png</file>
+        <file>images/fightRight.png</file>
+        <file>images/fightLeft.png</file>
+        <file>images/fightDown.png</file>
     </qresource>
 </RCC>
