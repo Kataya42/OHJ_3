@@ -3,6 +3,7 @@ TEMPLATE = subdirs
 SUBDIRS += \
 	CourseLib \
 	Game \
+    ManseTest \
         UnitTests \
         StatisticsTest
 

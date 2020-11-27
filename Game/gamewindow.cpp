@@ -51,7 +51,7 @@ void GameWindow::addActor(int locX, int locY, int type)
 
 void GameWindow::updateCoords()
 {
-    std::vector<std::shared_ptr<Interface::IActor> > buses = city_->getBuses();
+    std::vector<std::shared_ptr<Interface::IActor>> buses = city_->getActors();
     int counter = 0;
     for (auto i : buses) {
         if (counter < actors_.size()) {
@@ -178,10 +178,10 @@ bool GameWindow::takeCity(std::shared_ptr<Manse> city)
 
 void GameWindow::drawBuses()
 {
-    std::vector<std::shared_ptr<Interface::IActor> > buses = city_->getBuses();
-    for (auto i : buses) {
-        int x = i->giveLocation().giveX() + X_OFFSET;
 
+    std::vector<std::shared_ptr<Interface::IActor>> buses = city_->getActors();
+    for ( auto i : buses){
+        int x = i->giveLocation().giveX() + 350;
         int y = Y_OFFSET1 - i->giveLocation().giveY() + Y_OFFSET2;
 
         addActor(x, y, BUS);
