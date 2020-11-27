@@ -16,6 +16,10 @@
 #include <map>
 #include <string>
 #include <QString>
+#include <core/logic.hh>
+#include <QDebug>
+#include <QKeyEvent>
+#include <statistics.hh>
 
 namespace Ui {
 class SimpleGameWindow;
@@ -73,6 +77,9 @@ public:
      * @post stops are added to scene
      */
     void drawStops();
+    void takeStats(Statistics gameStats);
+    void increaseScore();
+
 
 signals:
     void gameStarted();
@@ -93,11 +100,14 @@ private:
     QGraphicsScene *map;
     QTimer *timer;
     QTimer *scoreTimer;
+    QTimer *modTimer;
     QVector<OwnActorItem*> actors_;
     OwnActorItem* last_;
     OwnActorItem* playerActor_;
     OwnActorItem* enemyActor_;
     std::shared_ptr<Manse> city_;
+    Statistics gameStats_;
+
 
     void gameEnd();
     int playerDirHorizontal_;
@@ -112,7 +122,7 @@ private:
     int scoreTick_ = 300;
     int score_ = 0;
     int life_ = 0;
-    bool enemyPlayerControlled = false;
+    bool enemyPlayerControlled = true;
 };
 
  //namespace

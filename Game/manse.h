@@ -13,6 +13,7 @@
 #include "chaser.h"
 #include "core/location.hh"
 
+
 #include <iostream>
 #include <QTime>
 #include <memory>
@@ -47,6 +48,7 @@ public:
     std::shared_ptr<Chaser> getEnemy();
     std::vector<std::shared_ptr<Interface::IStop>> getStops();
     void getProg(int progress);
+
 
 private slots:
 

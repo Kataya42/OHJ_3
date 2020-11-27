@@ -23,6 +23,7 @@
 #include <offlinereader.hh>
 #include <gamewindow.hh>
 #include <chaser.h>
+#include <statistics.hh>
 
 
 
@@ -35,21 +36,26 @@ int main(int argc, char *argv[])
     std::shared_ptr<GameWindow> w = nullptr;
     w = std::make_shared<GameWindow>();
 
+
+
     QImage kartta;
     Q_INIT_RESOURCE(offlinedata);
     Q_INIT_RESOURCE(ownGraphics);
     kartta.load(":/images/images/omaKartta.png");
-    //kartta.load(":/offlinedata/offlinedata/kartta_iso_1095x592.png");
+
+    Statistics stats;
 
     w->setPicture(kartta);
-
     w->takeCity(map);
+    w->takeStats(stats);
+
+    w->show();
 
     CourseSide::Logic gamelogic;
     gamelogic.fileConfig();
     gamelogic.setTime(12,10);
     gamelogic.takeCity(map);
-    // Gamemaster testing class for game functions
+    gamelogic.finalizeGameStart();
 
     std::shared_ptr<Player> pelaaja = nullptr;
     pelaaja = std::make_shared<Player>();
@@ -65,10 +71,11 @@ int main(int argc, char *argv[])
     enemy->move(enemyStart);
     map->addEnemy(enemy);
 
-    w->show();
-    gamelogic.finalizeGameStart();
     w->drawBuses();
     w->drawStops();
 
+
     return a.exec();
+    
+
 }

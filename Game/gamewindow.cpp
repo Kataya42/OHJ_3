@@ -1,7 +1,5 @@
 #include "gamewindow.hh"
 #include "ui_simplegamewindow.h"
-#include <QDebug>
-#include <QKeyEvent>
 
 const int PADDING = 10;
 
@@ -29,13 +27,16 @@ GameWindow::GameWindow(QWidget *parent) :
 
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, map, &QGraphicsScene::advance);
+
+
     timer->start(tick_);
     playerDirVertical_ = 0;
     playerDirHorizontal_ = 0;
 
-    ui->progressBar->setValue(0);
+    ui->progressBar->setValue(100);
     ui->scoreCount->setPalette(Qt::red);
     ui->progressBar->setPalette(Qt::green);
+    //ui->startButton->setEnabled(false);
 }
 
 GameWindow::~GameWindow()
@@ -110,25 +111,25 @@ void GameWindow::updateCoords()
 void GameWindow::advance()
 {
     Interface::Location playerLoc = city_->getPlayer()->giveLocation();
-    life_ ++;
-    score_ ++;
-    ui->scoreCount->display(score_);
-    ui->progressBar->setValue(life_);
-    city_->getProg(life_);
+
+    gameStats_.drainPlayerEnergy();
+    gameStats_.addScore();
+
+    ui->scoreCount->display(gameStats_.getScore());
+    ui->progressBar->setValue(gameStats_.getPlayerEnergy());
+    city_->getProg(gameStats_.getPlayerEnergy());
+
     std::vector<std::shared_ptr<Interface::IActor>> close;
     close = (city_->getNearbyActors(playerLoc));
 
     if (!(close.empty())){
-        if (life_ > 10){
-            life_ = life_ - 10;
-        }
+       gameStats_.addPlayerEnergy();
     }
-
-
 }
 void GameWindow::mousePressEvent(QMouseEvent *event)
 {
    setFocus();
+
 }
 
 void GameWindow::keyPressEvent(QKeyEvent *event)
@@ -167,9 +168,6 @@ void GameWindow::keyPressEvent(QKeyEvent *event)
             enemyDirHorizontal_ = 1;
             enemyDirVertical_ = 0;
         }
-
-
-
     }
 }
 
@@ -177,11 +175,12 @@ void GameWindow::gameEnd()
 {
     QString str;
     str= QString("You got %1 points!")
-            .arg(score_);
+            .arg(gameStats_.getScore());
 
     QMessageBox::information(this,
                              tr("Game Over!"),
                              (str));
+    this->close();
 
 }
 void GameWindow::setPicture(QImage &img)
@@ -209,7 +208,6 @@ void GameWindow::drawBuses()
 
 
 }
-
 
 void GameWindow::drawPlayer()
 {
@@ -241,7 +239,15 @@ void GameWindow::drawStops()
 
 }
 
+void GameWindow::takeStats(Statistics gameStats)
+{
+    gameStats_ = gameStats;
+}
 
+void GameWindow::increaseScore()
+{
+    gameStats_.increaseModifier();
+}
 
 void GameWindow::on_startButton_clicked()
 {
@@ -251,9 +257,18 @@ void GameWindow::on_startButton_clicked()
     setFocus();
     drawPlayer();
     drawEnemy();
-    playerDirVertical_ = 0;
-    playerDirHorizontal_ = 1;
+//    playerDirVertical_ = 0;
+//    playerDirHorizontal_ = 0;
     scoreTimer = new QTimer(this);
     scoreTimer->start(scoreTick_);
     connect(scoreTimer, SIGNAL(timeout()), this, SLOT(advance()));
+
+
+//    modTimer = new QTimer(this);
+//    modTimer->start(1);
+//    connect(modTimer, SIGNAL(timeout()), this, SLOT(increaseScore));
+
+
+    ui->startButton->setEnabled(false);
+
 }

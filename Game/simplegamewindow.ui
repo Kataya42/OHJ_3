@@ -91,7 +91,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Hunger</string>
+     <string>Energy</string>
     </property>
    </widget>
    <widget class="QLabel" name="scoreLabel">

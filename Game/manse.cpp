@@ -22,7 +22,7 @@ void Manse::startGame()
 
 bool Manse::isGameOver() const
 {
-    if (prog_ < 100){
+    if (prog_ >= 0){
         return false;
     } else {
         return true;
@@ -53,10 +53,12 @@ void Manse::addActor(std::shared_ptr<Interface::IActor> newactor)
 
 void Manse::removeActor(std::shared_ptr<Interface::IActor> actor)
 {
+
 }
 
 void Manse::actorRemoved(std::shared_ptr<Interface::IActor> actor)
 {
+    //kekw
     std::cout << "yes actorRemoved is used" << std::endl;
 }
 
