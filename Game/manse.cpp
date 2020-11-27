@@ -5,7 +5,7 @@ Manse::Manse()
     gamestarted_ = false;
 }
 
-void Manse::setBackground(QImage &basicbackground, QImage &bigbackground)
+void Manse::setBackground(QImage& basicbackground, QImage& bigbackground)
 {
     //Currently test implementation in main, implementation here probably later
 }
@@ -22,9 +22,10 @@ void Manse::startGame()
 
 bool Manse::isGameOver() const
 {
-    if (prog_ >= 0){
+    if (prog_ >= 0) {
         return false;
-    } else {
+    }
+    else {
         return true;
     }
 }
@@ -37,8 +38,7 @@ void Manse::addStop(std::shared_ptr<Interface::IStop> stop)
 void Manse::addActor(std::shared_ptr<Interface::IActor> newactor)
 {
     //this was the only way we figured out to seperate passengers from buses here
-    if (stops_.size() == 0)
-    {
+    if (stops_.size() == 0) {
         actors_.push_back(newactor);
     }
 }
@@ -56,10 +56,8 @@ void Manse::actorRemoved(std::shared_ptr<Interface::IActor> actor)
 
 bool Manse::findActor(std::shared_ptr<Interface::IActor> actor) const
 {
-    for (auto a : actors_)
-    {
-        if (a == actor)
-        {
+    for (auto a : actors_) {
+        if (a == actor) {
             return true;
         }
     }
@@ -68,39 +66,36 @@ bool Manse::findActor(std::shared_ptr<Interface::IActor> actor) const
 
 void Manse::actorMoved(std::shared_ptr<Interface::IActor> actor)
 {
-
 }
 
-std::vector<std::shared_ptr<Interface::IActor>>Manse::getNearbyActors(Interface::Location loc) const
+std::vector<std::shared_ptr<Interface::IActor> > Manse::getNearbyActors(Interface::Location loc) const
 {
 
-    std::vector<std::shared_ptr<Interface::IActor>> close;
+    std::vector<std::shared_ptr<Interface::IActor> > close;
 
-    for (auto a : actors_){
+    for (auto a : actors_) {
 
         int nx = a->giveLocation().giveX();
         int ny = a->giveLocation().giveY();
         Interface::Location b;
-        //This converts the buses coordinate system to the maps coordinate system
-        //For some reason 450-ny does not work
-        b.setXY(nx+350, 550-ny);
 
-        if (b.isClose(loc,10)){
+        b.setXY(nx + 350, 550 - ny);
+
+        if (b.isClose(loc, 10)) {
             close.push_back(a);
-            }
         }
+    }
     return close;
 }
 
-std::vector<std::shared_ptr<Interface::IActor>> Manse::getActors()
+std::vector<std::shared_ptr<Interface::IActor> > Manse::getActors()
 {
     return actors_;
 }
 
-
-void Manse::addPlayer(std::shared_ptr<Player> p)
+void Manse::addPlayer(std::shared_ptr<Player> player)
 {
-    player_ = p;
+    player_ = player;
 }
 
 std::shared_ptr<Player> Manse::getPlayer()
@@ -108,9 +103,9 @@ std::shared_ptr<Player> Manse::getPlayer()
     return player_;
 }
 
-void Manse::addEnemy(std::shared_ptr<Chaser> e)
+void Manse::addEnemy(std::shared_ptr<Chaser> enemy)
 {
-    enemy_ = e;
+    enemy_ = enemy;
 }
 
 std::shared_ptr<Chaser> Manse::getEnemy()
@@ -127,7 +122,3 @@ void Manse::getProg(int progress)
 {
     prog_ = progress;
 }
-
-
-
-
