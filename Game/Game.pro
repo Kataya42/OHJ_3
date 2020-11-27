@@ -12,7 +12,8 @@ SOURCES += \
     main.cc \
     manse.cpp \
     ownactoritem.cpp \
-    player.cpp
+    player.cpp \
+    statistics.cpp
 
 win32:CONFIG(release, debug|release): LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/release/ -lCourseLib
@@ -43,7 +44,8 @@ HEADERS += \
     gamewindow.hh \
     manse.h \
     ownactoritem.hh \
-    player.h
+    player.h \
+    statistics.hh
 
 FORMS += \
     simplegamewindow.ui

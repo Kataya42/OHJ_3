@@ -23,6 +23,7 @@
 #include <offlinereader.hh>
 #include <gamewindow.hh>
 #include <chaser.h>
+#include <statistics.hh>
 
 
 
@@ -42,8 +43,11 @@ int main(int argc, char *argv[])
     Q_INIT_RESOURCE(ownGraphics);
     kartta.load(":/images/images/omaKartta.png");
 
+    Statistics stats;
+
     w->setPicture(kartta);
     w->takeCity(map);
+    w->takeStats(stats);
 
     w->show();
 

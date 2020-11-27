@@ -17,6 +17,9 @@
 #include <string>
 #include <QString>
 #include <core/logic.hh>
+#include <QDebug>
+#include <QKeyEvent>
+#include <statistics.hh>
 
 namespace Ui {
 class SimpleGameWindow;
@@ -74,6 +77,9 @@ public:
      * @post stops are added to scene
      */
     void drawStops();
+    void takeStats(Statistics gameStats);
+    void increaseScore();
+
 
 signals:
     void gameStarted();
@@ -85,8 +91,6 @@ private slots:
     void updateCoords();
     void advance();
 
-    void on_checkBox_stateChanged(int arg1);
-
 protected:
     virtual void keyPressEvent(QKeyEvent *event);
     virtual void mousePressEvent(QMouseEvent *event);
@@ -96,11 +100,13 @@ private:
     QGraphicsScene *map;
     QTimer *timer;
     QTimer *scoreTimer;
+    QTimer *modTimer;
     QVector<OwnActorItem*> actors_;
     OwnActorItem* last_;
     OwnActorItem* playerActor_;
     OwnActorItem* enemyActor_;
     std::shared_ptr<Manse> city_;
+    Statistics gameStats_;
 
 
     void gameEnd();
