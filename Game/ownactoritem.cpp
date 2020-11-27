@@ -1,4 +1,4 @@
-#include "ownactoritem.hh"
+﻿#include "ownactoritem.hh"
 
 OwnActorItem::OwnActorItem(int x, int y, int type): x_(x), y_(y), type_(type)
 {
@@ -16,12 +16,18 @@ void OwnActorItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
 //    int g;
 
     if (type_ == player){
+       // painter->drawPixmap(bounds,QPixmap(":/images/images/fightUp.png"),bounds);
+       // painter->drawPixmap(bounds,QPixmap(":/images/images/fightDown.png"),bounds);
+       // painter->drawPixmap(bounds,QPixmap(":/images/images/fightLeft.png"),bounds);
         painter->drawPixmap(bounds,QPixmap(":/images/images/oofo.png"),bounds);
     } else if (type_ == bus){
         painter->drawPixmap(bounds,QPixmap(":/images/images/bus.png"),bounds);
+    } else if (type_ == stop){
+         painter->drawPixmap(bounds,QPixmap(":/images/images/stop.png"),bounds);
     } else {
-        painter->drawPixmap(bounds,QPixmap(":/images/images/stop.png"),bounds);
+        painter->drawPixmap(bounds,QPixmap(":/images/images/fightUp.png"),bounds);
     }
+
 
      //  painter->drawPixmap(bounds,QPixmap(":/images/ufo.png"),bounds);
       Q_UNUSED(option);
@@ -42,8 +48,10 @@ QRectF OwnActorItem::boundingRect() const
         return QRectF(0, 0, WIDTHPLAYER, HEIGHTPLAYER);
     } else if (type_ == bus){
         return QRectF(0, 0, WIDTHBUS, HEIGHTBUS);
-    } else {
+    } else if (type_ == stop){
          return QRectF(0, 0, WIDTHSTOP, HEIGHTSTOP);
+    } else {
+        return QRectF(0,0,WIDTHPLAYER,HEIGHTPLAYER);
     }
 }
 
@@ -51,5 +59,24 @@ void OwnActorItem::setCoord(int x, int y)
 {
     setX( x );
     setY( y );
+}
+
+void OwnActorItem::updatePicture( int dir)
+{
+
+
+
+    //scene->addPixmap(pix);
+
+    if (dir ==0){
+      //  paint->drawPixmap(":/images/images/oofo.png")):
+    } else if (dir == 1){
+         setPixmap(QPixmap(":/images/images/fightRight.png"));
+    } else if (dir == 2){
+         setPixmap(QPixmap(":/images/images/fightRight.png"));
+    } else {
+         setPixmap(QPixmap(":/images/images/fightRight.png"));
+    }
+
 }
 

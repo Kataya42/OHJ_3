@@ -137,6 +137,11 @@ void GameWindow::keyPressEvent(QKeyEvent *event)
         playerDirVertical_ = -1;
         playerDirHorizontal_ = 0;
 
+        //QPixmap a = QPixmap(":/images/images/fightUp.png");
+        //playerActor_->setPixmap(a);
+        //playerActor_->update();
+        //playerActor_->updatePicture(0);
+
     } else if (event->key() == 16777237) {
         playerDirVertical_ = 1;
         playerDirHorizontal_ = 0;
@@ -149,6 +154,7 @@ void GameWindow::keyPressEvent(QKeyEvent *event)
         playerDirHorizontal_ = 1;
         playerDirVertical_ = 0;
     }
+
     if (enemyPlayerControlled)
     {
         if (event->key() == Qt::Key_W) {
@@ -217,7 +223,7 @@ void GameWindow::drawPlayer()
 
 void GameWindow::drawEnemy()
 {
-    OwnActorItem* nact = new OwnActorItem(city_->getEnemy()->giveLocation().giveX(), city_->getEnemy()->giveLocation().giveY(), 0);
+    OwnActorItem* nact = new OwnActorItem(city_->getEnemy()->giveLocation().giveX(), city_->getEnemy()->giveLocation().giveY(), 3);
     enemyActor_ = nact;
     map->addItem(enemyActor_);
 }

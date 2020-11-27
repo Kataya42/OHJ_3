@@ -22,9 +22,16 @@ enum Type
 {
     player = 0,
     bus = 1,
-    stop = 2
+    stop = 2,
+    enemy = 3
 };
 
+enum Direction
+{
+    up = 0,
+    right = 1,
+    down = 2
+};
 
 class OwnActorItem : public QGraphicsPixmapItem
 {
@@ -34,11 +41,13 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     QRectF boundingRect() const;
     void setCoord(int x, int y);
+    void updatePicture(int dir);
 
 private:
     int x_;
     int y_;
     int type_;
+
 
 };
 
