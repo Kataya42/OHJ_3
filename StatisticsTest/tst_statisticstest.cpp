@@ -1,5 +1,5 @@
 #include <QtTest>
-#include "statistics.h"
+#include "statistics.hh"
 
 // add necessary includes here
 
@@ -12,7 +12,8 @@ public:
     ~StatisticsTest();
 
 private slots:
-    void test_case1();
+    void scoreAdditionTest();
+    void modifierIncreaseTest();
 
 };
 
@@ -26,8 +27,26 @@ StatisticsTest::~StatisticsTest()
 
 }
 
-void StatisticsTest::test_case1()
+void StatisticsTest::scoreAdditionTest()
 {
+    Statistics scoretracker;
+    for (int i = 0; i < 10; i++)
+    {
+        scoretracker.addScore();
+    }
+    QVERIFY(scoretracker.getScore() == 10);
+
+}
+
+void StatisticsTest::modifierIncreaseTest()
+{
+    Statistics scoretracker;
+    scoretracker.increaseModifier();
+    for (int i = 0; i < 10; i++)
+    {
+        scoretracker.addScore();
+    }
+    QVERIFY(scoretracker.getScore() == 20);
 
 }
 
