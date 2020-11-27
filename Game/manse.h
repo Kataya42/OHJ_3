@@ -40,7 +40,7 @@ public:
     bool findActor(std::shared_ptr<Interface::IActor> actor) const override;
     void actorMoved(std::shared_ptr<Interface::IActor> actor) override;
     std::vector<std::shared_ptr<Interface::IActor>> getNearbyActors(Interface::Location loc) const override;
-    std::vector<std::shared_ptr<Interface::IActor>> getBuses();
+    std::vector<std::shared_ptr<Interface::IActor>> getActors();
 
     void addPlayer(std::shared_ptr<Player> p);
     std::shared_ptr<Player> getPlayer();
@@ -58,7 +58,7 @@ private:
     std::shared_ptr<Player> player_;
     std::shared_ptr<Chaser> enemy_;
     std::vector<std::shared_ptr<Interface::IStop>> stops_;
-    std::vector<std::shared_ptr<Interface::IActor>> buses_;
+    std::vector<std::shared_ptr<Interface::IActor>> actors_;
     std::vector<std::shared_ptr<Interface::IActor>> close_;
     int prog_ = 0;
 

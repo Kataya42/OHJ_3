@@ -32,11 +32,6 @@ bool Manse::isGameOver() const
 void Manse::addStop(std::shared_ptr<Interface::IStop> stop)
 {
     stops_.push_back(stop);
-//    Interface::Location a = stop->getLocation();
-//    int c = a.giveY();
-//    int b = a.giveX();
-//    std::cout << c << " " << b << std::endl;
-
 }
 
 void Manse::addActor(std::shared_ptr<Interface::IActor> newactor)
@@ -47,27 +42,35 @@ void Manse::addActor(std::shared_ptr<Interface::IActor> newactor)
         //int c = a.giveY();
         //int b = a.giveX();
         //std::cout << typeid(*newactor).name() << c << " " << b << std::endl;
-        buses_.push_back(newactor);
+        actors_.push_back(newactor);
     }
 }
 
 void Manse::removeActor(std::shared_ptr<Interface::IActor> actor)
 {
-
+    actor->remove();
 }
 
 void Manse::actorRemoved(std::shared_ptr<Interface::IActor> actor)
 {
-    //kekw
-    std::cout << "yes actorRemoved is used" << std::endl;
+    actor->isRemoved();
 }
 
 bool Manse::findActor(std::shared_ptr<Interface::IActor> actor) const
 {
+    for (auto a : actors_)
+    {
+        if (a == actor)
+        {
+            return true;
+        }
+    }
+    return false;
 }
 
 void Manse::actorMoved(std::shared_ptr<Interface::IActor> actor)
 {
+
 }
 
 std::vector<std::shared_ptr<Interface::IActor>>Manse::getNearbyActors(Interface::Location loc) const
@@ -75,7 +78,7 @@ std::vector<std::shared_ptr<Interface::IActor>>Manse::getNearbyActors(Interface:
 
     std::vector<std::shared_ptr<Interface::IActor>> close;
 
-    for (auto a : buses_){
+    for (auto a : actors_){
 
         int nx = a->giveLocation().giveX();
         int ny = a->giveLocation().giveY();
@@ -90,9 +93,9 @@ std::vector<std::shared_ptr<Interface::IActor>>Manse::getNearbyActors(Interface:
     return close;
 }
 
-std::vector<std::shared_ptr<Interface::IActor>> Manse::getBuses()
+std::vector<std::shared_ptr<Interface::IActor>> Manse::getActors()
 {
-    return buses_;
+    return actors_;
 }
 
 
