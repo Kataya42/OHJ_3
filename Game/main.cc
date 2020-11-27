@@ -24,7 +24,7 @@
 #include <gamewindow.hh>
 #include <chaser.h>
 #include <statistics.hh>
-
+#include <startdialog.hh>
 
 int main(int argc, char *argv[])
 {
@@ -34,6 +34,13 @@ int main(int argc, char *argv[])
 
     std::shared_ptr<GameWindow> w = nullptr;
     w = std::make_shared<GameWindow>();
+
+//    std::shared_ptr<StartDialog> d = nullptr;
+//    d = std::make_shared<StartDialog>();
+
+    StartDialog *d = new StartDialog;
+    w->getDialog(d);
+    d->show();
 
 
 
@@ -48,7 +55,7 @@ int main(int argc, char *argv[])
     w->takeCity(map);
     w->takeStats(stats);
 
-    w->show();
+
     std::shared_ptr<CourseSide::Logic > gamelogic = nullptr;
     gamelogic = std::make_shared<CourseSide::Logic>();
 
@@ -73,6 +80,6 @@ int main(int argc, char *argv[])
 
 
     return a.exec();
-    
+
 
 }

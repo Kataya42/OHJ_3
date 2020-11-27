@@ -1,14 +1,30 @@
 #include "startdialog.hh"
 #include "ui_startdialog.h"
 
-startDialog::startDialog(QWidget *parent) :
+StartDialog::StartDialog(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::startDialog)
+    ui(new Ui::StartDialog)
 {
     ui->setupUi(this);
+
 }
 
-startDialog::~startDialog()
+StartDialog::~StartDialog()
 {
     delete ui;
 }
+
+
+void StartDialog::on_pushButton_clicked()
+{
+   emit sendCheckBox(twoPlayer_);
+   //emit test(twoPlayer_);
+   close();
+}
+
+
+void StartDialog::on_checkBox_clicked(bool checked)
+{
+     twoPlayer_ = checked;
+}
+
