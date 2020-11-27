@@ -53,7 +53,7 @@ public:
      * @pre Chaser and target have locations
      * @return true if close, false if not
      */
-    bool isClose(std::shared_ptr<Interface::IActor> target);
+    bool isClose(std::shared_ptr<Interface::IActor> target, int range);
     /**
      * @brief Sets Chaser playercontrolled state
      * @param true if playercontrolled, false if not

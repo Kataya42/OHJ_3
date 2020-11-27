@@ -76,9 +76,9 @@ void Chaser::chase(std::shared_ptr<Interface::IActor> target)
     location_.setXY(location_.giveX() + xSpeed_, location_.giveY() + ySpeed_);
 }
 
-bool Chaser::isClose(std::shared_ptr<Interface::IActor> target)
+bool Chaser::isClose(std::shared_ptr<Interface::IActor> target, int range)
 {
-    if (location_.isClose(target->giveLocation(), 15)) {
+    if (location_.isClose(target->giveLocation(), range)) {
         return true;
     } else {
         return false;

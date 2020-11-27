@@ -1,5 +1,4 @@
 QT += testlib
-QT -= gui
 
 TARGET = tst_chaser
 CONFIG += qt console warn_on depend_includepath testcase
