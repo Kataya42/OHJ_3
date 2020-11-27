@@ -1,6 +1,5 @@
 QT += testlib
 QT += core widgets gui
-
 TARGET = tst_mansetest
 CONFIG += qt console warn_on depend_includepath testcase
 CONFIG -= app_bundle

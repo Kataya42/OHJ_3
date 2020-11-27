@@ -8,26 +8,39 @@ OwnActorItem::OwnActorItem(int x, int y, int type)
     setPos(mapToParent(x_, y_));
 }
 
-void OwnActorItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
+void OwnActorItem::setSprite()
 {
-
-    QRectF bounds = boundingRect();
-
     if (type_ == PLAYER) {
-        painter->drawPixmap(bounds, QPixmap(":/images/images/oofo.png"), bounds);
+        this->setPixmap(QPixmap(":/images/images/oofo.png"));
     }
     else if (type_ == BUS) {
-        painter->drawPixmap(bounds, QPixmap(":/images/images/bus.png"), bounds);
+        this->setPixmap(QPixmap(":/images/images/bus.png"));
     }
     else if (type_ == STOP) {
-        painter->drawPixmap(bounds, QPixmap(":/images/images/stop.png"), bounds);
+     this->setPixmap(QPixmap(":/images/images/stop.png"));
     }
-    else {
-        painter->drawPixmap(bounds, QPixmap(":/images/images/fightUp.png"), bounds);
+    else if (type_ == ENEMY){
+       this->setPixmap(QPixmap(":/images/images/fightUp.png"));
     }
+    update();
+}
 
-    Q_UNUSED(option);
-    Q_UNUSED(widget);
+void OwnActorItem::rotateSprite(int rot)
+{
+    if (rot == UP) {
+        this->setPixmap(QPixmap(":/images/images/fightUp.png"));
+    }
+    else if (rot == DOWN) {
+        this->setPixmap(QPixmap(":/images/images/fightDown.png"));
+    }
+    else if (rot == LEFT) {
+        this->setPixmap(QPixmap(":/images/images/fightLeft.png"));
+    }
+    else if (rot == RIGHT){
+        this->setPixmap(QPixmap(":/images/images/fightRight.png"));
+    }
+    update();
+
 }
 
 QRectF OwnActorItem::boundingRect() const

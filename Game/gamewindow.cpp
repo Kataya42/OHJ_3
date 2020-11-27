@@ -44,6 +44,7 @@ GameWindow::~GameWindow()
 void GameWindow::addActor(int locX, int locY, int type)
 {
     OwnActorItem* nActor = new OwnActorItem(locX, locY, type);
+    nActor->setSprite();
     actors_.push_back(nActor);
     map->addItem(nActor);
     last_ = nActor;
@@ -58,6 +59,7 @@ void GameWindow::updateCoords()
             int nx = i->giveLocation().giveX() + X_OFFSET;
             int ny = Y_OFFSET1 - i->giveLocation().giveY() + Y_OFFSET2;
             actors_.at(counter)->setCoord(nx, ny);
+            actors_.at(counter)->update();
             counter++;
         }
     }
@@ -83,6 +85,9 @@ void GameWindow::updateCoords()
         city_->getEnemy()->chase(city_->getPlayer());
         Interface::Location enemyLoc = city_->getEnemy()->giveLocation();
         enemyActor_->setCoord(enemyLoc.giveX(), enemyLoc.giveY());
+
+        int direction = city_->getEnemy()->getDirection(city_->getPlayer());
+        enemyActor_->rotateSprite(direction);
     }
 
     if (city_->getEnemy()->isClose(city_->getPlayer(), DANGER_RADIUS)) {
@@ -138,18 +143,22 @@ void GameWindow::keyPressEvent(QKeyEvent* event)
         if (event->key() == Qt::Key_W) {
             enemyDirVertical_ = -1;
             enemyDirHorizontal_ = 0;
+            enemyActor_->rotateSprite(UP);
         }
         else if (event->key() == Qt::Key_S) {
             enemyDirVertical_ = 1;
             enemyDirHorizontal_ = 0;
+            enemyActor_->rotateSprite(DOWN);
         }
         else if (event->key() == Qt::Key_A) {
             enemyDirHorizontal_ = -1;
             enemyDirVertical_ = 0;
+            enemyActor_->rotateSprite(LEFT);
         }
         else if (event->key() == Qt::Key_D) {
             enemyDirHorizontal_ = 1;
             enemyDirVertical_ = 0;
+            enemyActor_->rotateSprite(RIGHT);
         }
     }
 }
@@ -191,6 +200,7 @@ void GameWindow::drawBuses()
 void GameWindow::drawPlayer()
 {
     OwnActorItem* nact = new OwnActorItem(city_->getPlayer()->giveLocation().giveX(), city_->getPlayer()->giveLocation().giveY(), PLAYER);
+    nact->setSprite();
     playerActor_ = nact;
     map->addItem(playerActor_);
 }
@@ -198,6 +208,7 @@ void GameWindow::drawPlayer()
 void GameWindow::drawEnemy()
 {
     OwnActorItem* nact = new OwnActorItem(city_->getEnemy()->giveLocation().giveX(), city_->getEnemy()->giveLocation().giveY(), ENEMY);
+    nact->setSprite();
     enemyActor_ = nact;
     map->addItem(enemyActor_);
 }

@@ -3,8 +3,8 @@ TEMPLATE = subdirs
 SUBDIRS += \
 	CourseLib \
 	Game \
-    ManseTest \
         UnitTests \
+        ManseTest \
         StatisticsTest
 
 CourseLib.subdir = Course/CourseLib

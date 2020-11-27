@@ -1,8 +1,8 @@
 #ifndef OWNACTORITEM_HH
 #define OWNACTORITEM_HH
 
-#include <graphics/simpleactoritem.hh>
 #include <QGraphicsPixmapItem>
+#include <QGraphicsRotation>
 
 const int WIDTHPLAYER = 30;
 const int HEIGHTPLAYER = 30;
@@ -20,10 +20,19 @@ enum Type {
     ENEMY = 3
 };
 
+enum Rotation {
+    UP = 0,
+    DOWN = 1,
+    LEFT = 2,
+    RIGHT = 3
+
+};
+
 class OwnActorItem : public QGraphicsPixmapItem {
 public:
     OwnActorItem(int x, int y, int type);
-    void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget);
+    void setSprite();
+    void rotateSprite(int rot);
     QRectF boundingRect() const;
     void setCoord(int x, int y);
 
