@@ -2,7 +2,6 @@
 
 Statistics::Statistics()
 {
-
 }
 
 void Statistics::addScore()
@@ -10,24 +9,21 @@ void Statistics::addScore()
     score_ += modifier_;
 }
 
-
 void Statistics::addPlayerEnergy()
 {
-    if (energy_ < 90){
-       energy_ += 10;
+    if (energy_ < 90) {
+        energy_ += 10;
     }
-
 }
 
 void Statistics::drainPlayerEnergy()
 {
-   energy_ --;
+    energy_--;
 }
-
 
 void Statistics::increaseModifier()
 {
-    modifier_ ++;
+    modifier_++;
 }
 
 int Statistics::getScore()

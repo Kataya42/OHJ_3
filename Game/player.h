@@ -1,22 +1,11 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-
-
-#include "interfaces/ivehicle.hh"
-#include "interfaces/icity.hh"
-#include "interfaces/ipassenger.hh"
-#include "core/location.hh"
 #include "actors/stop.hh"
 
-#include <QTime>
-#include <memory>
-#include <set>
-#include <map>
-#include <vector>
+const int SPEED = 3;
 
-class Player : public Interface::IActor
-{
+class Player : public Interface::IActor {
 public:
     Player();
 

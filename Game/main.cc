@@ -1,23 +1,4 @@
 #include <QApplication>
-#include <QtWidgets>
-#include <QMainWindow>
-#include <QGraphicsScene>
-#include <actors/nysse.hh>
-#include <manse.h>
-#include <actors/passenger.hh>
-#include <actors/stop.hh>
-#include <core/location.hh>
-#include <core/logic.hh>
-#include <errors/gameerror.hh>
-#include <errors/initerror.hh>
-#include <graphics/simpleactoritem.hh>
-#include <graphics/simplemainwindow.hh>
-#include <interfaces/iactor.hh>
-#include <interfaces/icity.hh>
-#include <interfaces/ipassenger.hh>
-#include <interfaces/istatistics.hh>
-#include <interfaces/istop.hh>
-#include <interfaces/ivehicle.hh>
 #include <creategame.hh>
 #include <doxygeninfo.hh>
 #include <offlinereader.hh>
@@ -26,23 +7,18 @@
 #include <statistics.hh>
 #include <startdialog.hh>
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
     std::shared_ptr<Manse> map = nullptr;
     map = std::make_shared<Manse>();
     QApplication a(argc, argv);
 
-    std::shared_ptr<GameWindow> w = nullptr;
-    w = std::make_shared<GameWindow>();
+    std::shared_ptr<GameWindow> playSpace = nullptr;
+    playSpace = std::make_shared<GameWindow>();
 
-//    std::shared_ptr<StartDialog> d = nullptr;
-//    d = std::make_shared<StartDialog>();
-
-    StartDialog *d = new StartDialog;
-    w->getDialog(d);
-    d->show();
-
-
+    StartDialog* dialogWindow = new StartDialog;
+    playSpace->getDialog(dialogWindow);
+    dialogWindow->show();
 
     QImage kartta;
     Q_INIT_RESOURCE(offlinedata);
@@ -51,18 +27,17 @@ int main(int argc, char *argv[])
 
     Statistics stats;
 
-    w->setPicture(kartta);
-    w->takeCity(map);
-    w->takeStats(stats);
+    playSpace->setPicture(kartta);
+    playSpace->takeCity(map);
+    playSpace->takeStats(stats);
 
-
-    std::shared_ptr<CourseSide::Logic > gamelogic = nullptr;
+    std::shared_ptr<CourseSide::Logic> gamelogic = nullptr;
     gamelogic = std::make_shared<CourseSide::Logic>();
 
     gamelogic->fileConfig();
-    gamelogic->setTime(12,10);
+    gamelogic->setTime(12, 10);
     gamelogic->takeCity(map);
-    w->getLogic(gamelogic);
+    playSpace->getLogic(gamelogic);
 
     std::shared_ptr<Player> pelaaja = nullptr;
     pelaaja = std::make_shared<Player>();
@@ -78,8 +53,5 @@ int main(int argc, char *argv[])
     enemy->move(enemyStart);
     map->addEnemy(enemy);
 
-
     return a.exec();
-
-
 }
