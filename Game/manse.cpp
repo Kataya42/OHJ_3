@@ -36,12 +36,9 @@ void Manse::addStop(std::shared_ptr<Interface::IStop> stop)
 
 void Manse::addActor(std::shared_ptr<Interface::IActor> newactor)
 {
+    //this was the only way we figured out to seperate passengers from buses here
     if (stops_.size() == 0)
     {
-        //Interface::Location a = newactor->giveLocation();
-        //int c = a.giveY();
-        //int b = a.giveX();
-        //std::cout << typeid(*newactor).name() << c << " " << b << std::endl;
         actors_.push_back(newactor);
     }
 }
