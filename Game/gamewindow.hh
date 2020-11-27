@@ -20,6 +20,7 @@
 #include <QDebug>
 #include <QKeyEvent>
 #include <statistics.hh>
+#include <QPainter>
 
 namespace Ui {
 class SimpleGameWindow;
