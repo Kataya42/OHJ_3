@@ -1,4 +1,5 @@
 QT += testlib
+QT += core widgets gui
 
 TARGET = tst_mansetest
 CONFIG += qt console warn_on depend_includepath testcase
@@ -8,12 +9,14 @@ TEMPLATE = app
 
 SOURCES +=  \
     ../Game/manse.cpp \
-    tst_mansetest.cpp
+    tst_mansetest.cpp \
+    ../Game/player.cpp
 
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
 
 HEADERS += \
-    ../Game/manse.h
+    ../Game/manse.h \
+    ../Game/player.h
 
 INCLUDEPATH += ../Game/
 
