@@ -26,7 +26,6 @@
 #include <statistics.hh>
 
 
-
 int main(int argc, char *argv[])
 {
     std::shared_ptr<Manse> map = nullptr;
@@ -50,12 +49,13 @@ int main(int argc, char *argv[])
     w->takeStats(stats);
 
     w->show();
+    std::shared_ptr<CourseSide::Logic > gamelogic = nullptr;
+    gamelogic = std::make_shared<CourseSide::Logic>();
 
-    CourseSide::Logic gamelogic;
-    gamelogic.fileConfig();
-    gamelogic.setTime(12,10);
-    gamelogic.takeCity(map);
-    gamelogic.finalizeGameStart();
+    gamelogic->fileConfig();
+    gamelogic->setTime(12,10);
+    gamelogic->takeCity(map);
+    w->getLogic(gamelogic);
 
     std::shared_ptr<Player> pelaaja = nullptr;
     pelaaja = std::make_shared<Player>();
@@ -70,9 +70,6 @@ int main(int argc, char *argv[])
     enemyStart.setXY(500, 500);
     enemy->move(enemyStart);
     map->addEnemy(enemy);
-
-    w->drawBuses();
-    w->drawStops();
 
 
     return a.exec();

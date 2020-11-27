@@ -249,6 +249,12 @@ void GameWindow::increaseScore()
     gameStats_.increaseModifier();
 }
 
+void GameWindow::getLogic(std::shared_ptr<CourseSide::Logic> l)
+{
+    gamelogic_ = l;
+
+}
+
 void GameWindow::on_startButton_clicked()
 {
     qDebug() << "Start clicked";
@@ -270,5 +276,7 @@ void GameWindow::on_startButton_clicked()
 
 
     ui->startButton->setEnabled(false);
-
+    gamelogic_->finalizeGameStart();
+    drawBuses();
+    drawStops();
 }

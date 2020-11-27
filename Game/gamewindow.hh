@@ -79,6 +79,7 @@ public:
     void drawStops();
     void takeStats(Statistics gameStats);
     void increaseScore();
+    void getLogic(std::shared_ptr<CourseSide::Logic> l);
 
 
 signals:
@@ -106,7 +107,9 @@ private:
     OwnActorItem* playerActor_;
     OwnActorItem* enemyActor_;
     std::shared_ptr<Manse> city_;
+
     Statistics gameStats_;
+    std::shared_ptr<CourseSide::Logic> gamelogic_;
 
 
     void gameEnd();
@@ -122,7 +125,7 @@ private:
     int scoreTick_ = 300;
     int score_ = 0;
     int life_ = 0;
-    bool enemyPlayerControlled = true;
+    bool enemyPlayerControlled = false;
 };
 
  //namespace
