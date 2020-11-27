@@ -50,6 +50,7 @@ void Manse::removeActor(std::shared_ptr<Interface::IActor> actor)
 
 void Manse::actorRemoved(std::shared_ptr<Interface::IActor> actor)
 {
+    //This does not ever seem to be called
     actor->isRemoved();
 }
 
@@ -80,12 +81,13 @@ std::vector<std::shared_ptr<Interface::IActor>>Manse::getNearbyActors(Interface:
         int nx = a->giveLocation().giveX();
         int ny = a->giveLocation().giveY();
         Interface::Location b;
-        b.setXY(nx+350, 500-ny+50);
+        //This converts the buses coordinate system to the maps coordinate system
+        //For some reason 450-ny does not work
+        b.setXY(nx+350, 550-ny);
 
         if (b.isClose(loc,10)){
             close.push_back(a);
             }
-            //std::cout << "close yo" << std::endl;
         }
     return close;
 }

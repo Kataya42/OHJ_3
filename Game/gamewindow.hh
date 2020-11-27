@@ -17,8 +17,8 @@ const int TICK = 100; //ms
 const int DIFFICULTY = 3; // multiplier for score gain over time
 const int PADDING = 10;
 const int X_OFFSET = 350;
-const int Y_OFFSET1 = 500;
-const int Y_OFFSET2 = 50;
+const int Y_OFFSET1 = 550;
+const int Y_OFFSET2 = 0;
 const int DANGER_RADIUS  = 15; // how close enemy needs to be to player
 
 
