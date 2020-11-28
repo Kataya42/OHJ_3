@@ -83,9 +83,9 @@ std::vector<std::shared_ptr<Interface::IActor> > Manse::getNearbyActors(Interfac
         int ny = a->giveLocation().giveY();
         Interface::Location b;
 
-        b.setXY(nx + 350, 550 - ny);
+        b.setXY(nx + X_MOD, Y_MOD - ny);
 
-        if (b.isClose(loc, 10)) {
+        if (b.isClose(loc, RANGE)) {
             close.push_back(a);
         }
     }
