@@ -6,6 +6,13 @@ StartDialog::StartDialog(QWidget* parent)
     , ui(new Ui::StartDialog)
 {
     ui->setupUi(this);
+
+    QPixmap pixmap(":/images/images/cover.png");
+
+    ui->coverLabel->setPixmap(pixmap);
+
+
+
 }
 
 StartDialog::~StartDialog()

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>1043</width>
+    <height>825</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>220</y>
+     <x>940</x>
+     <y>780</y>
      <width>84</width>
      <height>28</height>
     </rect>
@@ -29,27 +29,40 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>30</y>
-     <width>221</width>
+     <x>50</x>
+     <y>680</y>
+     <width>741</width>
      <height>141</height>
     </rect>
    </property>
    <property name="text">
-    <string>Game rules and such aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</string>
+    <string>Game rules and such aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</string>
    </property>
   </widget>
   <widget class="QCheckBox" name="checkBox">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>170</y>
+     <x>870</x>
+     <y>730</y>
      <width>91</width>
      <height>26</height>
     </rect>
    </property>
    <property name="text">
     <string>Two player</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="coverLabel">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>1023</width>
+     <height>675</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Cover art</string>
    </property>
   </widget>
  </widget>

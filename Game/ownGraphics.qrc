@@ -12,5 +12,6 @@
         <file>images/fightRight.png</file>
         <file>images/fightLeft.png</file>
         <file>images/fightDown.png</file>
+        <file>images/cover.png</file>
     </qresource>
 </RCC>

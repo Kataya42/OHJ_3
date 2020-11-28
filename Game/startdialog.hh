@@ -2,6 +2,7 @@
 #define STARTDIALOG_HH
 
 #include <QDialog>
+#include <QPixmap>
 
 namespace Ui {
 class StartDialog;
