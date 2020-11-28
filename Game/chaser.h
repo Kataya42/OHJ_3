@@ -21,7 +21,7 @@ public:
     Chaser();
 
     // ActorIF interface
-    /*! @copydoc Interface::IActor::getName() const; */
+    /*! @copydoc Interface::IActor::giveLocation() const; */
     Interface::Location giveLocation() const;
     void move(Interface::Location loc);
     void remove();
@@ -48,15 +48,30 @@ public:
     /**
      * @brief Tells whether Chaser is close to target IActor
      * @param target, IActor which to check
-     * @pre Chaser and target have locations
+     * @pre Chaser and target have locations. Exception guarantee: nothrow
      * @return true if close, false if not
      */
     bool isClose(std::shared_ptr<Interface::IActor> target, int range);
-
+    /**
+     * @brief setMaxSpeed sets max speed Chaser can reach by accelerating
+     * @param maxspeed
+     * @pre - Exception guarantee: nothrow
+     * @post new maxspeed set
+     */
     void setMaxSpeed(int maxspeed);
-
+    /**
+     * @brief setAcceleration sets factor by which chaser accelerates
+     * @param acceleration
+     * @pre - Exception guarantee: nothrow
+     * @post new accelartion factor set
+     */
     void setAcceleration(int acceleration);
-
+    /**
+     * @brief getDirection returns direction chaser is pointing towards for rotating model
+     * @param target from which direction is calculated
+     * @pre - Exception guarantee: nothrow
+     * @return return direction towards which to turn chaser. See Ownactoritem for enum directions
+     */
     int getDirection(std::shared_ptr<Interface::IActor> target);
 
 private:
