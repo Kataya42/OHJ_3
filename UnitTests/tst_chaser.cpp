@@ -30,6 +30,7 @@ private slots:
      */
     void accelerationTest();
     void giveLocationErrorTest();
+    void moveErrorTest();
 };
 
 ChaserTest::ChaserTest()
@@ -117,6 +118,18 @@ void ChaserTest::giveLocationErrorTest()
     Chaser testchaser;
     try {
         std::string s = std::to_string(testchaser.giveLocation().giveX());
+        QVERIFY(false);
+    } catch (...) {
+        QVERIFY(true);
+    }
+}
+
+void ChaserTest::moveErrorTest()
+{
+    Chaser testchaser;
+    Interface::Location loc1;
+    try {
+        testchaser.move(loc1);
         QVERIFY(false);
     } catch (...) {
         QVERIFY(true);

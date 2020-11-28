@@ -83,8 +83,14 @@ Interface::Location Chaser::giveLocation() const
 
 void Chaser::move(Interface::Location loc)
 {
-    location_ = loc;
-    locationset_ = true;
+    if (not (loc.giveNorthernCoord() == 6700000 and loc.giveEasternCoord() == 3500000))
+    {
+        location_ = loc;
+        locationset_ = true;
+    } else {
+        throw Interface::GameError("Location is not possible");
+    }
+
 }
 
 void Chaser::remove()
