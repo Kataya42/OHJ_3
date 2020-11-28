@@ -72,7 +72,8 @@ private:
     int maxspeed_;
     int direction_ = 0;
     bool playercontrolled_;
-    bool positiveMovement_ = true;
+    bool positiveXMovement_ = true;
+    bool positiveYMovement_ = true;
 
     std::string name_;
     std::shared_ptr<Interface::ICity> city_;

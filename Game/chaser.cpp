@@ -29,25 +29,25 @@ void Chaser::chase(std::shared_ptr<Interface::IActor> target)
     if (targetloc.giveX() > location_.giveX()) {
         if (xSpeed_ <= maxspeed_) {
             xSpeed_ += acceleration_;
-            positiveMovement_ = true;
+            positiveXMovement_ = true;
         }
     }
     else {
         if (xSpeed_ >= -maxspeed_) {
             xSpeed_ += -acceleration_;  
-            positiveMovement_ = false;
+            positiveXMovement_ = false;
         }
     }
     if (targetloc.giveY() > location_.giveY()) {
         if (ySpeed_ <= maxspeed_) {
             ySpeed_ += acceleration_;  
-            positiveMovement_ = true;
+            positiveYMovement_ = true;
         }
     }
     else {
         if (ySpeed_ >= -maxspeed_) {
             ySpeed_ += -acceleration_;
-            positiveMovement_ = false;
+            positiveYMovement_ = false;
         }
     }
 
@@ -121,13 +121,13 @@ int Chaser::getDirection(std::shared_ptr<Interface::IActor> target)
     Interface::Location targetloc = target->giveLocation();
 
     if (abs(targetloc.giveX() - location_.giveX()) > abs(targetloc.giveY() - location_.giveY()) ){
-        if (positiveMovement_){
+        if (positiveXMovement_){
             direction = RIGHT;
         } else {
             direction = LEFT;
         }
     } else {
-        if (positiveMovement_){
+        if (positiveYMovement_){
             direction = DOWN;
         } else {
             direction = UP;
