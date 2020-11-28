@@ -36,12 +36,13 @@ bool Player::isRemoved() const
     return removed_;
 }
 
-void Player::setCity(std::shared_ptr<Interface::ICity> city)
-{
-    city_ = city;
-}
-
 void Player::updateLocation(int hor, int ver)
 {
-    location_.setXY(location_.giveX() + SPEED * hor, location_.giveY() + SPEED * ver);
+    if (locationset_)
+    {
+        location_.setXY(location_.giveX() + SPEED * hor, location_.giveY() + SPEED * ver);
+    } else {
+        throw Interface::GameError("player start location not set");
+    }
+
 }

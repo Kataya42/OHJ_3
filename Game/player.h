@@ -14,17 +14,24 @@ public:
     void move(Interface::Location loc);
     void remove();
     bool isRemoved() const;
-    void setCity(std::shared_ptr<Interface::ICity> city);
 
     //Player functionality
+    /**
+     * @brief updateLocation moves playerlocation
+     * @param hor x factor by which to move
+     * @param ver y factor by which to move
+     * @pre - Exception guarantee: strong
+     * @exception GameError player start location not set
+     */
     void updateLocation(int hor, int ver);
 
 private:
     int movementDirection_;
-    std::shared_ptr<Interface::ICity> city_;
     Interface::Location location_;
     bool removed_ = false;
     bool locationset_ = false;
+
+    bool locationvalid(Interface::Location testloc);
 };
 
 #endif // PLAYER_H
