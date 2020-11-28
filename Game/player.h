@@ -23,7 +23,7 @@ private:
     int movementDirection_;
     std::shared_ptr<Interface::ICity> city_;
     Interface::Location location_;
-    bool removed_;
+    bool removed_ = false;
     bool locationset_ = false;
 };
 
