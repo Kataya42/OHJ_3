@@ -119,7 +119,7 @@
    </property>
    <widget class="QMenu" name="menuHyvin_menee">
     <property name="title">
-     <string>Gura eat busses to sate your hunger, if it reaches 100% the game ends! rawr</string>
+     <string>Move using the arrow keys! Dont let the hornet catch you! Survive!</string>
     </property>
    </widget>
    <addaction name="menuHyvin_menee"/>

@@ -10,6 +10,7 @@ OwnActorItem::OwnActorItem(int x, int y, int type)
 
 void OwnActorItem::setSprite()
 {
+    // depending on the type, set the corresponding pixmap
     if (type_ == PLAYER) {
         this->setPixmap(QPixmap(":/images/images/oofo.png"));
     }
@@ -27,6 +28,8 @@ void OwnActorItem::setSprite()
 
 void OwnActorItem::rotateSprite(int rot)
 {
+
+    // depending on the rotation, set the corresponding pixmap
     if (rot == UP) {
         this->setPixmap(QPixmap(":/images/images/fightUp.png"));
     }
@@ -46,17 +49,18 @@ void OwnActorItem::rotateSprite(int rot)
 QRectF OwnActorItem::boundingRect() const
 {
 
+    // depending on the type, sets the corresponding bounding rectangle
     if (type_ == PLAYER) {
-        return QRectF(0, 0, WIDTHPLAYER, HEIGHTPLAYER);
+        return QRectF(0, 0, PLAYERSIZE, PLAYERSIZE);
     }
     else if (type_ == BUS) {
-        return QRectF(0, 0, WIDTHBUS, HEIGHTBUS);
+        return QRectF(0, 0, BUSSIZE, BUSSIZE);
     }
     else if (type_ == STOP) {
-        return QRectF(0, 0, WIDTHSTOP, HEIGHTSTOP);
+        return QRectF(0, 0, STOPSIZE, STOPSIZE);
     }
     else {
-        return QRectF(0, 0, WIDTHPLAYER, HEIGHTPLAYER);
+        return QRectF(0, 0, PLAYERSIZE, PLAYERSIZE);
     }
 }
 

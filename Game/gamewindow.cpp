@@ -34,6 +34,7 @@ GameWindow::GameWindow(QWidget* parent)
     ui->progressBar->setValue(100);
     ui->scoreCount->setPalette(Qt::red);
     ui->progressBar->setPalette(Qt::green);
+    QWidget::setWindowTitle("NysseMeni Game");
 }
 
 GameWindow::~GameWindow()
@@ -57,7 +58,7 @@ void GameWindow::updateCoords()
     for (auto i : buses) {
         if (counter < actors_.size()) {
             int nx = i->giveLocation().giveX() + X_OFFSET;
-            int ny = Y_OFFSET1 - i->giveLocation().giveY() + Y_OFFSET2;
+            int ny = Y_OFFSET - i->giveLocation().giveY();
             actors_.at(counter)->setCoord(nx, ny);
             actors_.at(counter)->update();
             counter++;
@@ -122,6 +123,8 @@ void GameWindow::mousePressEvent(QMouseEvent* event)
 
 void GameWindow::keyPressEvent(QKeyEvent* event)
 {
+
+
     if (event->key() == Qt::Key_Up) {
         playerDirVertical_ = -1;
         playerDirHorizontal_ = 0;
@@ -169,6 +172,7 @@ void GameWindow::gameEnd()
     str = QString("You got %1 points!")
               .arg(gameStats_.getScore());
 
+
     QMessageBox::information(this,
         tr("Game Over!"),
         (str));
@@ -191,7 +195,7 @@ void GameWindow::drawBuses()
     std::vector<std::shared_ptr<Interface::IActor>> buses = city_->getActors();
     for ( auto i : buses){
         int x = i->giveLocation().giveX() + 350;
-        int y = Y_OFFSET1 - i->giveLocation().giveY() + Y_OFFSET2;
+        int y = Y_OFFSET - i->giveLocation().giveY();
 
         addActor(x, y, BUS);
     }
@@ -218,7 +222,7 @@ void GameWindow::drawStops()
     std::vector<std::shared_ptr<Interface::IStop> > stops = city_->getStops();
     for (auto i : stops) {
         int x = i->getLocation().giveX() + X_OFFSET;
-        int y = Y_OFFSET1 - i->getLocation().giveY() + Y_OFFSET2;
+        int y = Y_OFFSET - i->getLocation().giveY();
 
         addActor(x, y, STOP);
     }
