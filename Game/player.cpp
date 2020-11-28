@@ -1,22 +1,24 @@
 #include "player.h"
+#include "errors/gameerror.hh"
 
 Player::Player()
 {
 }
 
-std::string Player::getName() const
-{
-    return name_;
-}
-
 Interface::Location Player::giveLocation() const
 {
-    return location_;
+    if (locationset_)
+    {
+        return location_;
+    } else {
+        throw Interface::GameError("actor wasn't given a location");
+    }
 }
 
 void Player::move(Interface::Location loc)
 {
     location_ = loc;
+    locationset_ = true;
 }
 
 void Player::remove()

@@ -1,4 +1,5 @@
 #include "chaser.h"
+#include "errors/gameerror.hh"
 
 Chaser::Chaser()
 {
@@ -71,12 +72,19 @@ std::string Chaser::getName() const
 
 Interface::Location Chaser::giveLocation() const
 {
-    return location_;
+    if (locationset_)
+    {
+        return location_;
+    } else {
+        throw Interface::GameError("actor wasn't given a location");
+    }
+
 }
 
 void Chaser::move(Interface::Location loc)
 {
     location_ = loc;
+    locationset_ = true;
 }
 
 void Chaser::remove()

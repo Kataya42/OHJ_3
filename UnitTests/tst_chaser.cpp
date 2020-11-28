@@ -1,4 +1,6 @@
 #include <QtTest>
+#include <iostream>
+#include <string>
 #include "chaser.h"
 
 // add necessary includes here
@@ -27,6 +29,7 @@ private slots:
      * @brief accelerationTest Tests whether acceleration works correctly
      */
     void accelerationTest();
+    void giveLocationErrorTest();
 };
 
 ChaserTest::ChaserTest()
@@ -107,6 +110,17 @@ void ChaserTest::accelerationTest()
         testchaser.chase(target);
     }
     QVERIFY(testchaser.giveLocation().giveY()== 0);
+}
+
+void ChaserTest::giveLocationErrorTest()
+{
+    Chaser testchaser;
+    try {
+        std::string s = std::to_string(testchaser.giveLocation().giveX());
+        QVERIFY(false);
+    } catch (...) {
+        QVERIFY(true);
+    }
 }
 
 QTEST_APPLESS_MAIN(ChaserTest)

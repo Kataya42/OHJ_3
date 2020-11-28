@@ -10,7 +10,6 @@ public:
     Player();
 
     // ActorIF interface
-    std::string getName() const;
     Interface::Location giveLocation() const;
     void move(Interface::Location loc);
     void remove();
@@ -22,12 +21,10 @@ public:
 
 private:
     int movementDirection_;
-    std::string name_;
     std::shared_ptr<Interface::ICity> city_;
     Interface::Location location_;
-
     bool removed_;
-    int SID_;
+    bool locationset_ = false;
 };
 
 #endif // PLAYER_H

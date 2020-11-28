@@ -74,6 +74,7 @@ private:
     bool playercontrolled_;
     bool positiveXMovement_ = true;
     bool positiveYMovement_ = true;
+    bool locationset_ = false;
 
     std::string name_;
     std::shared_ptr<Interface::ICity> city_;
