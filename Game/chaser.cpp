@@ -89,7 +89,7 @@ Interface::Location Chaser::giveLocation() const
 
 void Chaser::move(Interface::Location loc)
 {
-    if (not (locationValid(loc)))
+    if (locationValid(loc))
     {
         location_ = loc;
         locationset_ = true;
