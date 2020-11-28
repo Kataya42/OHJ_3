@@ -13,39 +13,26 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="startButton">
    <property name="geometry">
     <rect>
-     <x>940</x>
-     <y>780</y>
-     <width>84</width>
-     <height>28</height>
+     <x>900</x>
+     <y>770</y>
+     <width>101</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="text">
     <string>Ok</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>680</y>
-     <width>741</width>
-     <height>141</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Game rules and such aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</string>
-   </property>
-  </widget>
   <widget class="QCheckBox" name="checkBox">
    <property name="geometry">
     <rect>
-     <x>870</x>
-     <y>730</y>
-     <width>91</width>
-     <height>26</height>
+     <x>900</x>
+     <y>700</y>
+     <width>111</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="text">
@@ -63,6 +50,37 @@
    </property>
    <property name="text">
     <string>Cover art</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="tutorialButton">
+   <property name="geometry">
+    <rect>
+     <x>780</x>
+     <y>770</y>
+     <width>101</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Rules</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>690</y>
+     <width>671</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>You are controlling an alien spaceship with the goal of sucking energy from the &quot;Nysse&quot; of Tampere.
+The Nysse contain rare energy what has become scarce on your home world.
+Your goal is the survive for as long as possible while sucking energy to keep your ship operating. 
+Beware though, the esteemed Finnish defence forces have deployed their F/A-18 Hornet 
+to prevent you from sucking the critical energy that you seek.
+The hornet is armed with a close range EMP which will disable your ship if it gets close enough</string>
    </property>
   </widget>
  </widget>
