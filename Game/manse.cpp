@@ -7,6 +7,9 @@ Manse::Manse()
 
 void Manse::setBackground(QImage& basicbackground, QImage& bigbackground)
 {
+    Q_UNUSED(basicbackground)
+    Q_UNUSED(bigbackground)
+
     //Currently test implementation in main, implementation here probably later
 }
 
@@ -66,6 +69,7 @@ bool Manse::findActor(std::shared_ptr<Interface::IActor> actor) const
 
 void Manse::actorMoved(std::shared_ptr<Interface::IActor> actor)
 {
+    Q_UNUSED(actor)
 }
 
 std::vector<std::shared_ptr<Interface::IActor> > Manse::getNearbyActors(Interface::Location loc) const
