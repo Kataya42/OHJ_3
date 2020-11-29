@@ -10,9 +10,7 @@ Manse::Manse()
 void Manse::setBackground(QImage& basicbackground, QImage& bigbackground)
 {
     Q_UNUSED(basicbackground)
-    Q_UNUSED(bigbackground)
-
-    //Currently test implementation in main, implementation here probably later
+    background_ = bigbackground;
 }
 
 void Manse::setClock(QTime clock)
