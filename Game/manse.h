@@ -13,7 +13,8 @@ const int RANGE = 15; // range to suck energy from busses
 class Manse : public Interface::ICity {
 public:
     Manse();
-    //Icity
+
+    //Icity interface
     void setBackground(QImage& basicbackground, QImage& bigbackground) override;
     void setClock(QTime clock) override;
     void startGame() override;
@@ -29,36 +30,50 @@ public:
     /**
      * @brief getActors returns actors_
      * @return vector with shared pointer containing Iactors
+     * @pre -
+     * @post Exception guarantee: nothrow
      */
     std::vector<std::shared_ptr<Interface::IActor> > getActors();
     /**
      * @brief getPlayer returns player_
      * @return shared pointer to player actor
+     * @pre player has been created
+     * @post Exception guarantee: strong
+     * @Exception Player not added yet
      */
     std::shared_ptr<Player> getPlayer();
     /**
      * @brief getEnemy returns enemy_
      * @return shared pointer to the enemy actor
+     * @pre enemy has been created
+     * @post Exception guarantee: strong
+     * @Exception enemy not added yet
      */
     std::shared_ptr<Chaser> getEnemy();
     /**
      * @brief getStops retuns stops_
      * @return vector with shared pointers containing Istop actors
+     * @pre -
+     * @post exception guarantee: nothrow
      */
     std::vector<std::shared_ptr<Interface::IStop> > getStops();
     /**
      * @brief addEnemy adds Chaser class object as the enemy
-     * @param Chaser class enemy actor
+     * @pre enemy not yet added
+     * @post Exception guarantee: strong
      */
     void addEnemy();
     /**
      * @brief addPlayer adds Player class object as the player
-     * @param Player class player actor
+     * @pre player not yet added
+     * @post Exception guarantee: Strong
      */
     void addPlayer();
     /**
      * @brief getProg updates current progress into Manse
      * @param integer progress (energy)
+     * @pre -
+     * @post Exception guarantee: nothrow
      */
     void getProg(int progress);
 
@@ -74,6 +89,8 @@ private:
     QTime time_;
     bool gamestarted_;
     int prog_;
+    bool playeradded_ = false;
+    bool enemyadded_ = false;
 };
 
 #endif // MANSE_H

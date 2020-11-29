@@ -1,4 +1,6 @@
 #include "manse.h"
+#include "errors/gameerror.hh"
+#include "errors/initerror.hh"
 
 Manse::Manse()
 {
@@ -35,15 +37,29 @@ bool Manse::isGameOver() const
 
 void Manse::addStop(std::shared_ptr<Interface::IStop> stop)
 {
-    stops_.push_back(stop);
+    if (not (stop->getLocation().giveNorthernCoord() == 6700000 and stop->getLocation().giveEasternCoord() == 3500000))
+    {
+        stops_.push_back(stop);
+    } else
+    {
+        throw Interface::InitError("Stops position is not valid.");
+    }
+
 }
 
 void Manse::addActor(std::shared_ptr<Interface::IActor> newactor)
 {
-    //this was the only way we figured out to seperate passengers from buses here
-    if (stops_.size() == 0) {
-        actors_.push_back(newactor);
+    if (findActor(newactor))
+    {
+        throw Interface::GameError("Actor is already in the city");
+    } else
+    {
+        //this was the only way we figured out to seperate passengers from buses here
+        if (stops_.size() == 0) {
+            actors_.push_back(newactor);
+        }
     }
+
 }
 
 void Manse::removeActor(std::shared_ptr<Interface::IActor> actor)
@@ -99,37 +115,59 @@ std::vector<std::shared_ptr<Interface::IActor> > Manse::getActors()
 
 void Manse::addPlayer()
 {
-    std::shared_ptr<Player> player = nullptr;
-    player = std::make_shared<Player>();
+    if (not playeradded_)
+    {
+        std::shared_ptr<Player> player = nullptr;
+        player = std::make_shared<Player>();
 
-    Interface::Location start;
-    start.setXY(480, 316);
+        Interface::Location start;
+        start.setXY(480, 316);
 
-    player->move(start);
+        player->move(start);
 
-    player_ = player;
+        player_ = player;
+        playeradded_ = true;
+    }
 }
 
 std::shared_ptr<Player> Manse::getPlayer()
 {
-    return player_;
+    if (playeradded_)
+    {
+        return player_;
+    } else
+    {
+        throw Interface::GameError("player not added yet");
+    }
+
 }
 
 void Manse::addEnemy()
 {
-    std::shared_ptr<Chaser> enemy = nullptr;
-    enemy = std::make_shared<Chaser>();
+    if (not enemyadded_)
+    {
+        std::shared_ptr<Chaser> enemy = nullptr;
+        enemy = std::make_shared<Chaser>();
 
-    Interface::Location enemyStart;
-    enemyStart.setXY(500, 500);
-    enemy->move(enemyStart);
+        Interface::Location enemyStart;
+        enemyStart.setXY(500, 500);
+        enemy->move(enemyStart);
 
-    enemy_ = enemy;
+        enemy_ = enemy;
+        enemyadded_ = true;
+    }
 }
 
 std::shared_ptr<Chaser> Manse::getEnemy()
 {
-    return enemy_;
+    if (enemyadded_)
+    {
+        return enemy_;
+    } else
+    {
+        throw Interface::GameError("enemy not added yet");
+    }
+
 }
 
 std::vector<std::shared_ptr<Interface::IStop> > Manse::getStops()

@@ -26,6 +26,10 @@ private slots:
      * @brief getNearbyActorsTest Tests whether getNearbyActors works correctly
      */
     void getNearbyActorsTest();
+    /**
+     * @brief errorTest Tests errorhandling in getplayer and getenemy
+     */
+    void errorTest();
 
 };
 
@@ -91,6 +95,23 @@ void ManseTest::getNearbyActorsTest()
     testloc.setXY(0,0);
     QVERIFY(testmanse.getNearbyActors(testloc).size() == 2);
     QVERIFY(testmanse.getNearbyActors(testloc).at(0) == testactor1);
+}
+
+void ManseTest::errorTest()
+{
+    Manse testmanse;
+    try {
+        testmanse.getPlayer();
+        QVERIFY(false);
+    } catch (...) {
+        QVERIFY(true);
+    }
+    try {
+        testmanse.getEnemy();
+        QVERIFY(false);
+    } catch (...) {
+        QVERIFY(true);
+    }
 }
 
 
