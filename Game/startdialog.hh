@@ -6,11 +6,11 @@
 #include <QPixmap>
 
 static QString RULES = "Move your spaceship using the arrow keys on your keyboard \n"
-                       "Hover above busses to suck energy from them \n"
+                       "Hover above buses to suck energy from them \n"
                        "The game ends if your energy reaches 0% \n"
                        "or the F/A-18 hornet catches you. \n"
-                       "You gain more points for surviving longer. \n"
-                       "By selecting 'two player', it allows the hornet to be \n"
+                       "You gain more points by surviving longer. \n"
+                       "By selecting 'two player', the hornet can be \n"
                        "controlled by another player using the WASD keys";
 
 namespace Ui {

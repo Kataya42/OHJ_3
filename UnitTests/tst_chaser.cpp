@@ -48,7 +48,7 @@ void ChaserTest::sameLocTest()
     testchaser.move(loc1);
     target->move(loc1);
     testchaser.chase(target);
-    QEXPECT_FAIL("", "Currently chaser will accelerate even if ontop of target, may change behavior in future", Continue);
+    QEXPECT_FAIL("", "Currently chaser will accelerate even if ontop of target", Continue);
     QVERIFY(testchaser.giveLocation().giveX() == loc1.giveX() and testchaser.giveLocation().giveY() == loc1.giveY());
 
 }

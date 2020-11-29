@@ -16,6 +16,7 @@ const int HEIGHT = 592;
 const int TICK = 100; //ms
 const int SCORE_MOD = 5; // multiplier for score gain rate over time
 const int DIFFICULTY = 20000; // ms for when game difficulty increases
+const int START_LIFE = 100;
 const int PADDING = 10;
 const int X_OFFSET = 350; //pxl
 const int Y_OFFSET = 550;

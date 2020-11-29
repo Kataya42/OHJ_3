@@ -1,6 +1,4 @@
 #include "manse.h"
-#include "errors/gameerror.hh"
-#include "errors/initerror.hh"
 
 Manse::Manse()
 {
@@ -37,8 +35,9 @@ bool Manse::isGameOver() const
 
 void Manse::addStop(std::shared_ptr<Interface::IStop> stop)
 {
-    //correct coordinates defined in chaser.h
-    if (not(stop->getLocation().giveNorthernCoord() == CORRECT_NORTHCOORD and stop->getLocation().giveEasternCoord() == CORRECT_EASTCOORD)) {
+    //default coordinates defined in chaser.h
+    if (not(stop->getLocation().giveNorthernCoord() == DEFAULT_NORTHCOORD and
+            stop->getLocation().giveEasternCoord() == DEFAULT_EASTCOORD)) {
         stops_.push_back(stop);
     }
     else {
@@ -66,7 +65,6 @@ void Manse::removeActor(std::shared_ptr<Interface::IActor> actor)
 
 void Manse::actorRemoved(std::shared_ptr<Interface::IActor> actor)
 {
-    //This does not ever seem to be called
     actor->isRemoved();
 }
 
@@ -162,7 +160,7 @@ std::vector<std::shared_ptr<Interface::IStop> > Manse::getStops()
     return stops_;
 }
 
-void Manse::getProg(int progress)
+void Manse::getLife(int life)
 {
-    life_ = progress;
+    life_ = life;
 }

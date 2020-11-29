@@ -3,13 +3,14 @@
 
 #include "core/location.hh"
 #include "actors/stop.hh"
+#include "errors/gameerror.hh"
 #include "cstdlib"
 #include "ownactoritem.hh"
 
 const int MAXSPEED = 10;
 const int ACCELERATION = 1;
-const int CORRECT_NORTHCOORD = 6700000;
-const int CORRECT_EASTCOORD = 3500000;
+const int DEFAULT_NORTHCOORD = 6700000;
+const int DEFAULT_EASTCOORD = 3500000;
 
 /**
  * @file

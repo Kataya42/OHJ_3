@@ -36,7 +36,7 @@ GameWindow::GameWindow(StartDialog* dialog, Statistics gameStats, std::shared_pt
     modTimer = new QTimer(this);
     connect(modTimer, SIGNAL(timeout()), this, SLOT(increaseScore()));
 
-    ui->progressBar->setValue(100);
+    ui->progressBar->setValue(START_LIFE);
     ui->scoreCount->setPalette(Qt::red);
     ui->progressBar->setPalette(Qt::green);
     QWidget::setWindowTitle("NysseMeni Game");
@@ -105,7 +105,7 @@ void GameWindow::updateCoords()
     }
 
     if (city_->getEnemy()->isClose(city_->getPlayer(), DANGER_RADIUS)) {
-        city_->getProg(-1);
+        city_->getLife(-1);
     }
 }
 
@@ -118,7 +118,7 @@ void GameWindow::advance()
 
     ui->scoreCount->display(gameStats_.getScore());
     ui->progressBar->setValue(gameStats_.getPlayerEnergy());
-    city_->getProg(gameStats_.getPlayerEnergy());
+    city_->getLife(gameStats_.getPlayerEnergy());
 
     std::vector<std::shared_ptr<Interface::IActor> > close;
     close = (city_->getNearbyActors(playerLoc));
@@ -208,7 +208,8 @@ void GameWindow::drawBuses()
 
 void GameWindow::drawPlayer()
 {
-    OwnActorItem* nact = new OwnActorItem(city_->getPlayer()->giveLocation().giveX(), city_->getPlayer()->giveLocation().giveY(), PLAYER);
+    OwnActorItem* nact = new OwnActorItem(city_->getPlayer()->giveLocation().giveX(),
+                                          city_->getPlayer()->giveLocation().giveY(), PLAYER);
     nact->setSprite();
     playerActor_ = nact;
     map->addItem(playerActor_);
@@ -216,7 +217,8 @@ void GameWindow::drawPlayer()
 
 void GameWindow::drawEnemy()
 {
-    OwnActorItem* nact = new OwnActorItem(city_->getEnemy()->giveLocation().giveX(), city_->getEnemy()->giveLocation().giveY(), ENEMY);
+    OwnActorItem* nact = new OwnActorItem(city_->getEnemy()->giveLocation().giveX(),
+                                          city_->getEnemy()->giveLocation().giveY(), ENEMY);
     nact->setSprite();
     enemyActor_ = nact;
     map->addItem(enemyActor_);

@@ -2,6 +2,7 @@
 #define PLAYER_H
 
 #include "actors/stop.hh"
+#include "errors/gameerror.hh"
 #include "chaser.h"
 
 const int SPEED = 3; //pxls

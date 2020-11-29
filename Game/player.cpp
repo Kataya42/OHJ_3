@@ -1,5 +1,4 @@
 #include "player.h"
-#include "errors/gameerror.hh"
 
 Player::Player()
 {
@@ -17,8 +16,9 @@ Interface::Location Player::giveLocation() const
 
 void Player::move(Interface::Location loc)
 {
-    // correct coordinates defined in chaser.h
-    if (not(loc.giveNorthernCoord() == CORRECT_NORTHCOORD and loc.giveEasternCoord() == CORRECT_EASTCOORD)) {
+    // default coordinates defined in chaser.h
+    if (not(loc.giveNorthernCoord() == DEFAULT_NORTHCOORD and
+            loc.giveEasternCoord() == DEFAULT_EASTCOORD)) {
         location_ = loc;
         locationset_ = true;
     }

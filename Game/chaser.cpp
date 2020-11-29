@@ -1,5 +1,4 @@
 #include "chaser.h"
-#include "errors/gameerror.hh"
 
 Chaser::Chaser()
 {
@@ -33,9 +32,9 @@ void Chaser::chase(std::shared_ptr<Interface::IActor> target)
 {
     Interface::Location targetloc = target->giveLocation();
     if (locationValid(targetloc)) {
-        // if target has an larger x coordinate
+        // if target has a larger x coordinate
         if (targetloc.giveX() > location_.giveX()) {
-            // if horizontal speed is below maximun allowed
+            // if horizontal speed is below maximum allowed
             if (xSpeed_ <= maxspeed_) {
                 xSpeed_ += acceleration_;
                 positiveXMovement_ = true;
@@ -48,9 +47,9 @@ void Chaser::chase(std::shared_ptr<Interface::IActor> target)
                 positiveXMovement_ = false;
             }
         }
-        // if the target has an larger y coordinate
+        // if the target has a larger y coordinate
         if (targetloc.giveY() > location_.giveY()) {
-            // if vertical speed is below maximun allowed
+            // if vertical speed is below maximum allowed
             if (ySpeed_ <= maxspeed_) {
                 ySpeed_ += acceleration_;
                 positiveYMovement_ = true;
@@ -149,7 +148,8 @@ int Chaser::getDirection(std::shared_ptr<Interface::IActor> target)
 
 bool Chaser::locationValid(Interface::Location testloc)
 {
-    if (testloc.giveNorthernCoord() == CORRECT_NORTHCOORD and testloc.giveEasternCoord() == CORRECT_EASTCOORD) {
+    if (testloc.giveNorthernCoord() == DEFAULT_NORTHCOORD and
+            testloc.giveEasternCoord() == DEFAULT_EASTCOORD) {
         return false;
     }
     else {

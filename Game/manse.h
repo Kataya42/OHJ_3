@@ -2,6 +2,8 @@
 #define MANSE_H
 
 #include "actors/stop.hh"
+#include "errors/gameerror.hh"
+#include "errors/initerror.hh"
 #include "player.h"
 #include "chaser.h"
 #include <QTime>
@@ -76,12 +78,12 @@ public:
      */
     void addPlayer();
     /**
-     * @brief getProg updates current progress into Manse
+     * @brief getLife updates current progress into Manse
      * @param integer progress (energy)
      * @pre -
      * @post Exception guarantee: nothrow
      */
-    void getProg(int progress);
+    void getLife(int life);
 
 private slots:
 
