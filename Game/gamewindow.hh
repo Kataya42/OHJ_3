@@ -14,13 +14,12 @@
 const int WIDTH = 1095; //pxl
 const int HEIGHT = 592;
 const int TICK = 100; //ms
-const int DIFFICULTY = 5; // multiplier for score gain over time
+const int SCORE_MOD = 5; // multiplier for score gain rate over time
+const int DIFFICULTY = 20000; // ms for when game difficulty increases
 const int PADDING = 10;
 const int X_OFFSET = 350; //pxl
 const int Y_OFFSET = 550;
-const int DANGER_RADIUS  = 15; // how close enemy needs to be to player
-
-
+const int DANGER_RADIUS = 15; // how close enemy needs to be to player
 
 namespace Ui {
 class SimpleGameWindow;
@@ -30,12 +29,15 @@ class GameWindow : public QMainWindow {
     Q_OBJECT
 
 public:
-    explicit GameWindow(QWidget* parent = 0);
+    explicit GameWindow(StartDialog* dialog, Statistics gameStats, std::shared_ptr<CourseSide::Logic> gamelogic,
+        std::shared_ptr<Manse> city, QWidget* parent = 0);
     virtual ~GameWindow();
     /**
      * @brief setSize sets size of game window
      * @param w width
      * @param h height
+     * @pre -
+     * @post Exception guarantee nothrow
      */
     void setSize(int w, int h);
     /**
@@ -58,10 +60,6 @@ public:
      * @param city Manse class city interface
      * @return bool returns true
      */
-    bool takeCity(std::shared_ptr<Manse> city);
-    /**
-     * @brief drawBusses draws the busses onto the interface
-     */
     void drawBuses();
     /**
      * @brief drawPlayer draws the player onto the interface
@@ -75,25 +73,6 @@ public:
      * @brief drawStops draws the stops onto the interface
      */
     void drawStops();
-    /**
-     * @brief takeStats takes a Statistcs class to keep track of game statistics
-     * @param Statistic class
-     */
-    void takeStats(Statistics gameStats);
-    /**
-     * @brief increaseScore increases the score modifier
-     */
-    void increaseScore();
-    /**
-     * @brief getLogic takes a Logic class
-     * @param Logic class from courseside
-     */
-    void getLogic(std::shared_ptr<CourseSide::Logic> l);
-    /**
-     * @brief getDialog gets a dialog window pointer
-     * @param dia StartDialog class
-     */
-    void getDialog(StartDialog* dia);
 
 signals:
     /**
@@ -105,7 +84,6 @@ signals:
      * @param QkeyEvent for which key was pressed
      */
     void keyCaught(QKeyEvent* e);
-
 
 private slots:
     /**
@@ -125,6 +103,10 @@ private slots:
      * @param x is enemy player controlled
      */
     void setPlayertwo(bool x);
+    /**
+     * @brief increaseScore increases the score modifier
+     */
+    void increaseScore();
 
 protected:
     virtual void keyPressEvent(QKeyEvent* event);
@@ -150,7 +132,6 @@ private:
     Statistics gameStats_;
     std::shared_ptr<CourseSide::Logic> gamelogic_;
     std::vector<std::shared_ptr<Interface::IActor> > nearbyStuff_;
-
 
     int playerDirHorizontal_ = 0; //initial movement direction, 0 = still
     int playerDirVertical_ = 0;

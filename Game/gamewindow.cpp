@@ -1,9 +1,14 @@
 #include "gamewindow.hh"
 #include "ui_simplegamewindow.h"
 
-GameWindow::GameWindow(QWidget* parent)
+GameWindow::GameWindow(StartDialog* dialog, Statistics gameStats, std::shared_ptr<CourseSide::Logic> gamelogic,
+    std::shared_ptr<Manse> city, QWidget* parent)
     : QMainWindow(parent)
     , ui(new Ui::SimpleGameWindow)
+    , city_(city)
+    , dialog_(dialog)
+    , gameStats_(gameStats)
+    , gamelogic_(gamelogic)
 {
     ui->setupUi(this);
     ui->gameView->setFixedSize(WIDTH, HEIGHT);
@@ -29,12 +34,20 @@ GameWindow::GameWindow(QWidget* parent)
     connect(scoreTimer, SIGNAL(timeout()), this, SLOT(advance()));
 
     modTimer = new QTimer(this);
-    connect(modTimer, SIGNAL(timeout()), this, SLOT(increaseScore));
+    connect(modTimer, SIGNAL(timeout()), this, SLOT(increaseScore()));
 
     ui->progressBar->setValue(100);
     ui->scoreCount->setPalette(Qt::red);
     ui->progressBar->setPalette(Qt::green);
     QWidget::setWindowTitle("NysseMeni Game");
+
+    connect(dialog_, SIGNAL(sendCheckBox(bool)), this, SLOT(setPlayertwo(bool)));
+    gamelogic_->fileConfig();
+    gamelogic_->setTime(12, 10);
+    gamelogic_->takeCity(city_);
+    city_->addPlayer();
+    city_->addEnemy();
+    dialog->show();
 }
 
 GameWindow::~GameWindow()
@@ -53,7 +66,7 @@ void GameWindow::addActor(int locX, int locY, int type)
 
 void GameWindow::updateCoords()
 {
-    std::vector<std::shared_ptr<Interface::IActor>> buses = city_->getActors();
+    std::vector<std::shared_ptr<Interface::IActor> > buses = city_->getActors();
     int counter = 0;
     for (auto i : buses) {
         if (counter < actors_.size()) {
@@ -124,7 +137,6 @@ void GameWindow::mousePressEvent(QMouseEvent* event)
 void GameWindow::keyPressEvent(QKeyEvent* event)
 {
 
-
     if (event->key() == Qt::Key_Up) {
         playerDirVertical_ = -1;
         playerDirHorizontal_ = 0;
@@ -172,7 +184,6 @@ void GameWindow::gameEnd()
     str = QString("You got %1 points!")
               .arg(gameStats_.getScore());
 
-
     QMessageBox::information(this,
         tr("Game Over!"),
         (str));
@@ -183,18 +194,12 @@ void GameWindow::setPicture(QImage& img)
     map->setBackgroundBrush(img);
 }
 
-bool GameWindow::takeCity(std::shared_ptr<Manse> city)
-{
-    city_ = city;
-    return true;
-}
-
 void GameWindow::drawBuses()
 {
 
-    std::vector<std::shared_ptr<Interface::IActor>> buses = city_->getActors();
-    for ( auto i : buses){
-        int x = i->giveLocation().giveX() + 350;
+    std::vector<std::shared_ptr<Interface::IActor> > buses = city_->getActors();
+    for (auto i : buses) {
+        int x = i->giveLocation().giveX() + X_OFFSET;
         int y = Y_OFFSET - i->giveLocation().giveY();
 
         addActor(x, y, BUS);
@@ -228,30 +233,15 @@ void GameWindow::drawStops()
     }
 }
 
-void GameWindow::takeStats(Statistics gameStats)
-{
-    gameStats_ = gameStats;
-}
-
 void GameWindow::increaseScore()
 {
     gameStats_.increaseModifier();
 }
 
-void GameWindow::getLogic(std::shared_ptr<CourseSide::Logic> l)
-{
-    gamelogic_ = l;
-}
 void GameWindow::setPlayertwo(bool x)
 {
     enemyPlayerControlled = x;
     this->show();
-}
-
-void GameWindow::getDialog(StartDialog* dia)
-{
-    dialog_ = dia;
-    connect(dialog_, SIGNAL(sendCheckBox(bool)), this, SLOT(setPlayertwo(bool)));
 }
 
 void GameWindow::on_startButton_clicked()
@@ -264,8 +254,8 @@ void GameWindow::on_startButton_clicked()
     drawEnemy();
 
     timer->start(TICK);
-    scoreTimer->start(TICK * DIFFICULTY);
-    modTimer->start(1);
+    scoreTimer->start(TICK * SCORE_MOD);
+    modTimer->start(DIFFICULTY);
 
     ui->startButton->setEnabled(false);
     gamelogic_->finalizeGameStart();

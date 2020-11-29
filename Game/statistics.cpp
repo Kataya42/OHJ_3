@@ -18,7 +18,7 @@ void Statistics::addPlayerEnergy()
 
 void Statistics::drainPlayerEnergy()
 {
-    energy_--;
+    energy_ -= modifier_;
 }
 
 void Statistics::increaseModifier()
