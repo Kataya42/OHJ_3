@@ -36,6 +36,8 @@ public:
      * @brief setSize sets size of game window
      * @param w width
      * @param h height
+     * @pre -
+     * @post Exception guarantee nothrow
      */
     void setSize(int w, int h);
     /**
