@@ -65,7 +65,7 @@ void ManseTest::removeActorTest()
 
 void ManseTest::getNearbyActorsTest()
 {
-    //Adds 3 actors at distances of 0, 5 and 15, and then searches for nearby ones at the first ones location
+    //Adds 3 actors at distances of 0, 5 and 20, and then searches for nearby ones at the first ones location
     Manse testmanse;
     Interface::Location testloc;
     testloc.setXY(-350, 550);
@@ -80,7 +80,7 @@ void ManseTest::getNearbyActorsTest()
     testactor2->move(testloc);
     testmanse.addActor(testactor2);
 
-    testloc.setXY(-350, 565);
+    testloc.setXY(-350, 570);
     std::shared_ptr<Player> testactor3 = nullptr;
     testactor3 = std::make_shared<Player>();
     testactor3->move(testloc);

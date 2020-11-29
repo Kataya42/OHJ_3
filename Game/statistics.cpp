@@ -36,7 +36,3 @@ int Statistics::getPlayerEnergy()
     return energy_;
 }
 
-double Statistics::getDistance()
-{
-    return distance_;
-}
