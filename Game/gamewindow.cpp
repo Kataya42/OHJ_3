@@ -43,7 +43,7 @@ GameWindow::GameWindow(StartDialog* dialog, Statistics gameStats, std::shared_pt
 
     connect(dialog_, SIGNAL(sendCheckBox(bool)), this, SLOT(setPlayertwo(bool)));
     gamelogic_->fileConfig();
-    gamelogic_->setTime(12, 10);
+    gamelogic_->setTime(18,30);
     gamelogic_->takeCity(city_);
     city_->addPlayer();
     city_->addEnemy();

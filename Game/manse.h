@@ -10,11 +10,11 @@ const int X_MOD = 350; //offset for coordinates
 const int Y_MOD = 550;
 const int RANGE = 15; // range to suck energy from busses
 
-const int PLAYER_START_X = 500; // starting coordinates for player
-const int PLAYER_START_Y = 300;
+const int PLAYER_START_X = 200; // starting coordinates for player
+const int PLAYER_START_Y = 100;
 
-const int ENEMY_START_X = 500; // and enemy
-const int ENEMY_START_Y = 500;
+const int ENEMY_START_X = 1000; // and for the enemy
+const int ENEMY_START_Y = 420;
 
 class Manse : public Interface::ICity {
 public:

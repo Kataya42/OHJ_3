@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Ok</string>
+    <string>Start Game</string>
    </property>
   </widget>
   <widget class="QCheckBox" name="checkBox">
@@ -36,7 +36,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Two player</string>
+    <string>Two Player</string>
    </property>
   </widget>
   <widget class="QLabel" name="coverLabel">
