@@ -7,29 +7,12 @@
 #include <statistics.hh>
 #include <startdialog.hh>
 
-void startGame(std::shared_ptr<Manse> map,
-    std::shared_ptr<CourseSide::Logic> gamelogic,
-    Statistics stats,
-    std::shared_ptr<GameWindow> playSpace,
-    StartDialog* dialogWindow)
+void startGame(std::shared_ptr<GameWindow> playSpace)
 {
-    playSpace->getDialog(dialogWindow);
-    dialogWindow->show();
 
     QImage kartta;
     kartta.load(":/images/images/omaKartta.png");
-
     playSpace->setPicture(kartta);
-    playSpace->takeCity(map);
-    playSpace->takeStats(stats);
-
-    gamelogic->fileConfig();
-    gamelogic->setTime(12, 10);
-    gamelogic->takeCity(map);
-    playSpace->getLogic(gamelogic);
-
-    map->addPlayer();
-    map->addEnemy();
 }
 
 int main(int argc, char* argv[])
@@ -47,12 +30,13 @@ int main(int argc, char* argv[])
 
     Statistics stats; // initializing the game statistics
 
-    std::shared_ptr<GameWindow> playSpace = nullptr; // initializing the gameWindow
-    playSpace = std::make_shared<GameWindow>();
-
     StartDialog* dialogWindow = new StartDialog; // initializing the starting dialogue
 
-    startGame(map, gamelogic, stats, playSpace, dialogWindow);
+    std::shared_ptr<GameWindow> playSpace = nullptr; // initializing the gameWindow
+    playSpace = std::make_shared<GameWindow>(dialogWindow, stats, gamelogic, map);
+
+
+    startGame(playSpace);
 
     return a.exec();
 }
