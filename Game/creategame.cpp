@@ -7,5 +7,3 @@ std::shared_ptr<Interface::ICity> Interface::createGame()
 return 0;
 }
 
-
-//std::shared_ptr<Interface::IVehicle> isItBus = std::dynamic_pointer_cast<Interface::IVehicle>(newactor);

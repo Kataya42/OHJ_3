@@ -97,8 +97,16 @@ std::vector<std::shared_ptr<Interface::IActor> > Manse::getActors()
     return actors_;
 }
 
-void Manse::addPlayer(std::shared_ptr<Player> player)
+void Manse::addPlayer()
 {
+    std::shared_ptr<Player> player = nullptr;
+    player = std::make_shared<Player>();
+
+    Interface::Location start;
+    start.setXY(480, 316);
+
+    player->move(start);
+
     player_ = player;
 }
 
@@ -107,8 +115,15 @@ std::shared_ptr<Player> Manse::getPlayer()
     return player_;
 }
 
-void Manse::addEnemy(std::shared_ptr<Chaser> enemy)
+void Manse::addEnemy()
 {
+    std::shared_ptr<Chaser> enemy = nullptr;
+    enemy = std::make_shared<Chaser>();
+
+    Interface::Location enemyStart;
+    enemyStart.setXY(500, 500);
+    enemy->move(enemyStart);
+
     enemy_ = enemy;
 }
 

@@ -50,12 +50,12 @@ public:
      * @brief addEnemy adds Chaser class object as the enemy
      * @param Chaser class enemy actor
      */
-    void addEnemy(std::shared_ptr<Chaser> enemy);
+    void addEnemy();
     /**
      * @brief addPlayer adds Player class object as the player
      * @param Player class player actor
      */
-    void addPlayer(std::shared_ptr<Player> player);
+    void addPlayer();
     /**
      * @brief getProg updates current progress into Manse
      * @param integer progress (energy)
