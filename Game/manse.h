@@ -62,6 +62,7 @@ public:
      */
     void getProg(int progress);
 
+
 private slots:
 
 private:
@@ -71,6 +72,7 @@ private:
     std::vector<std::shared_ptr<Interface::IStop> > stops_;
     std::vector<std::shared_ptr<Interface::IActor> > actors_;
 
+    QImage background_;
     QTime time_;
     bool gamestarted_;
     int prog_;
