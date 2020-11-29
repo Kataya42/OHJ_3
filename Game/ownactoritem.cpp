@@ -23,10 +23,10 @@ void OwnActorItem::setSprite()
         this->setPixmap(QPixmap(":/images/images/bus.png"));
     }
     else if (type_ == STOP) {
-     this->setPixmap(QPixmap(":/images/images/stop.png"));
+        this->setPixmap(QPixmap(":/images/images/stop.png"));
     }
-    else if (type_ == ENEMY){
-       this->setPixmap(QPixmap(":/images/images/fightUp.png"));
+    else if (type_ == ENEMY) {
+        this->setPixmap(QPixmap(":/images/images/fightUp.png"));
     }
     update();
 }
@@ -44,11 +44,10 @@ void OwnActorItem::rotateSprite(int rot)
     else if (rot == LEFT) {
         this->setPixmap(QPixmap(":/images/images/fightLeft.png"));
     }
-    else if (rot == RIGHT){
+    else if (rot == RIGHT) {
         this->setPixmap(QPixmap(":/images/images/fightRight.png"));
     }
     update();
-
 }
 
 QRectF OwnActorItem::boundingRect() const
@@ -64,7 +63,7 @@ QRectF OwnActorItem::boundingRect() const
     else if (type_ == STOP) {
         return QRectF(0, 0, STOPSIZE, STOPSIZE);
     }
-    else  {
+    else {
         return QRectF(0, 0, PLAYERSIZE, PLAYERSIZE);
     }
 }

@@ -8,8 +8,7 @@ const int PLAYERSIZE = 30; // max size for the objects (pxl)
 const int BUSSIZE = 15;
 const int STOPSIZE = 7;
 
-
-enum Type {  // types of QgraphicsItems
+enum Type { // types of QgraphicsItems
     PLAYER = 0,
     BUS = 1,
     STOP = 2,

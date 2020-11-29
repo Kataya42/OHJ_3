@@ -35,4 +35,3 @@ int Statistics::getPlayerEnergy()
 {
     return energy_;
 }
-

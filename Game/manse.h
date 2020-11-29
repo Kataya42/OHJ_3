@@ -10,6 +10,12 @@ const int X_MOD = 350; //offset for coordinates
 const int Y_MOD = 550;
 const int RANGE = 15; // range to suck energy from busses
 
+const int PLAYER_START_X = 500; // starting coordinates for player
+const int PLAYER_START_Y = 300;
+
+const int ENEMY_START_X = 500; // and enemy
+const int ENEMY_START_Y = 500;
+
 class Manse : public Interface::ICity {
 public:
     Manse();
@@ -77,7 +83,6 @@ public:
      */
     void getProg(int progress);
 
-
 private slots:
 
 private:
@@ -87,10 +92,13 @@ private:
     std::vector<std::shared_ptr<Interface::IStop> > stops_;
     std::vector<std::shared_ptr<Interface::IActor> > actors_;
 
+    Interface::Location playerStart_;
+    Interface::Location enemyStart_;
+
     QImage background_;
     QTime time_;
     bool gamestarted_;
-    int prog_;
+    int life_;
     bool playeradded_ = false;
     bool enemyadded_ = false;
 };

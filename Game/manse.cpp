@@ -5,6 +5,8 @@
 Manse::Manse()
 {
     gamestarted_ = false;
+    playerStart_.setXY(PLAYER_START_X, PLAYER_START_Y);
+    enemyStart_.setXY(ENEMY_START_X, ENEMY_START_Y);
 }
 
 void Manse::setBackground(QImage& basicbackground, QImage& bigbackground)
@@ -25,7 +27,7 @@ void Manse::startGame()
 
 bool Manse::isGameOver() const
 {
-    if (prog_ >= 0) {
+    if (life_ >= 0) {
         return false;
     }
     else {
@@ -35,29 +37,26 @@ bool Manse::isGameOver() const
 
 void Manse::addStop(std::shared_ptr<Interface::IStop> stop)
 {
-    if (not (stop->getLocation().giveNorthernCoord() == 6700000 and stop->getLocation().giveEasternCoord() == 3500000))
-    {
+    //correct coordinates defined in chaser.h
+    if (not(stop->getLocation().giveNorthernCoord() == CORRECT_NORTHCOORD and stop->getLocation().giveEasternCoord() == CORRECT_EASTCOORD)) {
         stops_.push_back(stop);
-    } else
-    {
+    }
+    else {
         throw Interface::InitError("Stops position is not valid.");
     }
-
 }
 
 void Manse::addActor(std::shared_ptr<Interface::IActor> newactor)
 {
-    if (findActor(newactor))
-    {
+    if (findActor(newactor)) {
         throw Interface::GameError("Actor is already in the city");
-    } else
-    {
+    }
+    else {
         //this was the only way we figured out to seperate passengers from buses here
         if (stops_.size() == 0) {
             actors_.push_back(newactor);
         }
     }
-
 }
 
 void Manse::removeActor(std::shared_ptr<Interface::IActor> actor)
@@ -83,13 +82,13 @@ bool Manse::findActor(std::shared_ptr<Interface::IActor> actor) const
 
 void Manse::actorMoved(std::shared_ptr<Interface::IActor> actor)
 {
-    Q_UNUSED(actor)
+    Q_UNUSED(actor);
 }
 
 std::vector<std::shared_ptr<Interface::IActor> > Manse::getNearbyActors(Interface::Location loc) const
 {
 
-    std::vector<std::shared_ptr<Interface::IActor> > close;
+    std::vector<std::shared_ptr<Interface::IActor> > closeActors;
 
     for (auto a : actors_) {
 
@@ -99,11 +98,12 @@ std::vector<std::shared_ptr<Interface::IActor> > Manse::getNearbyActors(Interfac
 
         b.setXY(nx + X_MOD, Y_MOD - ny);
 
+        // is it within range to other actors
         if (b.isClose(loc, RANGE)) {
-            close.push_back(a);
+            closeActors.push_back(a);
         }
     }
-    return close;
+    return closeActors;
 }
 
 std::vector<std::shared_ptr<Interface::IActor> > Manse::getActors()
@@ -113,15 +113,11 @@ std::vector<std::shared_ptr<Interface::IActor> > Manse::getActors()
 
 void Manse::addPlayer()
 {
-    if (not playeradded_)
-    {
+    if (not playeradded_) {
         std::shared_ptr<Player> player = nullptr;
         player = std::make_shared<Player>();
 
-        Interface::Location start;
-        start.setXY(480, 316);
-
-        player->move(start);
+        player->move(playerStart_);
 
         player_ = player;
         playeradded_ = true;
@@ -130,26 +126,21 @@ void Manse::addPlayer()
 
 std::shared_ptr<Player> Manse::getPlayer()
 {
-    if (playeradded_)
-    {
+    if (playeradded_) {
         return player_;
-    } else
-    {
+    }
+    else {
         throw Interface::GameError("player not added yet");
     }
-
 }
 
 void Manse::addEnemy()
 {
-    if (not enemyadded_)
-    {
+    if (not enemyadded_) {
         std::shared_ptr<Chaser> enemy = nullptr;
         enemy = std::make_shared<Chaser>();
 
-        Interface::Location enemyStart;
-        enemyStart.setXY(500, 500);
-        enemy->move(enemyStart);
+        enemy->move(enemyStart_);
 
         enemy_ = enemy;
         enemyadded_ = true;
@@ -158,14 +149,12 @@ void Manse::addEnemy()
 
 std::shared_ptr<Chaser> Manse::getEnemy()
 {
-    if (enemyadded_)
-    {
+    if (enemyadded_) {
         return enemy_;
-    } else
-    {
+    }
+    else {
         throw Interface::GameError("enemy not added yet");
     }
-
 }
 
 std::vector<std::shared_ptr<Interface::IStop> > Manse::getStops()
@@ -175,5 +164,5 @@ std::vector<std::shared_ptr<Interface::IStop> > Manse::getStops()
 
 void Manse::getProg(int progress)
 {
-    prog_ = progress;
+    life_ = progress;
 }

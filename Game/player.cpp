@@ -7,21 +7,22 @@ Player::Player()
 
 Interface::Location Player::giveLocation() const
 {
-    if (locationset_)
-    {
+    if (locationset_) {
         return location_;
-    } else {
+    }
+    else {
         throw Interface::GameError("actor wasn't given a location");
     }
 }
 
 void Player::move(Interface::Location loc)
 {
-    if (not (loc.giveNorthernCoord() == 6700000 and loc.giveEasternCoord() == 3500000))
-    {
+    // correct coordinates defined in chaser.h
+    if (not(loc.giveNorthernCoord() == CORRECT_NORTHCOORD and loc.giveEasternCoord() == CORRECT_EASTCOORD)) {
         location_ = loc;
         locationset_ = true;
-    } else {
+    }
+    else {
         throw Interface::GameError("Location is not possible");
     }
 }
@@ -38,11 +39,10 @@ bool Player::isRemoved() const
 
 void Player::updateLocation(int hor, int ver)
 {
-    if (locationset_)
-    {
+    if (locationset_) {
         location_.setXY(location_.giveX() + SPEED * hor, location_.giveY() + SPEED * ver);
-    } else {
+    }
+    else {
         throw Interface::GameError("player start location not set");
     }
-
 }

@@ -8,8 +8,8 @@
 
 const int MAXSPEED = 10;
 const int ACCELERATION = 1;
-
-
+const int CORRECT_NORTHCOORD = 6700000;
+const int CORRECT_EASTCOORD = 3500000;
 
 /**
  * @file
@@ -75,7 +75,6 @@ public:
     int getDirection(std::shared_ptr<Interface::IActor> target);
 
 private:
-
     bool locationValid(Interface::Location testloc);
     int xSpeed_;
     int ySpeed_;

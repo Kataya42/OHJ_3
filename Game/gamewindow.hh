@@ -14,7 +14,7 @@
 const int WIDTH = 1095; //pxl
 const int HEIGHT = 592;
 const int TICK = 100; //ms
-const int DIFFICULTY = 3; // multiplier for score gain over time
+const int DIFFICULTY = 5; // multiplier for score gain over time
 const int PADDING = 10;
 const int X_OFFSET = 350; //pxl
 const int Y_OFFSET = 550;

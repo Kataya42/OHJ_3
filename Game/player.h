@@ -2,8 +2,9 @@
 #define PLAYER_H
 
 #include "actors/stop.hh"
+#include "chaser.h"
 
-const int SPEED = 3;
+const int SPEED = 3; //pxls
 
 class Player : public Interface::IActor {
 public:
