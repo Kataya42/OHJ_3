@@ -9,13 +9,15 @@ TEMPLATE = app
 SOURCES +=  \
     ../Game/manse.cpp \
     tst_mansetest.cpp \
-    ../Game/player.cpp
+    ../Game/player.cpp \
+    ../Game/chaser.cpp
 
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
 
 HEADERS += \
     ../Game/manse.h \
-    ../Game/player.h
+    ../Game/player.h \
+    ../Game/chaser.h
 
 INCLUDEPATH += ../Game/
 

@@ -1,6 +1,7 @@
 #include <QtTest>
 #include "manse.h"
 #include "player.h"
+#include "chaser.h"
 
 // add necessary includes here
 

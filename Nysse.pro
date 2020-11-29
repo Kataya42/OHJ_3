@@ -4,7 +4,8 @@ SUBDIRS += \
 	CourseLib \
 	Game \
         UnitTests \
-        StatisticsTest
+        StatisticsTest \
+        ManseTest
 
 CourseLib.subdir = Course/CourseLib
 Game.depends = CourseLib
