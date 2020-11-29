@@ -1,27 +1,14 @@
-# Programming 3 Exercise project template
+# How to play the game
 
-1. Make sure you have setup ssh-key for your GitLab account. https://course-gitlab.tuni.fi/profile/keys
-2. Clone and add template repo as remote.
-Address: git@course-gitlab.tuni.fi:tie-0240x-ohjelmointi-3-programming-3-2020-2021/group_template_project.git
-3. Pull from template, and do git submodule update --init in repo. Check that Course now contains something.
-4. Make sure you can build the project. (Should compile without issues if your environment is setup correctly)
+1. First Run the program
+2. A dialog window will open with the cover art of the game and text explaining the objective of the game 
+3. Press the "Rules" button to open the game rules
+4. Select "Two Player" if you want to play against a friend (local multiplayer) otherwise an AI will control the enemy plane
+5. Press "Start Game" to start the game
+6. Use the arrow keys on your keyboard to control the spaceship. Collect enegy from busses by hovering on top of them. Avoid the Finnish defence forces hornet
+7. The game ends if the plane catches you or you run out of energy. 
+9. Try to survive for as long as you can! Good luck!
 
-## Submodule / CourseLib
-Submodule for CourseLib is currently configured to use ssh. If you haven't yet setup an ssh-key. Go do it at  https://course-gitlab.tuni.fi/profile/keys
-
-The page contains also instructions for generating and using existing ssh-keys.
-
-Don't change anything in CourseLib ( You won't be able to submit changes made in it )
-
-If you find any bugs and/or missing features you can report them in GitLab https://course-gitlab.tuni.fi/tie-0240x-ohjelmointi-3-programming-3-2020-2021/course/-/issues
-
-## Doxygen documentation
-
-No Doxyfile is provided with the project, but you may generate it using doxygen or doxywizard. For example, "doxygen -g" should generate configuration file named DoxyFile.
-
-## Other notes
-
-You should create your own code inside your own namespace :)
+10. (if Two player option has been selected, the plane can be controlled with the WASD keys.) Try to catch the ufo!
 
 
-# You are allowed (and probably should) make changes to this file after you have started your project. :)
