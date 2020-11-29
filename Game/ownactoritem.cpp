@@ -1,4 +1,5 @@
 ﻿#include "ownactoritem.hh"
+#include "errors/gameerror.hh"
 
 OwnActorItem::OwnActorItem(int x, int y, int type)
     : x_(x)
@@ -6,6 +7,10 @@ OwnActorItem::OwnActorItem(int x, int y, int type)
     , type_(type)
 {
     setPos(mapToParent(x_, y_));
+    if (type_ > 3 or type_ < 0) {
+        type_ = BUS;
+        throw Interface::GameError("Invalid type!");
+    }
 }
 
 void OwnActorItem::setSprite()
@@ -59,7 +64,7 @@ QRectF OwnActorItem::boundingRect() const
     else if (type_ == STOP) {
         return QRectF(0, 0, STOPSIZE, STOPSIZE);
     }
-    else {
+    else  {
         return QRectF(0, 0, PLAYERSIZE, PLAYERSIZE);
     }
 }
